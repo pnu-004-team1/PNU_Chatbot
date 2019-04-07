@@ -125,7 +125,7 @@ public class CentralLibCrawler extends LibraryCrawler {
 	
 			centLibCrawler.setTitle(centLibCrawler.libDoc.select("h1.entry-title").text());
 			
-			// °³°ü ½Ã°£
+			// ê°œê´€ì‹œê°„
 			centLibCrawler.setOpenHour(centLibCrawler.libDoc.select("header.section-title").first().text());
 			centLibCrawler.setNote(centLibCrawler.libDoc.select("tr.row-1 th.column-4").text());
 			centLibCrawler.setSemesterDaysOpenHour(centLibCrawler.libDoc.select("tr.row-3 td.column-2").text());
@@ -133,7 +133,7 @@ public class CentralLibCrawler extends LibraryCrawler {
 			centLibCrawler.setVacationDaysOpenHour(centLibCrawler.libDoc.select("tr.row-4 td.column-2").text());
 			centLibCrawler.setVacationWeekOpenHour(centLibCrawler.libDoc.select("tr.row-3 td.column-3").text());
 
-			// Ãþº°¾È³»
+			// ì¸µë³„ì•ˆë‚´
 			centLibCrawler.setStairsGuide(centLibCrawler.libDoc.select("header.section-title").last().text());
 			for (Element element:centLibCrawler.libDoc.select("h3")){
 				centLibCrawler.setEachStairs(element.text());
