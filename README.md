@@ -4,6 +4,13 @@
 
 > 언제든지 아래 내용을 추가 혹은 변경할 수 있습니다.
 
+## 시스템 구성도
+
+> **정보관리모듈**: <br>
+파싱(선택적), 스캐줄링, DB접근, 데이터가공등의 기능을 수행하는 모듈
+
+![system configuration](resource/system-configuration.png)
+
 ## Packages
 
 ### NLP
