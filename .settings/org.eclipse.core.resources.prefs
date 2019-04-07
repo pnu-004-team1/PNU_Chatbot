@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 eclipse.preferences.version=1
 encoding//src/libInfo/LibraryCrawler.java=UTF-8
+=======
+eclipse.preferences.version=1
+encoding//src/hello/helloworld.java=UTF-8
+>>>>>>> branch 'master' of https://github.com/pnu-004-team1/PNU_Chatbot.git
