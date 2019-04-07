@@ -24,10 +24,10 @@ public class BookInfo {
 		BookInfo http = new BookInfo();
 		
 		String bookName;
-        Scanner scan = new Scanner(System.in);      // ¹®ÀÚ ÀÔ·ÂÀ» ÀÎÀÚ·Î Scanner »ı¼º
-        System.out.println("Ã¥ Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä:");
+        Scanner scan = new Scanner(System.in); 
+        System.out.println("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”:");
         
-        bookName = scan.nextLine();            // Å°º¸µå ¹®ÀÚ ÀÔ·Â
+        bookName = scan.nextLine();            
 		
 		try {
 			http.sendGet("https://lib.pusan.ac.kr/wp-json/eds/v1/articles/?post_per_page=3&query=&q_ti=" + bookName +"&q_au=&q_pu=&field_code=ALL&_=1554280931831");
@@ -47,7 +47,7 @@ public class BookInfo {
         
 		int responseCode = con.getResponseCode();
 		
-		System.out.println("HTTP ÀÀ´ä ÄÚµå : " + responseCode);
+		System.out.println("HTTP status : " + responseCode);
 		if (responseCode != 200) return;
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
 		String inputLine;
@@ -70,9 +70,9 @@ public class BookInfo {
 		jsonArray = (JSONArray) jsonObj.get("records");
 		for (int idx = 0; idx < jsonArray.size(); idx++) {
 			JSONObject item = (JSONObject)jsonArray.get(idx);
-			System.out.println("ÀúÀÚ: " + item.get("record_authors"));
-			System.out.println("Á¦¸ñ: " + item.get("record_title"));
-			System.out.println("ÃâÆÇ»ç: " + item.get("publisher"));
+			System.out.println("author: " + item.get("record_authors"));
+			System.out.println("title: " + item.get("record_title"));
+			System.out.println("publisher: " + item.get("publisher"));
 			System.out.println("\n");
 		}
 		
