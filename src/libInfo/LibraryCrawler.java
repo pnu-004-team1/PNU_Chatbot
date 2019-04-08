@@ -6,6 +6,10 @@ public class LibraryCrawler {
 	private String category;
 	
 	
+	public LibraryCrawler() {
+		
+	}
+	
 	public LibraryCrawler(String url) {
 		this.url = url;
 	}
