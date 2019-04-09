@@ -2,45 +2,49 @@ package libInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class CentralLibCrawler extends LibraryCrawler {
 	private Document libDoc;
 	private String title;
 	private String openHour;
+	private String openHourAllInfos;
+	private String semesterDaysAll;
+	private String semesterWeekAll;
+	private String vacationDaysAll;
+	private String vacationWeekAll;
+	private String eachStairsAll_1;
+	private String eachStairsAll_2;
+	private String eachStairsAll_3;
+	private String eachStairsAll_4;
 	private String note;
+	private String noteAllInfos;
 	private String semesterDaysOpenHour;
 	private String semesterWeekOpenHour;
 	private String vacationDaysOpenHour;
 	private String vacationWeekOpenHour;
 	private String noteInfo;
 	private String stairsGuide;
+	private String starisGuideAllInfos;
 	private ArrayList<String> eachStairs = new ArrayList<String>();
  	private ArrayList<String> eachStairsImg = new ArrayList<String>();
  	private Integer eachStairsIter = -1;
  	private Integer eachStairsImgIter= -1;
  	
- 	
- 	public CentralLibCrawler() {
- 		
+ 	public CentralLibCrawler() throws IOException {
+ 		setJsoupInfos();
 	}
 
  	
 	public CentralLibCrawler(String url) throws IOException {
 		super(url);
 		libDoc = Jsoup.connect(url).get();
+		setJsoupInfos();
 	}
-	
-
 	
 	private void setLibDoc(Document libDoc) {
 		this.libDoc = libDoc;
@@ -88,6 +92,48 @@ public class CentralLibCrawler extends LibraryCrawler {
 	
 	private void setEachStairsImg(String eachStairImg) {
 		this.eachStairsImg.add(eachStairImg);
+	}
+	
+	private void setStairsIterDefault() {
+		eachStairsIter = -1;
+		eachStairsImgIter = -1;
+	}
+	
+	private void setJsoupInfos() throws IOException {
+		libDoc = Jsoup.connect("https://lib.pusan.ac.kr/intro/plot-plan/lib1-open-plot/").get();
+		
+		// 개관시간
+		title = libDoc.select("h1.entry-title").text();
+		openHour = libDoc.select("header.section-title").first().text();
+		note = libDoc.select("tr.row-1 th.column-4").text();
+		noteInfo = libDoc.select("tr.row-2 td.column-4").text();
+		semesterDaysOpenHour = libDoc.select("tr.row-3 td.column-2").text();
+		semesterWeekOpenHour = libDoc.select("tr.row-3 td.column-3").text();
+		vacationDaysOpenHour = libDoc.select("tr.row-4 td.column-2").text();
+		vacationWeekOpenHour = libDoc.select("tr.row-3 td.column-3").text();
+		// 층별안내
+		for (Element element:libDoc.select("h3")){
+			eachStairs.add(element.text());
+		}
+		for (Element element:libDoc.select("h3 img")){
+			eachStairsImg.add(element.attr("src"));
+		}
+
+		// 개관시간 모든 정보
+		openHourAllInfos = "학기중  : " + "평일 (월~금): " + semesterDaysOpenHour + "\n토요일: " + semesterWeekOpenHour
+				+ "\n방학중: " + "평일 (월~금): " + vacationDaysOpenHour + "\n토요일: " + vacationWeekOpenHour;
+		
+		// 층별안내 모든 정보
+		starisGuideAllInfos = "층별안내 " + " 1층: "
+				+ getEachStairsImg() + "\n2층 문학예술자료관: " + getEachStairsImg() + "\n3층 인문사회과학자료관: " + getEachStairsImg()
+				+ "\n4층 과학기술자료관: " + getEachStairsImg();
+		
+		noteAllInfos = note + ":" + noteInfo;
+		
+		
+		// 층별안내 URL Index 초기화
+		setStairsIterDefault();
+		
 	}
 	
 	public Document getLibDoc() {
@@ -140,67 +186,46 @@ public class CentralLibCrawler extends LibraryCrawler {
 		return eachStairsImg.get(eachStairsImgIter);
 	}
 	
-	public JSONObject getResult() throws Exception {
-		
-		CentralLibCrawler centLibCrawler = new CentralLibCrawler("https://lib.pusan.ac.kr/intro/plot-plan/lib1-open-plot/");
-		
-		centLibCrawler.setTitle(centLibCrawler.libDoc.select("h1.entry-title").text());
-		
-		// 개관시간
-		centLibCrawler.setOpenHour(centLibCrawler.libDoc.select("header.section-title").first().text());
-		centLibCrawler.setNote(centLibCrawler.libDoc.select("tr.row-1 th.column-4").text());
-		centLibCrawler.setNoteInfo(centLibCrawler.libDoc.select("tr.row-2 td.column-4").text());
-		centLibCrawler.setSemesterDaysOpenHour(centLibCrawler.libDoc.select("tr.row-3 td.column-2").text());
-		centLibCrawler.setSemesterWeekOpenHour(centLibCrawler.libDoc.select("tr.row-3 td.column-3").text());
-		centLibCrawler.setVacationDaysOpenHour(centLibCrawler.libDoc.select("tr.row-4 td.column-2").text());
-		centLibCrawler.setVacationWeekOpenHour(centLibCrawler.libDoc.select("tr.row-3 td.column-3").text());
-
-		// 층별안내
-		centLibCrawler.setStairsGuide(centLibCrawler.libDoc.select("header.section-title").last().text());
-		for (Element element:centLibCrawler.libDoc.select("h3")){
-			centLibCrawler.setEachStairs(element.text());
-		}
-		for (Element element:centLibCrawler.libDoc.select("h3 img")){
-			centLibCrawler.setEachStairsImg(element.attr("src"));
+	public String getResult(String paramStr) throws IOException {
+	
+		String resultStr = "실패";
+		switch(paramStr) {
+			case "제목": resultStr = title;
+			break;
+			case "개관시간": resultStr = openHourAllInfos;
+			break;
+			case "층별안내": resultStr = starisGuideAllInfos;
+			break;
 		}
 		
-		JSONObject centLib = new JSONObject();
-		JSONObject centLibOn = new JSONObject();
-		JSONObject centLibOnSemeDays = new JSONObject();
-		JSONObject centLibOnVacaDays = new JSONObject();
-		JSONObject centLibStairs = new JSONObject();
+		return resultStr;
+	}
+	
+	public String getResult() throws Exception {
 		
-		centLibOnSemeDays.put("평일 (월~금)",centLibCrawler.getSemesterDaysOpenHour());
-		centLibOnSemeDays.put("토요일",centLibCrawler.getSemesterWeekOpenHour());
-		centLibOnVacaDays.put("평일 (월~금)",centLibCrawler.getVacationDaysOpenHour());
-		centLibOnVacaDays.put("토요일",centLibCrawler.getVacationWeekOpenHour());
-		centLibOn.put("학기중",centLibOnSemeDays);
-		centLibOn.put("방학중",centLibOnVacaDays);
-		centLib.put(centLibCrawler.getOpenHour(), centLibOn);
-		centLib.put(centLibCrawler.getNote(), centLibCrawler.getNoteInfo());
-		// 1층 ~ 4층
-		centLibStairs.put("1층",centLibCrawler.getEachStairsImg());
-		centLibStairs.put("2층  문학예술자료관",centLibCrawler.getEachStairsImg());
-		centLibStairs.put("3층 인문사회과학자료관",centLibCrawler.getEachStairsImg());
-		centLibStairs.put("4층 과학기술자료관",centLibCrawler.getEachStairsImg());
-		
-		centLib.put("층별안내",centLibStairs);
-		
+		String resultStr = title + "\n" + openHourAllInfos + "\n" + starisGuideAllInfos + "\n" + noteAllInfos;
 
-		System.out.println(centLib);
 		
-		return centLib;
+		System.out.println(resultStr);
+		
+		return resultStr;
 	}
 	
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 			
 		CentralLibCrawler centLibCrawler = new CentralLibCrawler();
 			
 		try {
 			centLibCrawler.getResult();
+			System.out.print("\n\n\n");
+			System.out.print(centLibCrawler.getResult("제목"));
+			System.out.print("\n----------------------------\n");
+			System.out.print(centLibCrawler.getResult("개관시간"));
+			System.out.print("\n----------------------------\n");
+			System.out.print(centLibCrawler.getResult("층별안내"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
