@@ -1,6 +1,6 @@
 package com.pnu.demo.chatbot.hello;
 
-import com.pnu.demo.chatbot.crallwer.RestaurantCrawler;
+import com.pnu.demo.chatbot.restaurant.RestaurantCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
