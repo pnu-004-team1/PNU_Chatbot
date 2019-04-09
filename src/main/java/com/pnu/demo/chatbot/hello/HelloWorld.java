@@ -1,6 +1,8 @@
 package com.pnu.demo.chatbot.hello;
 
+import com.pnu.demo.chatbot.academicCalendar.AcademicCalendarParsing;
 import com.pnu.demo.chatbot.libInfo.CentralLibCrawler;
+import com.pnu.demo.chatbot.readingRoom.ReadingRoomParsing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
