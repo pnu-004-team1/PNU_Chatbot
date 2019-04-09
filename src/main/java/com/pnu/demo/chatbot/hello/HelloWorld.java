@@ -1,6 +1,6 @@
 package com.pnu.demo.chatbot.hello;
 
-import com.pnu.demo.chatbot.restaurant.RestaurantCrawler;
+import com.pnu.demo.chatbot.libInfo.CentralLibCrawler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,10 +13,10 @@ public class HelloWorld implements ApplicationRunner {
     private static final Logger logger = Logger.getLogger(HelloWorld.class.getName());
 
     @Autowired
-    RestaurantCrawler restaurantCrawler;
+    CentralLibCrawler centralLibCrawler;
     @Override
     public void run(ApplicationArguments args) throws Exception {
             // TODO Auto-generated method stub
-            restaurantCrawler.get();
+            centralLibCrawler.getResult();
     }
 }
