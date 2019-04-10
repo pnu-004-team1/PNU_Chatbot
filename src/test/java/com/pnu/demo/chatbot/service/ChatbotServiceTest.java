@@ -35,7 +35,10 @@ public class ChatbotServiceTest {
     }
 
     private void print(String question, String answer) {
-        System.out.println("\nQ.\n" + question);
-        System.out.println("\nA.\n" + answer + "\n");
+        System.out.println("=====================================");
+        System.out.println("------------ Question ---------------");
+        System.out.println(question);
+        System.out.println("------------- Answer ----------------");
+        System.out.println(answer);
     }
 }
