@@ -3,7 +3,6 @@ package com.pnu.demo.chatbot.libInfo;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
