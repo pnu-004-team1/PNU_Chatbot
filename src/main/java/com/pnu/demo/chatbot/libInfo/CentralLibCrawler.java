@@ -36,14 +36,13 @@ public class CentralLibCrawler extends LibraryCrawler {
     private Integer eachStairsIter = -1;
     private Integer eachStairsImgIter= -1;
 
-    public CentralLibCrawler() throws IOException {
+    public CentralLibCrawler() {
         setJsoupInfos();
     }
 
 
-    public CentralLibCrawler(String url) throws IOException {
+    public CentralLibCrawler(String url) {
         super(url);
-        libDoc = Jsoup.connect(url).get();
         setJsoupInfos();
     }
 
@@ -100,8 +99,15 @@ public class CentralLibCrawler extends LibraryCrawler {
         eachStairsImgIter = -1;
     }
 
-    private void setJsoupInfos() throws IOException {
-        libDoc = Jsoup.connect("https://lib.pusan.ac.kr/intro/plot-plan/lib1-open-plot/").get();
+    private void setJsoupInfos() {
+
+        try {
+            libDoc = Jsoup.connect("https://lib.pusan.ac.kr/intro/plot-plan/lib1-open-plot/").get();
+        }catch (IOException e) {
+            System.out.println (e.toString());
+        }
+
+
 
         // 개관시간
         title = libDoc.select("h1.entry-title").text();
@@ -187,7 +193,7 @@ public class CentralLibCrawler extends LibraryCrawler {
         return eachStairsImg.get(eachStairsImgIter);
     }
 
-    public String getResult(String paramStr) throws IOException {
+    public String getResult(String paramStr) {
 
         String resultStr = "실패";
         switch(paramStr) {
@@ -208,7 +214,7 @@ public class CentralLibCrawler extends LibraryCrawler {
         return resultStr;
     }
 
-    public String getResult() throws Exception {
+    public String getResult() {
 
         String resultStr = title + "\n" + openHourAllInfos + "\n" + starisGuideAllInfos + "\n" + noteAllInfos;
 
@@ -220,7 +226,7 @@ public class CentralLibCrawler extends LibraryCrawler {
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
         CentralLibCrawler centLibCrawler = new CentralLibCrawler();

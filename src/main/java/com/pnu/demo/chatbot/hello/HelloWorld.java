@@ -7,17 +7,15 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.logging.Logger;
+import java.io.IOException;
 
 @Component
 public class HelloWorld implements ApplicationRunner {
     private static final Logger logger = Logger.getLogger(HelloWorld.class.getName());
 
-    @Autowired
-    CentralLibCrawler centralLibCrawler;
-    @Autowired
-    DawnLibCrawler dawnLibCrawler;
-    @Autowired
-    LawLibCrawler lawLibCrawler;
+    CentralLibCrawler centralLibCrawler = new CentralLibCrawler();
+    DawnLibCrawler dawnLibCrawler = new DawnLibCrawler();
+    LawLibCrawler lawLibCrawler = new LawLibCrawler();
     @Override
     public void run(ApplicationArguments args) throws Exception {
             // TODO Auto-generated method stub

@@ -21,12 +21,11 @@ public class LawLibCrawler  extends LibraryCrawler{
     private Integer eachStairsIter = -1;
     private Integer eachStairsImgIter= -1;
 
-    public LawLibCrawler() throws IOException {
+    public LawLibCrawler()  {
         setJsoupInfos();
     }
 
-
-    public LawLibCrawler(String url) throws IOException {
+    public LawLibCrawler(String url) {
         super(url);
         setJsoupInfos();
     }
@@ -56,8 +55,13 @@ public class LawLibCrawler  extends LibraryCrawler{
         eachStairsImgIter = -1;
     }
 
-    private void setJsoupInfos() throws IOException {
-        libDoc = Jsoup.connect("https://lib.pusan.ac.kr/intro/plot-plan/law-open-plot/").get();
+    private void setJsoupInfos()  {
+
+        try {
+            libDoc = Jsoup.connect("https://lib.pusan.ac.kr/intro/plot-plan/law-open-plot/").get();
+        }catch (IOException e) {
+            System.out.println (e.toString());
+        }
 
         title = libDoc.select("h1.entry-title").text();
 
@@ -105,7 +109,7 @@ public class LawLibCrawler  extends LibraryCrawler{
         return eachStairsImg.get(eachStairsImgIter);
     }
 
-    public String getResult(String paramStr) throws IOException {
+    public String getResult(String paramStr) {
 
         String resultStr = "실패";
         switch(paramStr) {
@@ -126,7 +130,7 @@ public class LawLibCrawler  extends LibraryCrawler{
         return resultStr;
     }
 
-    public String getResult() throws Exception {
+    public String getResult() {
 
         String resultStr = title + "\n개관시간" + "\n";
 
@@ -151,7 +155,7 @@ public class LawLibCrawler  extends LibraryCrawler{
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
 
         LawLibCrawler lawLibCrawler = new LawLibCrawler();
