@@ -4,6 +4,14 @@ public class LibraryCrawler {
     private String url;
     private String category;
 
+    enum openHourType {
+        TABLE1, TABLE2, REFERENCEROOM1, READINGROOM1, READINGROOM2,
+        READINGROOM3, READINGROOM4, READINGROOM5
+    }
+
+    enum eachStairsType {
+        FIRST, SECOND, THIRD, FOURTH
+    }
 
     public LibraryCrawler() {
 

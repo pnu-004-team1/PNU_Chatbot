@@ -191,11 +191,17 @@ public class CentralLibCrawler extends LibraryCrawler {
 
         String resultStr = "실패";
         switch(paramStr) {
+            case "도서관 이름": resultStr  = "중앙도서관";
+                break;
+            case "방학 유무": resultStr = "True";
+                break;
             case "제목": resultStr = title;
                 break;
-            case "개관시간": resultStr = openHourAllInfos;
+            case "개관 시간": resultStr = openHourAllInfos;
                 break;
-            case "층별안내": resultStr = starisGuideAllInfos;
+            case "층별 안내": resultStr = starisGuideAllInfos;
+                break;
+            default : resultStr = "해당되는 정보가 없습니다.";
                 break;
         }
 

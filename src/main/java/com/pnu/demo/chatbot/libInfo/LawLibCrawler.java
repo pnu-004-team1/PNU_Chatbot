@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @Component
-public class DawnLibCrawler  extends LibraryCrawler{
+public class LawLibCrawler  extends LibraryCrawler{
     private Document libDoc;
     private String title;
     private ArrayList<String> openHourAllByCol = new ArrayList<String>();
@@ -21,12 +21,12 @@ public class DawnLibCrawler  extends LibraryCrawler{
     private Integer eachStairsIter = -1;
     private Integer eachStairsImgIter= -1;
 
-    public DawnLibCrawler() throws IOException {
+    public LawLibCrawler() throws IOException {
         setJsoupInfos();
     }
 
 
-    public DawnLibCrawler(String url) throws IOException {
+    public LawLibCrawler(String url) throws IOException {
         super(url);
         setJsoupInfos();
     }
@@ -57,7 +57,7 @@ public class DawnLibCrawler  extends LibraryCrawler{
     }
 
     private void setJsoupInfos() throws IOException {
-        libDoc = Jsoup.connect("https://lib.pusan.ac.kr/intro/plot-plan/lib2-open-plot/").get();
+        libDoc = Jsoup.connect("https://lib.pusan.ac.kr/intro/plot-plan/law-open-plot/").get();
 
         title = libDoc.select("h1.entry-title").text();
 
@@ -68,10 +68,8 @@ public class DawnLibCrawler  extends LibraryCrawler{
 
         openHourAllInfos = openHourAllByCol.toString();
 
-        eachStairs.add("1층");
-        eachStairs.add("2층");
-        eachStairs.add("3층");
         eachStairs.add("4층");
+        eachStairs.add("5층");
 
         // 층별안내
         for (Element element:libDoc.select("div.mps-content img")){
@@ -111,7 +109,7 @@ public class DawnLibCrawler  extends LibraryCrawler{
 
         String resultStr = "실패";
         switch(paramStr) {
-            case "도서관 이름": resultStr  = "새벽벌도서관";
+            case "도서관 이름": resultStr  = "법학도서관";
                 break;
             case "방학 유무": resultStr = "True";
                 break;
@@ -156,10 +154,10 @@ public class DawnLibCrawler  extends LibraryCrawler{
     public static void main(String[] args) throws IOException {
 
 
-        DawnLibCrawler dawnLibCrawler = new DawnLibCrawler();
+        LawLibCrawler lawLibCrawler = new LawLibCrawler();
 
         try {
-            dawnLibCrawler.getResult();
+            lawLibCrawler.getResult();
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
