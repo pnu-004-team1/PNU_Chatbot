@@ -16,7 +16,7 @@ public class HelloWorld implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
             // TODO Auto-generated method stub
-        System.out.println(libraryCrawler.getLibraryOfficeHours("중앙","학기중"));
+        System.out.println(libraryCrawler.getLibraryOfficeHours("새벽","자료실"));
 
     }
 }

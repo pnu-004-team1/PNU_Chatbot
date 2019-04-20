@@ -91,7 +91,7 @@ public class LibraryCrawler {
                 }
                 switch(classify) {
                     case "자료실" :
-                        resultStr = openHourAllByCol.get(2);
+                        resultStr = openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2);
                         break;
                     case "열람실" :
                         resultStr = openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
