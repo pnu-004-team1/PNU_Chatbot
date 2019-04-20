@@ -50,8 +50,8 @@ public class ChatbotService {
                     "위치: [나노생명과학도서관] 제 1열람실\n" +
                     "좌석: 108\n";
         } else if (questionText.contains("도서관")) {
-            LawLibCrawler lawLibCrawler = new LawLibCrawler();;
-            String result = lawLibCrawler.getResult();
+            LibraryCrawler lawLibCrawler = new LibraryCrawler();;
+            String result = lawLibCrawler.getLibraryOfficeHours("중앙", "학기중");
             return result;
 //            return "[중앙도서관]\n" +
 //                    "개관시간\n" +
