@@ -50,15 +50,18 @@ public class ChatbotService {
                     "위치: [나노생명과학도서관] 제 1열람실\n" +
                     "좌석: 108\n";
         } else if (questionText.contains("도서관")) {
-            return "[중앙도서관]\n" +
-                    "개관시간\n" +
-                    "학기중  : \n" +
-                    "  월~목 09:00 ~ 21:00\n" +
-                    "  금 09:00 ~ 18:00\n" +
-                    "  토요일: 09:00 ~ 13:00\n" +
-                    "방학중: \n" +
-                    "  평일 (월~금): 09:00 ~ 18:00\n" +
-                    "  토요일: 09k:00 ~ 13:00\n";
+            LawLibCrawler lawLibCrawler = new LawLibCrawler();;
+            String result = lawLibCrawler.getResult();
+            return result;
+//            return "[중앙도서관]\n" +
+//                    "개관시간\n" +
+//                    "학기중  : \n" +
+//                    "  월~목 09:00 ~ 21:00\n" +
+//                    "  금 09:00 ~ 18:00\n" +
+//                    "  토요일: 09:00 ~ 13:00\n" +
+//                    "방학중: \n" +
+//                    "  평일 (월~금): 09:00 ~ 18:00\n" +
+//                    "  토요일: 09k:00 ~ 13:00\n";
         }
         return "잘 모르겠네요...";
     }
