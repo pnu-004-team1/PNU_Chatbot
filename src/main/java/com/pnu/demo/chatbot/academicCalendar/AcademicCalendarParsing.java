@@ -1,6 +1,11 @@
 package com.pnu.demo.chatbot.academicCalendar;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -11,40 +16,107 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AcademicCalendarParsing {
-    public static void main(String[] args) {
-        getResult();
+    private Elements termE;
+    private Elements textE;
+    private String result = new String();
+
+    public String getResult(String event) {
+        int beginDate = 0, endDate = 365, targetDate;
+        Calendar today = Calendar.getInstance();
+        Calendar compDate = Calendar.getInstance();
+        today.setTime(new Date());
+        compDate.setTime(new Date());
+
+        if(event.contains("올해")) {
+            event = event.replaceFirst("올해", "");
+            event = event.replace(" ","");
+            endDate = today.getActualMaximum(today.DAY_OF_YEAR) - today.get(Calendar.DAY_OF_YEAR) + 1;
+        }
+        else if(event.contains("달")) {
+            if(event.split("달").length > 1)
+                event = event.split("달")[1];
+            else
+                event = "";
+            endDate = today.getActualMaximum(today.DAY_OF_MONTH) - today.get(Calendar.DAY_OF_MONTH);
+        }
+        else if(event.contains("월")) {
+            targetDate = Integer.parseInt(event.split("월")[0]);
+
+            if(event.split("월").length > 1)
+                event = event.split("월")[1];
+            else
+                event = "";
+            compDate.add(Calendar.MONTH,targetDate - today.get(Calendar.MONTH) - 1);
+            beginDate = compDate.get(Calendar.DAY_OF_YEAR) - compDate.get(Calendar.DAY_OF_MONTH) - today.get(Calendar.DAY_OF_YEAR);
+            endDate = beginDate + compDate.getActualMaximum(Calendar.DAY_OF_MONTH) - 1;
+        }
+
+        if(event.equals("휴일")) {
+            getEvent("개교", beginDate, endDate);
+            getEvent("휴가", beginDate, endDate);
+        }
+        else
+            getEvent(event, beginDate, endDate);
+
+        return this.result;
     }
 
-    public static void getResult() {
-        String html = "https://www.pusan.ac.kr/kor/CMS/Haksailjung/PopupView.do";
-        Elements termE;
-        Elements textE;
+    private boolean isCheck(String event, String academicEvent) {
+        if(academicEvent.contains(event))
+            return true;
+        return false;
+    }
+
+    private void getEvent(String event, int begin, int end) {
+        Element text;
+
+        Calendar beginDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+        Calendar date = Calendar.getInstance();
+        Calendar date2 = Calendar.getInstance();
+        beginDate.setTime(new Date());
+        beginDate.add(Calendar.DATE, begin);
+        endDate.setTime(new Date());
+        endDate.add(Calendar.DATE, end);
+
+        DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
 
         try {
-            termE = connecting(html, "th");
-            textE = connecting(html, "td");
-            termE.remove(0);		//delete useless information
-            termE.remove(0);
+            int i = 0;
+            connecting();
 
-            for( Element element : termE) {
-                System.out.println(element.text());	//나중에 DB입력으로 바꿀 것.
+            for(Element term : this.termE) {
+                date.setTime(df.parse(term.text()));
+                date2.setTime(df.parse(term.text().substring(12)));
+                text = this.textE.get(i);
+
+                if((date2.equals(beginDate) || date2.after(beginDate)) && date.before(endDate) && isCheck(event, text.text())) {
+                    this.result += term.text() + "   " + text.text() + "\n";
+                }
+                i++;
             }
-            for( Element element : textE) {
-                System.out.println(element.text()); //나중에 DB입력으로 바꿀 것.
-            }
-
-
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("aa");
         }
     }
 
-    private static Elements connecting(String html, String type) throws IOException {
-        Connection.Response response = Jsoup.connect(html)
+    private void connecting() throws IOException {
+        Document Document = parsing();
+        this.termE = Document.select("th");
+        Document Document1 = parsing();
+        this.textE = Document1.select("td");
+        this.termE.remove(0);		//delete useless information
+        this.termE.remove(0);
+    }
+
+    private Document parsing() throws IOException {
+        Connection.Response response = Jsoup.connect("https://www.pusan.ac.kr/kor/CMS/Haksailjung/PopupView.do")
                 .method(Connection.Method.GET)
                 .execute();
-        Document googleDocument = response.parse();
-        return googleDocument.select(type);
+        return response.parse();
     }
 }
 
