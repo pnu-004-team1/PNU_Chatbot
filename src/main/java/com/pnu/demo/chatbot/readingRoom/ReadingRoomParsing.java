@@ -12,37 +12,35 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReadingRoomParsing {
-    public static void main(String[] args) {
-        getResult("all");		// all, dawn, archi, nano
-    }
-
-    public static void getResult(String library) {
-        String html = "https://seat.pusan.ac.kr/Clicker/k/";
+    public static String getResult(String library) {
         List<ReadingRoomInfo> Structure = new LinkedList<>();
+        String result = new String();
 
         try {
-            connecting(html, Structure);
+            connecting(Structure);
 
             for(ReadingRoomInfo I : Structure) {
                 if(I.checking(library))					//출력 도서관 확인
-                    System.out.println(I.string());		//나중에 바꿀 것.
+                    result = result + I.string();
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return result;
     }
 
-    private static void connecting(String html, List<ReadingRoomInfo> Structure) throws IOException {
+    private static void connecting(List<ReadingRoomInfo> Structure) throws IOException {
         String temp[] = new String[4];
         int ElementNum;
         int i = 0;
 
-        Connection.Response response = Jsoup.connect(html)
+        Connection.Response response = Jsoup.connect("https://seat.pusan.ac.kr/Clicker/k/")
                 .method(Connection.Method.GET)
                 .execute();
-        Document googleDocument = response.parse();
-        Elements textE = googleDocument.select("td");
+        Document Document = response.parse();
+        Elements textE = Document.select("td");
         ElementNum = textE.size();
 
         while(i<ElementNum) {

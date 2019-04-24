@@ -27,15 +27,15 @@ public class ReadingRoomInfo {
         boolean check = false;
 
         switch(libaray){
-            case "dawn":
+            case "새벽벌":
                 if(substr.equals("[새벽벌"))
                     check = true;
                 break;
-            case "archi":
+            case "건설관":
                 if(substr.equals("[건설관"))
                     check = true;
                 break;
-            case "nano" :
+            case "나노생명" :
                 if(substr.equals("[나노생명과학도서관"))
                     check = true;
                 break;
