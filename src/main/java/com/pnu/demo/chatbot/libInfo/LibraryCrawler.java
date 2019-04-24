@@ -13,10 +13,12 @@ public class LibraryCrawler {
     private String url;
     private String category;
     private ArrayList<String> openHourAllByCol = new ArrayList<String>();
-    private String openHourAllInfos;
-    private String starisGuideAllInfos;
     private ArrayList<String> eachStairs = new ArrayList<String>();
     private ArrayList<String> eachStairsImg = new ArrayList<String>();
+    private String openHourAllInfos;
+    private String starisGuideAllInfos;
+    private String getTextByCols = "div.mps tr";
+    private String officeHourNotExist = "해당 개관시간이 존재하지 않습니다.";
 
     public LibraryCrawler() {
 
@@ -37,7 +39,7 @@ public class LibraryCrawler {
         title = libDoc.select("h1.entry-title").text();
 
         // 개관시간
-        for (Element element:libDoc.select("div.mps tr")){
+        for (Element element:libDoc.select(getTextByCols)){
             openHourAllByCol.add(element.text());
         }
 
@@ -61,6 +63,7 @@ public class LibraryCrawler {
     public String getLibraryOfficeHours(String libName, String classify) {
         ArrayList<String> temp =  new ArrayList<String>();
 
+
         String resultStr = "";
         switch(libName) {
             case "중앙":
@@ -76,7 +79,7 @@ public class LibraryCrawler {
                         resultStr += "모든 요일 " +  libDoc.select("div.mps tr.row-4").text();
                         break;
                     default:
-                        resultStr = "해당 개관시간이 존재하지 않습니다.";
+                        resultStr = officeHourNotExist;
                 }
                 break;
             }
@@ -86,7 +89,7 @@ public class LibraryCrawler {
                 temp.add("3층"); temp.add("4층");
                 setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/lib2-open-plot/",temp);
                 // 개관시간
-                for (Element element:libDoc.select("div.mps tr")){
+                for (Element element:libDoc.select(getTextByCols)){
                     openHourAllByCol.add(element.text());
                 }
                 switch(classify) {
@@ -98,7 +101,7 @@ public class LibraryCrawler {
                         + openHourAllByCol.get(6) + openHourAllByCol.get(7);
                         break;
                     default:
-                        resultStr = "해당 개관시간이 존재하지 않습니다.";
+                        resultStr = officeHourNotExist;
                 }
                 break;
             }
@@ -107,7 +110,7 @@ public class LibraryCrawler {
                 temp.add("4층"); temp.add("5층");
                 setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/law-open-plot/",temp);
                 // 개관시간
-                for (Element element:libDoc.select("div.mps tr")){
+                for (Element element:libDoc.select(getTextByCols)){
                     openHourAllByCol.add(element.text());
                 }
                 switch(classify) {
@@ -119,14 +122,14 @@ public class LibraryCrawler {
                                 + openHourAllByCol.get(6) + openHourAllByCol.get(7);
                         break;
                     default:
-                        resultStr = "해당 개관시간이 존재하지 않습니다.";
+                        resultStr = officeHourNotExist;
                 }
                 break;
             }
             case "미리내": {
                 setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/archi-open-plot/", temp);
                 // 개관시간
-                for (Element element : libDoc.select("div.mps tr")) {
+                for (Element element : libDoc.select(getTextByCols)) {
                     openHourAllByCol.add(element.text());
                 }
                 switch (classify) {
@@ -137,7 +140,7 @@ public class LibraryCrawler {
                         resultStr = openHourAllByCol.get(2);
                         break;
                     default:
-                        resultStr = "해당 개관시간이 존재하지 않습니다.";
+                        resultStr = officeHourNotExist;
                 }
                 break;
             }
@@ -147,20 +150,6 @@ public class LibraryCrawler {
         return resultStr;
     }
 
-    private void setUrl(String url) {
-        this.url = url;
-    }
 
-    public String getUrl() {
-        return url;
-    }
-
-    private void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getCategory() {
-        return category;
-    }
 
 }
