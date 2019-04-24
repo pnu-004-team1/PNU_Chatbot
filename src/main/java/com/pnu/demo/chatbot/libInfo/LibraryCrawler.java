@@ -123,6 +123,24 @@ public class LibraryCrawler {
                 }
                 break;
             }
+            case "미리내": {
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/archi-open-plot/", temp);
+                // 개관시간
+                for (Element element : libDoc.select("div.mps tr")) {
+                    openHourAllByCol.add(element.text());
+                }
+                switch (classify) {
+                    case "평소":
+                        resultStr = openHourAllByCol.get(1);
+                        break;
+                    case "시험기간":
+                        resultStr = openHourAllByCol.get(2);
+                        break;
+                    default:
+                        resultStr = "해당 개관시간이 존재하지 않습니다.";
+                }
+                break;
+            }
             default: System.out.println("도서관 이름이 존재하지 않습니다.");
         }
 
