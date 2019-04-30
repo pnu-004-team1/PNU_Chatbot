@@ -161,6 +161,24 @@ public class LibraryCrawler {
                 }
                 break;
             }
+            case "나노생명": {
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/nano-open-plot/", temp);
+                // 개관시간
+                for (Element element : libDoc.select(getTextByCols)) {
+                    openHourAllByCol.add(element.text());
+                }
+                switch (classify) {
+                    case "자료실":
+                        resultStr = openHourAllByCol.get(1);
+                        break;
+                    case "열람실":
+                        resultStr = openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3);
+                        break;
+                    default:
+                        resultStr = officeHourNotExist;
+                }
+                break;
+            }
             default: System.out.println("도서관 이름이 존재하지 않습니다.");
         }
 
