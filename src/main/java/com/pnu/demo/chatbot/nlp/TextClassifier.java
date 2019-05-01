@@ -4,7 +4,10 @@ import com.pnu.demo.chatbot.service.ChatbotServiceDelegate;
 
 public class TextClassifier {
     public String classify(ChatbotServiceDelegate delegate, String inputText) {
-        if (inputText.contains("금정") || inputText.contains("학식")) {
+        if (inputText.startsWith("도서:")) {
+            String query = inputText.replace("도서:", "");
+            return delegate.getBookInfo(query);
+        } else if (inputText.contains("금정") || inputText.contains("학식")) {
             return delegate.getCafeteriaMenu();
         } else if (inputText.contains("도서관") && inputText.contains("좌석")) {
             return delegate.getLibrarySeatingInfo();

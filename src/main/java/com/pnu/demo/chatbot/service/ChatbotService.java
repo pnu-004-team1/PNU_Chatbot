@@ -1,8 +1,9 @@
 package com.pnu.demo.chatbot.service;
-//import com.pnu.demo.chatbot.readingRoom;
 
 import com.pnu.demo.chatbot.nlp.*;
 import com.pnu.demo.chatbot.libInfo.*;
+import com.pnu.demo.chatbot.readingRoom.*;
+import com.pnu.demo.chatbot.academicCalendar.*;
 
 //import org.json.simple.JSONObject;
 
@@ -12,6 +13,13 @@ public class ChatbotService implements ChatbotServiceDelegate {
 
     public String getAnswer(String questionText) {
         return classifer.classify(this, questionText);
+    }
+
+    @Override
+    public String getBookInfo(String query) {
+//        BookInfo  bookInfo = new BookInfo();
+//        JsonObject result = bookInfo.search(5, “블록체인”, “김의석”, “김의석”)
+        return query + "\n도서정보열람은 준비중입니다...";
     }
 
     @Override
@@ -36,41 +44,47 @@ public class ChatbotService implements ChatbotServiceDelegate {
 
     @Override
     public String getLibrarySeatingInfo() {
-        return "위치: [새벽벌] 2층 1열람실\n" +
-                "좌석: 357\n" +
-                "잔여좌석: 357\n" +
-                "운영상태: 자유이용\n" +
-                "\n" +
-                "위치: [건설관] 3층 제1열람실\n" +
-                "좌석: 168\n" +
-                "잔여좌석: 163\n" +
-                "운영상태: 운영중\n" +
-                "\n" +
-                "위치: [나노생명과학도서관] 제 1열람실\n" +
-                "좌석: 108\n";
+        ReadingRoomParsing crawler = new ReadingRoomParsing();
+        String result = crawler.getResult("새벽벌");
+        return result;
+//        return "위치: [새벽벌] 2층 1열람실\n" +
+//                "좌석: 357\n" +
+//                "잔여좌석: 357\n" +
+//                "운영상태: 자유이용\n" +
+//                "\n" +
+//                "위치: [건설관] 3층 제1열람실\n" +
+//                "좌석: 168\n" +
+//                "잔여좌석: 163\n" +
+//                "운영상태: 운영중\n" +
+//                "\n" +
+//                "위치: [나노생명과학도서관] 제 1열람실\n" +
+//                "좌석: 108\n";
     }
 
     @Override
     public String getUniversityCalendar() {
-        return "[학사일정]\n" +
-                "후기 학위청구 심사용 논문 제출\n" +
-                "2019.04.09 - 2019.04.09\n" +
-                "1학기 중간고사\n" +
-                "2019.04.15 - 2019.04.20\n" +
-                "1학기 수업일수 1/2선\n" +
-                "2019.04.25 - 2019.04.25\n" +
-                "여름계절수업 수강대상자 복학신청\n" +
-                "2019.05.02 - 2019.05.09\n" +
-                "1학기 수업일수 2/3선\n" +
-                "2019.05.13 - 2019.05.13\n" +
-                "개교기념일\n" +
-                "2019.05.15 - 2019.05.15\n" +
-                "여름계절수업 희망과목담기\n" +
-                "2019.05.16 - 2019.05.17\n" +
-                "여름계절수업 수강신청\n" +
-                "2019.05.20 - 2019.05.22\n" +
-                "여름계절수업 수강정정\n" +
-                "2019.05.28 - 2019.05.29";
+        AcademicCalendarParsing Crawler = new AcademicCalendarParsing();
+        String result = Crawler.getResult("올해 휴일");
+        return result;
+//        return "[학사일정]\n" +
+//                "후기 학위청구 심사용 논문 제출\n" +
+//                "2019.04.09 - 2019.04.09\n" +
+//                "1학기 중간고사\n" +
+//                "2019.04.15 - 2019.04.20\n" +
+//                "1학기 수업일수 1/2선\n" +
+//                "2019.04.25 - 2019.04.25\n" +
+//                "여름계절수업 수강대상자 복학신청\n" +
+//                "2019.05.02 - 2019.05.09\n" +
+//                "1학기 수업일수 2/3선\n" +
+//                "2019.05.13 - 2019.05.13\n" +
+//                "개교기념일\n" +
+//                "2019.05.15 - 2019.05.15\n" +
+//                "여름계절수업 희망과목담기\n" +
+//                "2019.05.16 - 2019.05.17\n" +
+//                "여름계절수업 수강신청\n" +
+//                "2019.05.20 - 2019.05.22\n" +
+//                "여름계절수업 수강정정\n" +
+//                "2019.05.28 - 2019.05.29";
     }
 
     @Override
