@@ -1,12 +1,12 @@
 package com.pnu.demo.chatbot.eArtical;
 
-import jdk.internal.jline.internal.InputStreamReader;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
