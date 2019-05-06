@@ -1,5 +1,6 @@
 package com.pnu.demo.chatbot.controller;
 
+import com.pnu.demo.chatbot.bookInfo.BookInfo;
 import com.pnu.demo.chatbot.service.ChatbotService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,13 @@ public class SampleController {
     @GetMapping("/chatbot")
     public String chatbotmessage(@RequestParam String query) {
         System.out.println(query);
-
         return service.getAnswer(query);
     }
+    @GetMapping("/bookInfo")
+    public String bookinfomessage(@RequestParam String query) {
+        BookInfo bookInfo = new BookInfo();
+        return bookInfo.getString(query);
+    }
+
+
 }
