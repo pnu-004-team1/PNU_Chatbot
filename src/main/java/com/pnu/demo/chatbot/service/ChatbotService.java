@@ -4,6 +4,7 @@ import com.pnu.demo.chatbot.nlp.*;
 import com.pnu.demo.chatbot.libInfo.*;
 import com.pnu.demo.chatbot.readingRoom.*;
 import com.pnu.demo.chatbot.academicCalendar.*;
+import com.pnu.demo.chatbot.eArtical.*;
 
 //import org.json.simple.JSONObject;
 
@@ -17,9 +18,9 @@ public class ChatbotService implements ChatbotServiceDelegate {
 
     @Override
     public String getBookInfo(String query) {
-//        BookInfo  bookInfo = new BookInfo();
-//        JsonObject result = bookInfo.search(5, “블록체인”, “김의석”, “김의석”)
-        return query + "\n도서정보열람은 준비중입니다...";
+        EAritical  aAritical = new EAritical();
+        String result = aAritical.parsing("블록체인");
+        return result;//query + "\n도서정보열람은 준비중입니다...";
     }
 
     @Override
