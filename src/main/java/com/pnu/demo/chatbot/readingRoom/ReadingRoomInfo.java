@@ -4,26 +4,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReadingRoomInfo {
-    private String Place;
-    private String Seat;
-    private String Residual;
-    private String Condition;
+    private String place;
+    private String seat;
+    private String residual;
+    private String condition;
 
-    public ReadingRoomInfo insert(String P, String S, String R, String C) {
-        Place = P;
-        Seat = S;
-        Residual = R;
-        Condition = C;
+    public ReadingRoomInfo insert(String inputPlace, String inputSeat, String inputResidual, String inputCondition) {
+        place = inputPlace;
+        seat = inputSeat;
+        residual = inputResidual;
+        condition = inputCondition;
 
         return this;
     }
 
     public String string() {
-        return "위치:    " + Place + "\n좌석:    " + Seat + "\n잔여좌석: "
-                + Residual + "\n운영상태: " + Condition + "\n";
+        return "위치:    " + place + "\n좌석:    " + seat + "\n잔여좌석: "
+                + residual + "\n운영상태: " + condition + "\n";
     }
     public boolean checking(String libaray) {
-        String substr = this.Place.split("]")[0];
+        String substr = this.place.split("]")[0];
         boolean check = false;
 
         switch(libaray){
