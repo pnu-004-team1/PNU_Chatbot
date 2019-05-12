@@ -1,0 +1,158 @@
+[
+  {
+    "id": "401cc2b2-fbff-4f34-8a05-2df699e8dc8c",
+    "data": [
+      {
+        "text": "오늘",
+        "meta": "@sys.ignore",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "점심",
+        "alias": "Menu",
+        "meta": "@Menu",
+        "userDefined": false
+      },
+      {
+        "text": " 뭐야?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "cfab48e8-b965-416e-b5ab-f347cbeaf050",
+    "data": [
+      {
+        "text": "학식",
+        "alias": "Menu",
+        "meta": "@Menu",
+        "userDefined": false
+      },
+      {
+        "text": " 뭐 있어?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "a6d65955-0431-42bc-9d1b-38f511be45ac",
+    "data": [
+      {
+        "text": "금정",
+        "alias": "Restaruant",
+        "meta": "@Restaruant",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "저녁",
+        "alias": "Menu",
+        "meta": "@Menu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "15b96d9a-f731-4b70-9387-9cf94f4a1f1b",
+    "data": [
+      {
+        "text": "금정",
+        "alias": "Restaruant",
+        "meta": "@Restaruant",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "중식",
+        "alias": "Menu",
+        "meta": "@Menu",
+        "userDefined": false
+      },
+      {
+        "text": " 가르쳐줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "d6c2d2ba-5a9a-4ba9-bce1-247fd0933771",
+    "data": [
+      {
+        "text": "금정회관",
+        "alias": "Restaruant",
+        "meta": "@Restaruant",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "점심 메뉴",
+        "alias": "Menu",
+        "meta": "@Menu",
+        "userDefined": false
+      },
+      {
+        "text": " 알려줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "660ca810-4758-4512-8800-19bf736d4fbe",
+    "data": [
+      {
+        "text": "오늘",
+        "meta": "@sys.ignore",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "금정회관",
+        "alias": "Restaruant",
+        "meta": "@Restaruant",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "점심",
+        "alias": "Menu",
+        "meta": "@Menu",
+        "userDefined": false
+      },
+      {
+        "text": " 뭐야?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

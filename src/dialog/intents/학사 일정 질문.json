@@ -1,0 +1,55 @@
+{
+  "id": "a3b9c053-938f-46a0-8662-3ba4ac947f69",
+  "name": "학사 일정 질문",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "19bf181c-6987-47cb-9cc7-11c7198e1fd4",
+          "required": false,
+          "dataType": "@sys.date-time",
+          "name": "date-time",
+          "value": "$date-time",
+          "isList": false
+        },
+        {
+          "id": "77808c85-1b8b-496a-bc74-39e17b250185",
+          "required": false,
+          "dataType": "@AcademicCalendar",
+          "name": "AcademicCalendar",
+          "value": "$AcademicCalendar",
+          "isList": false
+        },
+        {
+          "id": "7eb0a62e-911e-432f-a302-da7da773307b",
+          "required": false,
+          "dataType": "@AcademicCalendarSpecific",
+          "name": "AcademicCalendarSpecific",
+          "value": "$AcademicCalendarSpecific",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "ko",
+          "speech": [
+            "$AcademicCalendarSpecific 기간: M월 DD일~m월 dd일",
+            "$date-time에는 xxxx, tttt,kkkk가 있습니다."
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

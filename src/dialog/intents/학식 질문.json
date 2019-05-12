@@ -1,0 +1,48 @@
+{
+  "id": "530a9f6a-1152-42fb-a212-4ba61ed6d792",
+  "name": "학식 질문",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "a27cd1aa-24b2-4abe-9607-150c1570edc2",
+          "required": false,
+          "dataType": "@Restaruant",
+          "name": "Restaruant",
+          "value": "$Restaruant",
+          "isList": false
+        },
+        {
+          "id": "beff63a2-f8a8-439d-8c3c-e31caa5f653b",
+          "required": false,
+          "dataType": "@Menu",
+          "name": "Menu",
+          "value": "$Menu",
+          "isList": true
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "ko",
+          "speech": [
+            "오늘 $Restaruant $Menu 메뉴: XXXX, TTTTTT, KKKKKKK",
+            "전체 학식 출력",
+            "전체 $Menu 출력"
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

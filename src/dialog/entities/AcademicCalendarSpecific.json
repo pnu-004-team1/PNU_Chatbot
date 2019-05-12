@@ -1,0 +1,9 @@
+{
+  "id": "2bd56dd7-8082-462a-bcd6-b16910bbafea",
+  "name": "AcademicCalendarSpecific",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

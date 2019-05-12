@@ -1,0 +1,122 @@
+[
+  {
+    "id": "fbf6f10a-2169-4eb9-8a63-9158c24804c7",
+    "data": [
+      {
+        "text": "다음주 학사 일정 알려줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "db6585b9-9f20-4cd1-bdb5-41e7db69bf61",
+    "data": [
+      {
+        "text": "이번달",
+        "alias": "date-time",
+        "meta": "@sys.date-time",
+        "userDefined": false
+      },
+      {
+        "text": "에 ",
+        "userDefined": false
+      },
+      {
+        "text": "학사일정",
+        "alias": "AcademicCalendar",
+        "meta": "@AcademicCalendar",
+        "userDefined": false
+      },
+      {
+        "text": " 뭐있어?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "1314b23e-afd6-4f53-8912-b3f41096022b",
+    "data": [
+      {
+        "text": "이번 주",
+        "alias": "date-time",
+        "meta": "@sys.date-time",
+        "userDefined": false
+      },
+      {
+        "text": "에 무슨 ",
+        "userDefined": false
+      },
+      {
+        "text": "행사",
+        "alias": "AcademicCalendar",
+        "meta": "@AcademicCalendar",
+        "userDefined": true
+      },
+      {
+        "text": "있어?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "c4f30869-49a8-440f-b3a1-2c2fe4bc5cb0",
+    "data": [
+      {
+        "text": "복학신청",
+        "alias": "AcademicCalendarSpecific",
+        "meta": "@AcademicCalendarSpecific",
+        "userDefined": true
+      },
+      {
+        "text": "기간",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "14b14600-2f41-45aa-bbbd-5e15450c2247",
+    "data": [
+      {
+        "text": "다음 ",
+        "userDefined": false
+      },
+      {
+        "text": "개강",
+        "alias": "AcademicCalendarSpecific",
+        "meta": "@AcademicCalendarSpecific",
+        "userDefined": true
+      },
+      {
+        "text": " 언제해?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "7b927cf0-2c56-4e19-acf7-a98909c7c7a2",
+    "data": [
+      {
+        "text": "수강 신청",
+        "alias": "AcademicCalendarSpecific",
+        "meta": "@AcademicCalendarSpecific",
+        "userDefined": true
+      },
+      {
+        "text": "기간 알려줘",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]
