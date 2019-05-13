@@ -63,7 +63,7 @@ public class DectectIntentTexts {
         String projectID;
         List<String> tests;
         String sessionID;
-        
+
     }
 }
 
