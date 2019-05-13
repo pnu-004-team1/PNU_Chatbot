@@ -1,3 +1,5 @@
+package dialog;
+
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.QueryResult;
@@ -59,18 +61,18 @@ public class DectectIntentTexts {
         return queryResults;
     }
 
-    public static main(String[] args) {
-        String projectID;
+    public static void main(String[] args) {
+        String projectID = "pnuchatbot";
         List<String> tests;
         String sessionID;
-        String languageCode;
+        String languageCode = "ko";
 
         Scanner scanner = new Scanner(System.in);
 
         String string = scanner.nextLine();
+        tests.add(string);
 
-        DectectIntentTexts dectectIntentTexts;
-        dectectIntentTexts.detectIntentTexts();
+        DectectIntentTexts.detectIntentTexts(projectID, tests, sessionID, languageCode);
 
     }
 }
