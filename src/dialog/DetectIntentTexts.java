@@ -58,15 +58,20 @@ public class DectectIntentTexts {
         }
         return queryResults;
     }
-<<<<<<< HEAD
 
     public static main(String[] args) {
         String projectID;
         List<String> tests;
         String sessionID;
+        String languageCode;
+
+        Scanner scanner = new Scanner(System.in);
+
+        String string = scanner.nextLine();
+
+        DectectIntentTexts dectectIntentTexts;
+        dectectIntentTexts.detectIntentTexts();
 
     }
-=======
->>>>>>> parent of bd20706... Merge from Master
 }
 
