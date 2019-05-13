@@ -20,7 +20,7 @@
 - TextClassifier.java: 자연어 텍스트를 입력으로 받으면 카테고리를 분류하여 반환
 ```
 
-### DialogFlow 
+### 한국어 형태소 분석기 
 
-1. [DialogFlow 홈페이지](https://dialogflow.com/)
-2. [DialogFlow 문서](https://dialogflow.com/docs)
+1. [Arirang 형태소 분석기](https://github.com/korlucene) 
+2. [KOMORAN 형태소 분석기](https://github.com/shin285/KOMORAN)

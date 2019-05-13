@@ -7,11 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.mongodb.*;
-
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,33 +19,6 @@ public class AcademicCalendarParsing {
     private Elements termE;
     private Elements textE;
     private String result = new String();
-    private String mongoDBIP = "164.125.69.186";
-    private int mongoDBPort = 27018;
-
-    public void insertDB() {
-        MongoClient  mongoClient = new MongoClient(new ServerAddress(mongoDBIP, mongoDBPort));
-        DB db = mongoClient.getDB("AcademicalCalendar");
-        DBCollection collection = db.getCollection("Collection");
-        int i = 0;
-
-        getEvent("",0,365);
-
-        for(Element term : this.termE){
-            BasicDBObject document = new BasicDBObject();
-            document.put("termE", term.text());
-            document.put("textE", this.textE.get(i).text());
-
-            collection.insert(document);
-            i++;
-        }
-
-/*      확인용 코드
-        DBCursor cursorDocBuilder = collection.find();
-        while (cursorDocBuilder.hasNext()) {
-            System.out.println(cursorDocBuilder.next());
-        }
-*/
-    }
 
     public String getResult(String event) {
         int beginDate = 0, endDate = 365, targetDate;
@@ -136,10 +104,10 @@ public class AcademicCalendarParsing {
     }
 
     private void connecting() throws IOException {
-        Document document = parsing();
-        this.termE = document.select("th");
-        Document document1 = parsing();
-        this.textE = document1.select("td");
+        Document Document = parsing();
+        this.termE = Document.select("th");
+        Document Document1 = parsing();
+        this.textE = Document1.select("td");
         this.termE.remove(0);		//delete useless information
         this.termE.remove(0);
     }

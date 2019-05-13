@@ -58,6 +58,7 @@ public class DectectIntentTexts {
         }
         return queryResults;
     }
+<<<<<<< HEAD
 
     public static main(String[] args) {
         String projectID;
@@ -65,5 +66,7 @@ public class DectectIntentTexts {
         String sessionID;
 
     }
+=======
+>>>>>>> parent of bd20706... Merge from Master
 }
 

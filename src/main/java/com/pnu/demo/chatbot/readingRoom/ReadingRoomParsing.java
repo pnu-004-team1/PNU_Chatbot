@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReadingRoomParsing {
     public static String getResult(String library) {
-        List<ReadingRoomInfo> structure = new LinkedList<>();
+        List<ReadingRoomInfo> Structure = new LinkedList<>();
         String result = new String();
 
         try {
-            connecting(structure);
+            connecting(Structure);
 
-            for(ReadingRoomInfo I : structure) {
+            for(ReadingRoomInfo I : Structure) {
                 if(I.checking(library))					//출력 도서관 확인
                     result = result + I.string();
             }
@@ -31,7 +31,7 @@ public class ReadingRoomParsing {
         return result;
     }
 
-    private static void connecting(List<ReadingRoomInfo> structure) throws IOException {
+    private static void connecting(List<ReadingRoomInfo> Structure) throws IOException {
         String temp[] = new String[4];
         int ElementNum;
         int i = 0;
@@ -39,12 +39,12 @@ public class ReadingRoomParsing {
         Connection.Response response = Jsoup.connect("https://seat.pusan.ac.kr/Clicker/k/")
                 .method(Connection.Method.GET)
                 .execute();
-        Document document = response.parse();
-        Elements textE = document.select("td");
+        Document Document = response.parse();
+        Elements textE = Document.select("td");
         ElementNum = textE.size();
 
         while(i<ElementNum) {
-            ReadingRoomInfo roomTemp = new ReadingRoomInfo();
+            ReadingRoomInfo RoomTemp = new ReadingRoomInfo();
 
             temp[0] = textE.get(i++).text();
             temp[1] = textE.get(i++).text();
@@ -52,8 +52,8 @@ public class ReadingRoomParsing {
             i++;
             temp[3] = textE.get(i++).text();
             i++;
-            roomTemp.insert(temp[0],temp[1],temp[2],temp[3]);
-            structure.add(roomTemp);
+            RoomTemp.insert(temp[0],temp[1],temp[2],temp[3]);
+            Structure.add(RoomTemp);
         }
     }
 }

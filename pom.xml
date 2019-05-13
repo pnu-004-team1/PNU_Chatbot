@@ -28,16 +28,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
+<<<<<<< HEAD
 
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-dialogflow</artifactId>
@@ -89,6 +87,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.9.5</version>
+=======
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-dialogflow</artifactId>
+            <version>0.90.0-alpha</version>
+>>>>>>> parent of bd20706... Merge from Master
         </dependency>
     </dependencies>
 
@@ -100,7 +103,5 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 </project>
