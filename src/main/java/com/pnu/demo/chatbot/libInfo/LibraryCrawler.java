@@ -47,9 +47,6 @@ public class LibraryCrawler {
 
         this.eachStairs = eachStairs;
 
-        eachStairs.add("4층");
-        eachStairs.add("5층");
-
         // 층별안내
         for (Element element:libDoc.select("div.mps-content img")){
             eachStairsImg.add(element.attr("src"));
@@ -138,6 +135,44 @@ public class LibraryCrawler {
                         break;
                     case "시험기간":
                         resultStr = openHourAllByCol.get(2);
+                        break;
+                    default:
+                        resultStr = officeHourNotExist;
+                }
+                break;
+            }
+            case "의생명": {
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/bio-open-plot/", temp);
+                // 개관시간
+                for (Element element : libDoc.select(getTextByCols)) {
+                    openHourAllByCol.add(element.text());
+                }
+                switch (classify) {
+                    case "학기중":
+                        resultStr = openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
+                                + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3);
+                        break;
+                    case "방학중":
+                        resultStr = openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
+                                + "," + openHourAllByCol.get(5);
+                        break;
+                    default:
+                        resultStr = officeHourNotExist;
+                }
+                break;
+            }
+            case "나노생명": {
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/nano-open-plot/", temp);
+                // 개관시간
+                for (Element element : libDoc.select(getTextByCols)) {
+                    openHourAllByCol.add(element.text());
+                }
+                switch (classify) {
+                    case "자료실":
+                        resultStr = openHourAllByCol.get(1);
+                        break;
+                    case "열람실":
+                        resultStr = openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3);
                         break;
                     default:
                         resultStr = officeHourNotExist;

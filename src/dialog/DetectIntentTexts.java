@@ -58,5 +58,12 @@ public class DectectIntentTexts {
         }
         return queryResults;
     }
+
+    public static main(String[] args) {
+        String projectID;
+        List<String> tests;
+        String sessionID;
+        
+    }
 }
 
