@@ -1,5 +1,3 @@
-// Imports the Google Cloud client library
-
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryInput;
 import com.google.cloud.dialogflow.v2.QueryResult;
@@ -12,12 +10,7 @@ import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 
-/**
- * DialogFlow API Detect Intent sample with text inputs.
- */
-public class DetectIntentTexts {
-    // [START dialogflow_detect_intent_text]
-
+public class DectectIntentTexts {
     /**
      * Returns the result of detect intent with texts as inputs.
      *
@@ -35,7 +28,6 @@ public class DetectIntentTexts {
             String sessionId,
             String languageCode) throws Exception {
         Map<String, QueryResult> queryResults = Maps.newHashMap();
-        // Instantiates a client
         try (SessionsClient sessionsClient = SessionsClient.create()) {
             // Set the session name using the sessionId (UUID) and projectID (my-project-id)
             SessionName session = SessionName.of(projectId, sessionId);
@@ -66,5 +58,5 @@ public class DetectIntentTexts {
         }
         return queryResults;
     }
-    // [END dialogflow_detect_intent_text]
 }
+
