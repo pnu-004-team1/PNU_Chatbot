@@ -14,7 +14,7 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/faqList")
-public class StatusController {
+public class FaqListRestAPI {
     @Autowired()
     private faqMongoDBRepository FAQMongoDBRepository;
     private MongoTemplate mongoTemplate;
