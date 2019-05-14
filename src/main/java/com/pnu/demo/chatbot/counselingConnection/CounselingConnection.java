@@ -1,11 +1,7 @@
 package com.pnu.demo.chatbot.counselingConnection;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.ServerAddress;
-import org.bson.Document;
+import com.mongodb.*;
+
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
@@ -16,12 +12,16 @@ public class CounselingConnection {
     private static LocalTime endTime = LocalTime.of(17, 0);
     private String mongoDBIP = "164.125.69.186";
     private int mongoDBPort = 27018;
-    int waitingStaff;
+    private int waitingStaff;
 
     public String connect() {
+        MongoClient  mongoClient = new MongoClient(new ServerAddress(mongoDBIP, mongoDBPort));
+        DB db = mongoClient.getDB("CounselingConnection");
+        DBCollection collection = db.getCollection("Collection");
+
         if(!checkWorkTime())
             return "지금은 근무시간이 아닙니다.\n근무시간은 " + beginTime.toString() + " - " + endTime.toString() + " 입니다.";
-        else if(!checkWaitStaff())
+        else if(!checkWaitStaff(collection))
             return "현재 상담 가능 인원이 없어 연결이 지연됩니다.\n연결 예상 시간은 " + estimatedTime().toString() + " 입니다.";
         return "접수";
     }
@@ -30,14 +30,9 @@ public class CounselingConnection {
         LocalTime currentTime = LocalTime.now();
         return currentTime.isAfter(beginTime) && currentTime.isBefore(endTime);
     }
-
-    private boolean checkWaitStaff() {
-        MongoClient mongoClient = new MongoClient(new ServerAddress(mongoDBIP, mongoDBPort));
-        MongoDatabase dataBase = mongoClient.getDatabase("Counseling");
-        FindIterable<Document> dataBaseRecords = dataBase.getCollection("collectionName").find();
-        MongoCursor<Document> iterator = dataBaseRecords.iterator();
-
-        waitingStaff = iterator.next().getInteger("WaitingStaff");
+    private boolean checkWaitStaff(DBCollection collection) {
+        DBObject waitStaff = collection.findOne("WaitingStaff");
+        this.waitingStaff =  Integer.parseInt(waitStaff.get("WaitingStaff").toString());
 
         return waitingStaff > 0;
     }
@@ -50,7 +45,6 @@ public class CounselingConnection {
             estimatedTime = estimatedTime.plusMinutes(15);
             i++;
         }
-        
         return estimatedTime;
     }
 }
