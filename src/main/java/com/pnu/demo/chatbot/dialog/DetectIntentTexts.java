@@ -61,4 +61,19 @@ public class DetectIntentTexts {
         }
         return queryResults;
     }
+
+    public static void main(String[] args) {
+        String projectID = "pnuchatbot";
+        List<String> tests;
+        String sessionID;
+        String languageCode = "ko";
+
+        Scanner scanner = new Scanner(System.in);
+
+        String string = scanner.nextLine();
+        tests.add(string);
+
+        DectectIntentTexts.detectIntentTexts(projectID, tests, sessionID, languageCode);
+
+    }
 }
