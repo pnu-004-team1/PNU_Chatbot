@@ -19,4 +19,5 @@ public class DemoApplication {
         // 밑에 코드 주석을 풀면 서버로 동작합니다.
 //        SpringApplication.run(DemoApplication.class, args);
     }
+
 }

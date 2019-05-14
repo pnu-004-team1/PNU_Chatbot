@@ -11,12 +11,12 @@ import java.util.logging.Logger;
 public class HelloWorld implements ApplicationRunner {
     private static final Logger logger = Logger.getLogger(HelloWorld.class.getName());
 
-    LibraryCrawler libraryCrawler = new LibraryCrawler();
+    LibTelCrawler libTelCrawler = new LibTelCrawler();
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
             // TODO Auto-generated method stub
-        System.out.println(libraryCrawler.getLibraryOfficeHours("미리내","평소"));
+        System.out.println(libTelCrawler.getLibTelNums("밀양"));
 
     }
 }
