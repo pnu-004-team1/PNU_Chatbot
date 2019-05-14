@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.mongodb.*;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +20,115 @@ import org.springframework.stereotype.Component;
 public class AcademicCalendarParsing {
     private Elements termE;
     private Elements textE;
-    private String result = new String();
+    private String result;
+    private String mongoDBIP = "164.125.69.186";
+    private int mongoDBPort = 27018;
+    DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
+
+    private void getInfo(String event, int begin, int end) {
+        MongoClient  mongoClient = new MongoClient(new ServerAddress(mongoDBIP, mongoDBPort));
+        DB db = mongoClient.getDB("AcademicalCalendar");
+        DBCollection collection = db.getCollection("Collection");
+        int i = 0;
+
+
+        if(!checkTimeStamp(collection)) {
+            getEvent(event, begin, end);
+
+            for (Element term : this.termE) {
+                BasicDBObject document = new BasicDBObject();
+                document.put("termE", term.text());
+                document.put("textE", this.textE.get(i).text());
+
+                collection.insert(document);
+                i++;
+            }
+        }
+        else
+            getDB(event, begin, end);
+/*      확인용 코드
+        System.out.println("-----------db 확인용--------------------");
+        DBCursor cursorDocBuilder = collection.find();
+        while (cursorDocBuilder.hasNext()) {
+            System.out.println(cursorDocBuilder.next());
+        }
+        System.out.println("-----------db 확인용--------------------");
+ */
+    }
+
+    private boolean checkTimeStamp(DBCollection collection) {
+        DBCursor timeStamp = collection.find();
+        Calendar currentDate = Calendar.getInstance();
+        Calendar updateDate = Calendar.getInstance();
+
+        if(!timeStamp.hasNext()) {System.out.println("not in time");
+            insertTimeStamp(currentDate, collection);
+            return false;
+        }
+
+        try {
+            updateDate.setTime(this.df.parse(timeStamp.next().get("TimeStamp").toString()));
+            System.out.println(updateDate.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("parsing error in checkTimeStamp");
+        }
+
+        long diffDays = (currentDate.getTimeInMillis() - updateDate.getTimeInMillis()) / ( 24*60*60*1000);
+        if(diffDays > 30) {
+            DBCursor cursor = collection.find();
+            while (cursor.hasNext()) {
+                collection.remove(cursor.next());
+            }
+
+            insertTimeStamp(currentDate, collection);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void insertTimeStamp(Calendar currentDate, DBCollection collection) {
+        String date = df.format(currentDate.getTime());
+        BasicDBObject insertQuery = new BasicDBObject();
+        insertQuery.put("TimeStamp", date);
+
+        collection.insert(insertQuery);
+    }
+
+    private void getDB(String event, int begin, int end) {
+        MongoClient  mongoClient = new MongoClient(new ServerAddress(mongoDBIP, mongoDBPort));
+        DB db = mongoClient.getDB("AcademicalCalendar");
+        DBCollection collection = db.getCollection("Collection");
+
+        Calendar beginDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+        Calendar date = Calendar.getInstance();
+        Calendar date2 = Calendar.getInstance();
+        beginDate.add(Calendar.DATE, begin);
+        endDate.add(Calendar.DATE, end);
+
+        this.result = new String();
+
+        DBCursor cursor = collection.find();
+        if(cursor.hasNext())
+            cursor.next();
+        try {
+            while (cursor.hasNext()) {
+                String term = cursor.next().get("termE").toString();
+                date.setTime(this.df.parse(term));
+                date2.setTime(this.df.parse(term.substring(12)));
+                String text = cursor.next().get("textE").toString();
+
+                if ((date2.equals(beginDate) || date2.after(beginDate)) && date.before(endDate) && isCheck(event, text)) {
+                    this.result += term + "   " + text + "\n";
+                }
+            }
+        } catch (ParseException e) {
+        e.printStackTrace();
+        System.out.println("parsing error in getDB");
+        }
+    }
 
     public String getResult(String event) {
         int beginDate = 0, endDate = 365, targetDate;
@@ -52,11 +162,11 @@ public class AcademicCalendarParsing {
         }
 
         if(event.equals("휴일")) {
-            getEvent("개교", beginDate, endDate);
-            getEvent("휴가", beginDate, endDate);
+            getInfo("개교", beginDate, endDate);
+            getInfo("휴가", beginDate, endDate);
         }
         else
-            getEvent(event, beginDate, endDate);
+            getInfo(event, beginDate, endDate);
 
         return this.result;
     }
@@ -69,25 +179,22 @@ public class AcademicCalendarParsing {
 
     private void getEvent(String event, int begin, int end) {
         Element text;
+        this.result = new String();
 
         Calendar beginDate = Calendar.getInstance();
         Calendar endDate = Calendar.getInstance();
         Calendar date = Calendar.getInstance();
         Calendar date2 = Calendar.getInstance();
-        beginDate.setTime(new Date());
         beginDate.add(Calendar.DATE, begin);
-        endDate.setTime(new Date());
         endDate.add(Calendar.DATE, end);
-
-        DateFormat df = new SimpleDateFormat("yyyy.MM.dd");
 
         try {
             int i = 0;
             connecting();
 
             for(Element term : this.termE) {
-                date.setTime(df.parse(term.text()));
-                date2.setTime(df.parse(term.text().substring(12)));
+                date.setTime(this.df.parse(term.text()));
+                date2.setTime(this.df.parse(term.text().substring(12)));
                 text = this.textE.get(i);
 
                 if((date2.equals(beginDate) || date2.after(beginDate)) && date.before(endDate) && isCheck(event, text.text())) {
@@ -97,17 +204,18 @@ public class AcademicCalendarParsing {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("IO error in getEvent");
         } catch (ParseException e) {
             e.printStackTrace();
-            System.out.println("aa");
+            System.out.println("parsing error in getEvent");
         }
     }
 
     private void connecting() throws IOException {
-        Document Document = parsing();
-        this.termE = Document.select("th");
-        Document Document1 = parsing();
-        this.textE = Document1.select("td");
+        Document document = parsing();
+        this.termE = document.select("th");
+        Document document1 = parsing();
+        this.textE = document1.select("td");
         this.termE.remove(0);		//delete useless information
         this.termE.remove(0);
     }
