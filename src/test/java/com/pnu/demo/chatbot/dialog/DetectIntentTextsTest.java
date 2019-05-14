@@ -50,5 +50,6 @@ public class DetectIntentTextsTest {
             e.printStackTrace();
         }
         assertEquals(texts.size(), 3);
+        //assertEquals(result.size(), 3);
     }
 }
