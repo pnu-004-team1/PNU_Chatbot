@@ -24,9 +24,9 @@ public class ChatbotService implements ChatbotServiceDelegate {
     }
 
     @Override // 담당자: 류강현
-    public String getLibraryInfo() {
+    public String getLibraryInfo(String libName, String category) {
         LibraryCrawler lawLibCrawler = new LibraryCrawler();;
-        String result = lawLibCrawler.getLibraryOfficeHours("중앙", "학기중");
+        String result = lawLibCrawler.getLibraryOfficeHours(libName, category);
         return result;
     }
 

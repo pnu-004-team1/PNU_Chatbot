@@ -20,7 +20,56 @@ public class TextClassifier {
         } else if (inputText.contains("학사") && inputText.contains("일정")) {
             return delegate.getUniversityCalendar();
         } else if (inputText.contains("도서관")) {
-            return delegate.getLibraryInfo();
+            if (inputText.contains("중앙")) {
+                if (inputText.contains("학기중")) {
+                    return delegate.getLibraryInfo("중앙", "학기중");
+                } else if (inputText.contains("방학중")) {
+                    return delegate.getLibraryInfo("중앙", "방학중");
+                } else {
+                    return delegate.getLibraryInfo("중앙", null);
+                }
+            } else if (inputText.contains("새벽")) {
+                if (inputText.contains("자료실")) {
+                    return delegate.getLibraryInfo("새벽", "자료실");
+                } else if (inputText.contains("열람실")) {
+                    return delegate.getLibraryInfo("새벽", "열람실");
+                } else {
+                    return delegate.getLibraryInfo("새벽", null);
+                }
+            } else if (inputText.contains("미리내")) {
+                if (inputText.contains("자료실")) {
+                    return delegate.getLibraryInfo("미리내", "자료실");
+                } else if (inputText.contains("열람실")) {
+                    return delegate.getLibraryInfo("미리내", "열람실");
+                } else {
+                    return delegate.getLibraryInfo("미리내", null);
+                }
+            } else if (inputText.contains("법학")) {
+                if (inputText.contains("평소")) {
+                    return delegate.getLibraryInfo("법학", "평소");
+                } else if (inputText.contains("시험기간")) {
+                    return delegate.getLibraryInfo("법학", "시험기간");
+                } else {
+                    return delegate.getLibraryInfo("법학", null);
+                }
+            } else if (inputText.contains("의생명")) {
+                if (inputText.contains("학기중")) {
+                    return delegate.getLibraryInfo("의생명", "학기중");
+                } else if (inputText.contains("방학중")) {
+                    return delegate.getLibraryInfo("의생명", "방학중");
+                } else {
+                    return delegate.getLibraryInfo("의생명", null);
+                }
+            } else if (inputText.contains("나노생명")) {
+                if (inputText.contains("자료실")) {
+                    return delegate.getLibraryInfo("나노생명", "자료실");
+                } else if (inputText.contains("열람실")) {
+                    return delegate.getLibraryInfo("나노생명", "열람실");
+                } else {
+                    return delegate.getLibraryInfo("나노생명", null);
+                }
+            }
+            return delegate.getLibraryInfo(null, null);
         } else {
             return delegate.getExceptionMessage();
         }
