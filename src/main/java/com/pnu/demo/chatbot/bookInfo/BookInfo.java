@@ -56,11 +56,10 @@ public class BookInfo {
                     bookLocation.put("location", rd.text());
                     bookStatusArray.add(bookLocation);
                 }
-                int count = 0;
-                for (Element rd : rd_list.select("dd span")) {
-                    JSONObject bookStatus = (JSONObject) bookStatusArray.get(count);
-                    bookStatus.put("status", rd.text().replace("[", "").replace(" ]", ""));
-                    count++;
+                Elements rd_status = rd_list.select("dd span");
+                for (int index = 0; index < rd_status.size(); index++) {
+                    JSONObject bookStatus = (JSONObject) bookStatusArray.get(index);
+                    bookStatus.put("status", rd_status.get(index).text().replace("[", "").replace(" ]", ""));
                 }
                 JSONObject bookObject = new JSONObject();
                 bookObject.put("thubmail", thumbnail);
