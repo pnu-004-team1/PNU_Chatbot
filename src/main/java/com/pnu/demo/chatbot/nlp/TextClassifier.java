@@ -20,6 +20,21 @@ public class TextClassifier {
         } else if (inputText.contains("학사") && inputText.contains("일정")) {
             return delegate.getUniversityCalendar();
         } else if (inputText.contains("도서관")) {
+            if (inputText.contains("연락") || inputText.contains("전화") || inputText.contains("번호") || inputText.contains("주소") || inputText.contains("담당자")) {
+                if (inputText.contains("부산")) {
+                    return delegate.getLibraryContactInfo("부산");
+                } else if (inputText.contains("법학")) {
+                    return delegate.getLibraryContactInfo("법학");
+                } else if (inputText.contains("양산")) {
+                    return delegate.getLibraryContactInfo("양산");
+                } else if (inputText.contains("아미")) {
+                    return delegate.getLibraryContactInfo("아미");
+                } else if (inputText.contains("밀양")) {
+                    return delegate.getLibraryContactInfo("밀양");
+                } else {
+                    return delegate.getLibraryContactInfo(null);
+                }
+            }
             if (inputText.contains("중앙")) {
                 if (inputText.contains("학기중")) {
                     return delegate.getLibraryInfo("중앙", "학기중");

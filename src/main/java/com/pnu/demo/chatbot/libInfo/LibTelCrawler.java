@@ -22,12 +22,17 @@ public class LibTelCrawler {
 
     }
 
-    public String getLibTelNums(String libName) throws IOException {
+    public String getLibTelNums(String libName) {
         String resultStr = "";
         ArrayList<String> telsAllByCol = new ArrayList();
         ArrayList<String> emailsAllByCol = new ArrayList();
         String getTextByCols = "tr a";
-        libDoc = Jsoup.connect("https://lib.pusan.ac.kr/community/ask-tel/").get();
+        try {
+            libDoc = Jsoup.connect("https://lib.pusan.ac.kr/community/ask-tel/").get();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
 
         // 연락처 정보 파싱
         for (Element element:libDoc.select("tr")){

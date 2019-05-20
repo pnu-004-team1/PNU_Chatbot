@@ -30,6 +30,13 @@ public class ChatbotService implements ChatbotServiceDelegate {
         return result;
     }
 
+    @Override // 담당자: 류강현
+    public String getLibraryContactInfo(String libName) {
+        LibTelCrawler libTelCrawler = new LibTelCrawler();
+        String result = libTelCrawler.getLibTelNums(libName);
+        return result;
+    }
+
     @Override // 담당자: 안재우
     public String getLibrarySeatingInfo(String query) {
         ReadingRoomParsing crawler = new ReadingRoomParsing();
