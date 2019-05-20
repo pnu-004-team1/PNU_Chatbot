@@ -62,7 +62,7 @@ public class BookInfo {
                     bookStatus.put("status", rd_status.get(index).text().replace("[", "").replace(" ]", ""));
                 }
                 JSONObject bookObject = new JSONObject();
-                bookObject.put("thubmail", thumbnail);
+                bookObject.put("thumbnail", thumbnail);
                 bookObject.put("title", title);
                 bookObject.put("author", author);
                 bookObject.put("publication", publication);
