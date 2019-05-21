@@ -35,6 +35,11 @@ public class ReadingRoomParsing {
         return result;
     }
 
+    public JSONArray getJSON(String library) {
+        getResult(library);
+        return this.readingRoomArray;
+    }
+
     private void connecting(List<ReadingRoomInfo> structure) throws IOException {
         String temp[] = new String[4];
         int ElementNum;
