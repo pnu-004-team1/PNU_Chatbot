@@ -150,6 +150,7 @@ public class LibTelCrawler {
 
         telsAllByCol.clear();
         emailsAllByCol.clear();
+        resultStr = "";
 
         libLibTelNums.put("type","libTelNum");
         libLibTelNum.put("data",libLibTelNums);
