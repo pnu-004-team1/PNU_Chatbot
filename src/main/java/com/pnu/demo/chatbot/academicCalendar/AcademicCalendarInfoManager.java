@@ -9,6 +9,8 @@ import java.util.Date;
 
 import com.mongodb.*;
 
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,9 +19,10 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AcademicCalendarParsing {
+public class AcademicCalendarInfoManager {
     private Elements termE;
     private Elements textE;
+    private JSONArray calendarArray;
     private String result;
     private String mongoDBIP = "164.125.69.186";
     private int mongoDBPort = 27018;
@@ -106,6 +109,7 @@ public class AcademicCalendarParsing {
         endDate.add(Calendar.DATE, end);
 
         this.result = new String();
+        this.calendarArray = new JSONArray();
 
         DBCursor cursor = collection.find();
         if(cursor.hasNext())
@@ -118,6 +122,11 @@ public class AcademicCalendarParsing {
                 String text = cursor.next().get("textE").toString();
 
                 if ((date2.equals(beginDate) || date2.after(beginDate)) && date.before(endDate) && isCheck(event, text)) {
+                    JSONObject calendarObject = new JSONObject();
+                    calendarObject.put("날짜", term);
+                    calendarObject.put("학사", text);
+                    this.calendarArray.add(calendarObject);
+
                     this.result += term + "   " + text + "\n";
                 }
             }
@@ -168,6 +177,12 @@ public class AcademicCalendarParsing {
         return this.result;
     }
 
+    public JSONArray getJSON(String event)
+    {
+        getResult(event);
+        return calendarArray;
+    }
+
     private boolean isCheck(String event, String academicEvent) {
         return academicEvent.contains(event);
     }
@@ -183,6 +198,8 @@ public class AcademicCalendarParsing {
         beginDate.add(Calendar.DATE, begin);
         endDate.add(Calendar.DATE, end);
 
+        this.calendarArray = new JSONArray();
+
         try {
             int i = 0;
             connecting();
@@ -193,6 +210,11 @@ public class AcademicCalendarParsing {
                 text = this.textE.get(i);
 
                 if((date2.equals(beginDate) || date2.after(beginDate)) && date.before(endDate) && isCheck(event, text.text())) {
+                    JSONObject calendarObject = new JSONObject();
+                    calendarObject.put("날짜", term);
+                    calendarObject.put("학사", text);
+                    this.calendarArray.add(calendarObject);
+
                     this.result += term.text() + "   " + text.text() + "\n";
                 }
                 i++;

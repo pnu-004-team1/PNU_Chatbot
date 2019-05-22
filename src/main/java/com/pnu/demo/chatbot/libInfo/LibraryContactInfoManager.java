@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LibTelCrawler {
+public class LibraryContactInfoManager {
     private Document libDoc;
     private String resultStr = "";
     private ArrayList<String> telsAllByCol = new ArrayList();

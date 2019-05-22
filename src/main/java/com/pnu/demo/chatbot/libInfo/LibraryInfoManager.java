@@ -9,7 +9,7 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LibraryCrawler {
+public class LibraryInfoManager {
     private Document libDoc;
     private String title;
     private String url;
@@ -22,11 +22,11 @@ public class LibraryCrawler {
     private String getTextByCols = "div.mps tr";
     private String officeHourNotExist = "해당 개관시간이 존재하지 않습니다.";
 
-    public LibraryCrawler() {
+    public LibraryInfoManager() {
 
     }
 
-    public LibraryCrawler(String url) {
+    public LibraryInfoManager(String url) {
         this.url = url;
     }
 

@@ -10,14 +10,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 @Component
-public class EAritical {
+public class EAriticalInoManager {
     private final String USER_AGENT = "Mozilla/5.0";
 
     public String parsing(String searchInput) {
-        EAritical http = new EAritical();
+        EAriticalInoManager http = new EAriticalInoManager();
 
         String result = null;
         try {
