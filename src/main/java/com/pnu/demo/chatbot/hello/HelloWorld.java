@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 public class HelloWorld implements ApplicationRunner {
     private static final Logger logger = Logger.getLogger(HelloWorld.class.getName());
 
-    LibraryCrawler libraryCrawler = new LibraryCrawler();
-    LibTelCrawler libTelCrawler = new LibTelCrawler();
+    LibraryInfoManager libraryCrawler = new LibraryInfoManager();
+    LibraryContactInfoManager libTelCrawler = new LibraryContactInfoManager();
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

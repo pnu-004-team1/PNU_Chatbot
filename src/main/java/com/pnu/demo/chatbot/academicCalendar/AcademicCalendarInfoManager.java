@@ -19,7 +19,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AcademicCalendarParsing {
+public class AcademicCalendarInfoManager {
     private Elements termE;
     private Elements textE;
     private JSONArray calendarArray;

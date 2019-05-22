@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReadingRoomParsing {
+public class LibraryStudyRoomInfoManager {
     private JSONArray readingRoomArray;
 
     public String getResult(String library) {
