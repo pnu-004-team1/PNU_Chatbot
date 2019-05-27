@@ -136,7 +136,7 @@ public class AcademicCalendarInfoManager {
         }
     }
 
-    public String getResult(String event) {
+    public String getStringResult(String event) {
         int beginDate = 0, endDate = 365, targetDate;
         Calendar today = Calendar.getInstance();
         Calendar compDate = Calendar.getInstance();
@@ -179,7 +179,7 @@ public class AcademicCalendarInfoManager {
 
     public JSONArray getJSON(String event)
     {
-        getResult(event);
+        getStringResult(event);
         return calendarArray;
     }
 

@@ -61,7 +61,7 @@ public class LibraryInfoManager {
 
 
 
-    public String getLibraryOfficeHours(String libName, String classify) {
+    public String getStringResult(String libName, String classify) {
         ArrayList<String> temp =  new ArrayList<String>();
 
 

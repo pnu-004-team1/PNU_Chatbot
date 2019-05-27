@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class LibraryStudyRoomInfoManager {
     private JSONArray readingRoomArray;
 
-    public String getResult(String library) {
+    public String getStringResult(String library) {
         List<ReadingRoomInfo> structure = new LinkedList<>();
         String result = new String();
 
@@ -35,8 +35,8 @@ public class LibraryStudyRoomInfoManager {
         return result;
     }
 
-    public JSONArray getJSON(String library) {
-        getResult(library);
+    public JSONArray getJSONResult(String library) {
+        getStringResult(library);
         return this.readingRoomArray;
     }
 

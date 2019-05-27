@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 public class EAriticalInoManager {
     private final String USER_AGENT = "Mozilla/5.0";
 
-    public String parsing(String searchInput) {
+    public String getStringResult(String searchInput) {
         EAriticalInoManager http = new EAriticalInoManager();
 
         String result = null;

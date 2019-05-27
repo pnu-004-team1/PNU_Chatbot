@@ -14,7 +14,7 @@ public class CounselingConnection {
     private int mongoDBPort = 27018;
     private int waitingStaff;
 
-    public String connect() {
+    public String getStringResult() {
         MongoClient  mongoClient = new MongoClient(new ServerAddress(mongoDBIP, mongoDBPort));
         DB db = mongoClient.getDB("CounselingConnection");
         DBCollection collection = db.getCollection("Collection");

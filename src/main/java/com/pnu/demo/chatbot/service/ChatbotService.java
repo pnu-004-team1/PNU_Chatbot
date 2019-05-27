@@ -20,42 +20,42 @@ public class ChatbotService implements ChatbotServiceDelegate {
     @Override // 담당자: 구민규
     public String getBookInfo(String query) {
         EAriticalInoManager infoManager = new EAriticalInoManager();
-        String result = infoManager.parsing(query);
+        String result = infoManager.getStringResult(query);
         return result;
     }
 
     @Override // 담당자: 류강현
     public String getLibraryInfo(String libName, String category) {
         LibraryInfoManager infoManager = new LibraryInfoManager();
-        String result = infoManager.getLibraryOfficeHours(libName, category);
+        String result = infoManager.getStringResult(libName, category);
         return result;
     }
 
     @Override // 담당자: 류강현
     public String getLibraryContactInfo(String libName) {
         LibraryContactInfoManager infoManager = new LibraryContactInfoManager();
-        String result = infoManager.getLibTelNums(libName);
+        String result = infoManager.getStringResult(libName);
         return result;
     }
 
     @Override // 담당자: 안재우
     public String getLibrarySeatingInfo(String query) {
         LibraryStudyRoomInfoManager infoManager = new LibraryStudyRoomInfoManager();
-        String result = infoManager.getResult(query);
+        String result = infoManager.getStringResult(query);
         return result;
     }
 
     @Override // 담당자: 안재우
     public String getUniversityCalendar() {
         AcademicCalendarInfoManager infoManager = new AcademicCalendarInfoManager();
-        String result = infoManager.getResult("올해 휴일");
+        String result = infoManager.getStringResult("올해 휴일");
         return result;
     }
 
     @Override // 담당자: 안재우
     public String getCounselingInfo() {
         CounselingConnection infoManager = new CounselingConnection();
-        String result = infoManager.connect();
+        String result = infoManager.getStringResult();
         return result;
     }
 

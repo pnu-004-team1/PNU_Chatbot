@@ -38,7 +38,7 @@ public class LibraryContactInfoManager {
     }
 
 
-    public String getLibTelNums(String libName) {
+    public String getStringResult(String libName) {
 
         setJsoupInfos();
 
