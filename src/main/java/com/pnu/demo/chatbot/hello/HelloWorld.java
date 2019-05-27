@@ -19,8 +19,6 @@ public class HelloWorld implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         // TODO Auto-generated method stub
 
-        SimilarCmd similarCmd = new SimilarCmd();
-
         /*
         System.out.println(libraryCrawler.getLibraryOfficeHoursJson("중앙","학기중"));
 

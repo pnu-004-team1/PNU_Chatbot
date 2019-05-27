@@ -50,10 +50,20 @@ public class FaqListRestAPI {
             //System.out.println(temp.getCmd());
         }
 
+        // 띄어쓰기 마다 단어 분리하여 저장
+        List<String> tmpStr2 = new ArrayList<>();
+        for(String temp : tmpStr) {
+            String[] words = temp.split(" ");
+            for(String tmp2 : words) {
+                tmpStr2.add(tmp2);
+                System.out.println(tmp2);
+            }
+        }
+
         // 맵 형태로 중복된 명령어 갯수 저장
         Map<String, Integer> counter = new HashMap<String, Integer>();
 
-        for (String temp : tmpStr) {
+        for (String temp : tmpStr2) {
             Integer previousValue = counter.get(temp);
 
             counter.put(temp, previousValue == null ? 1 : previousValue+1 );
