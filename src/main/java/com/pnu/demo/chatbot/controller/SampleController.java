@@ -20,13 +20,14 @@ public class SampleController {
         return "hello";
     }
 
-//    @GetMapping("/chatbot")
-//    public JSONChatbotVO chatbotmessage(@RequestParam String query) {
-//        System.out.println(query);
-//        JSONChatbotVO vo = new JSONChatbotVO();
-//        vo.data = service.getAnswer(query);
-//        return vo;
-//    }
+    @GetMapping("/chatbot")
+    public JSONChatbotVO chatbotmessage(@RequestParam String query) {
+        System.out.println(query);
+        JSONChatbotVO vo = new JSONChatbotVO();
+        JSONObject data = new JSONObject();
+        data.put("answer", service.getAnswer(query));
+        return vo;
+    }
 
     @GetMapping("/bookInfo")
     public JSONChatbotVO bookinfomessage(@RequestParam String query) {

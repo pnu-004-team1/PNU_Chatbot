@@ -5,6 +5,7 @@ import com.pnu.demo.chatbot.libInfo.*;
 import com.pnu.demo.chatbot.readingRoom.*;
 import com.pnu.demo.chatbot.academicCalendar.*;
 import com.pnu.demo.chatbot.eArtical.*;
+import com.pnu.demo.chatbot.counselingConnection.*;
 
 //import org.json.simple.JSONObject;
 
@@ -22,7 +23,6 @@ public class ChatbotService implements ChatbotServiceDelegate {
         String result = infoManager.parsing(query);
         return result;
     }
-
 
     @Override // 담당자: 류강현
     public String getLibraryInfo(String libName, String category) {
@@ -49,6 +49,13 @@ public class ChatbotService implements ChatbotServiceDelegate {
     public String getUniversityCalendar() {
         AcademicCalendarInfoManager infoManager = new AcademicCalendarInfoManager();
         String result = infoManager.getResult("올해 휴일");
+        return result;
+    }
+
+    @Override // 담당자: 안재우
+    public String getCounselingInfo() {
+        CounselingConnection infoManager = new CounselingConnection();
+        String result = infoManager.connect();
         return result;
     }
 
