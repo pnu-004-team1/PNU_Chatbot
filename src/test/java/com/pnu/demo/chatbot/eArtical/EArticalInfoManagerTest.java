@@ -13,6 +13,7 @@ public class EArticalInfoManagerTest {
 
     @Before
     public void setUp() throws Exception {
+        service = new ChatbotService();
     }
 
     @After
@@ -20,17 +21,33 @@ public class EArticalInfoManagerTest {
     }
 
     @Test
-    public void getStringResult() {
+    public void testEArticalInfoManager() {
         String result;
         String sut;
 
         EArticalInfoManager eArticalInfoManager = new EArticalInfoManager();
 
+        // "논문:컴퓨터비전"
+        // given
+        result = eArticalInfoManager.getStringResult("컴퓨터비전");
+        // when
+        sut = service.getAnswer("논문:컴퓨터비전");
+        // then
+        assertEquals(sut, result);
+
         // "도서: 컴퓨터비전"
         // given
         result = eArticalInfoManager.getStringResult("컴퓨터비전");
         // when
-        sut = service.getAnswer("도서: 컴퓨터비전");
+        sut = service.getAnswer("논문:  컴퓨터비전");
+        // then
+        assertEquals(sut, result);
+
+        // "도서:컴퓨터 비전"
+        // given
+        result = eArticalInfoManager.getStringResult("컴퓨터비전");
+        // when
+        sut = service.getAnswer("논문:컴퓨터 비전");
         // then
         assertEquals(sut, result);
     }

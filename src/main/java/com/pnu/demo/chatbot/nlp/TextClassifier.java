@@ -4,8 +4,8 @@ import com.pnu.demo.chatbot.service.ChatbotServiceDelegate;
 
 public class TextClassifier {
     public String classify(ChatbotServiceDelegate delegate, String inputText) {
-        if (inputText.startsWith("도서:")) {
-            String query = inputText.replace("도서:", "");
+        if (inputText.startsWith("논문:")) {
+            String query = inputText.replace("논문:", "");
             return delegate.getEArtical(query);
         } else if (inputText.contains("열람실") || inputText.contains("좌석")) {
             if (inputText.contains("새벽벌")) {

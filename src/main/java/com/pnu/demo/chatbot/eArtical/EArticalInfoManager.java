@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 @Component
@@ -17,10 +18,11 @@ public class EArticalInfoManager {
 
     public String getStringResult(String searchInput) {
         EArticalInfoManager http = new EArticalInfoManager();
-
+        searchInput = searchInput.trim();
+        String query = URLEncoder.encode(searchInput);
         String result = null;
         try {
-            result = http.sendGet("https://lib.pusan.ac.kr/wp-json/eds/v1/articles/?post_per_page=3&query=&q_ti=" + searchInput +"&q_au=&q_pu=&field_code=ALL&_=1554280931831");
+            result = http.sendGet("https://lib.pusan.ac.kr/wp-json/eds/v1/articles/?post_per_page=3&query=&q_ti=" + query +"&q_au=&q_pu=&field_code=ALL&_=1554280931831");
         } catch (Exception e) {
             e.printStackTrace();
         }
