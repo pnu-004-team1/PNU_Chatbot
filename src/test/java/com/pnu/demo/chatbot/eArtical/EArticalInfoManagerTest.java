@@ -51,4 +51,19 @@ public class EArticalInfoManagerTest {
         // then
         assertEquals(sut, result);
     }
+    @Test
+    public void testEArticalInfoManager_catch() {
+        String result;
+        String sut;
+
+        EArticalInfoManager eArticalInfoManager = new EArticalInfoManager();
+
+        // "논문:컴퓨터비전"
+        // given
+        result = eArticalInfoManager.getStringResult("");
+        // when
+        sut = service.getAnswer("논문:");
+        // then
+        assertEquals(sut, result);
+    }
 }
