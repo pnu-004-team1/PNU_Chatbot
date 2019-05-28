@@ -12,11 +12,11 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 @Component
-public class EAriticalInoManager {
+public class EArticalInfoManager {
     private final String USER_AGENT = "Mozilla/5.0";
 
     public String getStringResult(String searchInput) {
-        EAriticalInoManager http = new EAriticalInoManager();
+        EArticalInfoManager http = new EArticalInfoManager();
 
         String result = null;
         try {
@@ -38,7 +38,7 @@ public class EAriticalInoManager {
 
         int responseCode = con.getResponseCode();
 
-        System.out.println("HTTP 응답 코드 : " + responseCode);
+//        System.out.println("HTTP 응답 코드 : " + responseCode);
         if (responseCode != 200) return null;
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
         String inputLine;
@@ -67,10 +67,10 @@ public class EAriticalInoManager {
                     "제목: " + item.get("record_authors") +
                     "출판사: " + item.get("publisher") +
                     "\n");
-            System.out.println("저자: " + item.get("record_authors"));
-            System.out.println("제목: " + item.get("record_title"));
-            System.out.println("출판사: " + item.get("publisher"));
-            System.out.println("\n");
+//            System.out.println("저자: " + item.get("record_authors"));
+//            System.out.println("제목: " + item.get("record_title"));
+//            System.out.println("출판사: " + item.get("publisher"));
+//            System.out.println("\n");
         }
         return result;
     }

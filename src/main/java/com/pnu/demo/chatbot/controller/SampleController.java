@@ -1,6 +1,6 @@
 package com.pnu.demo.chatbot.controller;
 
-import com.pnu.demo.chatbot.bookInfo.BookInfo;
+import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
 import com.pnu.demo.chatbot.service.ChatbotService;
 import com.pnu.demo.chatbot.vo.JSONChatbotVO;
 import net.minidev.json.JSONObject;
@@ -34,9 +34,9 @@ public class SampleController {
         System.out.println(query);
         JSONObject data = new JSONObject();
         JSONChatbotVO vo = new JSONChatbotVO();
-        BookInfo bookInfo = new BookInfo();
+        BookInfoManager bookInfoManager = new BookInfoManager();
         data.put("type", "bookinfo");
-        data.put("data", bookInfo.getString(query));
+        data.put("data", bookInfoManager.getStringResult(query));
         vo.data = data;
         return vo;
     }

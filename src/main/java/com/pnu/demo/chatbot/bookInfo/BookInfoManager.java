@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class BookInfo {
+public class BookInfoManager {
     private final String USER_AGENT = "Mozilla/5.0";
 
-    public JSONArray getString(String title){
+    public JSONArray getStringResult(String title){
         JSONArray result = null;
-        BookInfo http = new BookInfo();
+        BookInfoManager http = new BookInfoManager();
         try {
             result = http.sendGet("https://lib.pusan.ac.kr/resource/?query="+title);
         } catch (Exception e) {

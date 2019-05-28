@@ -1,7 +1,10 @@
 package com.pnu.demo.chatbot.service;
 
+import net.minidev.json.JSONArray;
+
 public interface ChatbotServiceDelegate {
-    public String getBookInfo(String query);
+//    public JSONArray getBookInfo(String query);
+    public String getEArtical(String query);
     public String getLibraryInfo(String libName, String category);
     public String getLibrarySeatingInfo(String query);
     public String getLibraryContactInfo(String libName);

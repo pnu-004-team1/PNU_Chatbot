@@ -6,7 +6,7 @@ public class TextClassifier {
     public String classify(ChatbotServiceDelegate delegate, String inputText) {
         if (inputText.startsWith("도서:")) {
             String query = inputText.replace("도서:", "");
-            return delegate.getBookInfo(query);
+            return delegate.getEArtical(query);
         } else if (inputText.contains("열람실") || inputText.contains("좌석")) {
             if (inputText.contains("새벽벌")) {
                 return delegate.getLibrarySeatingInfo("새벽벌");

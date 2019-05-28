@@ -6,6 +6,8 @@ import com.pnu.demo.chatbot.readingRoom.*;
 import com.pnu.demo.chatbot.academicCalendar.*;
 import com.pnu.demo.chatbot.eArtical.*;
 import com.pnu.demo.chatbot.counselingConnection.*;
+import com.pnu.demo.chatbot.bookInfo.*;
+import net.minidev.json.JSONArray;
 
 //import org.json.simple.JSONObject;
 
@@ -17,9 +19,16 @@ public class ChatbotService implements ChatbotServiceDelegate {
         return classifer.classify(this, questionText);
     }
 
+//    @Override // 담당자: 구민규
+//    public JSONArray getBookInfo(String query) {
+//        BookInfoManager bookInfoManager = new BookInfoManager();
+//        JSONArray result = bookInfoManager.getStringResult(query);
+//        return result;
+//    }
+
     @Override // 담당자: 구민규
-    public String getBookInfo(String query) {
-        EAriticalInoManager infoManager = new EAriticalInoManager();
+    public String getEArtical(String query) {
+        EArticalInfoManager infoManager = new EArticalInfoManager();
         String result = infoManager.getStringResult(query);
         return result;
     }
