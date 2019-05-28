@@ -119,7 +119,7 @@ public class AcademicCalendarInfoManager {
                 String term = cursor.next().get("termE").toString();
                 date.setTime(this.df.parse(term));
                 date2.setTime(this.df.parse(term.substring(12)));
-                String text = cursor.next().get("textE").toString();
+                String text = cursor.curr().get("textE").toString();
 
                 if ((date2.equals(beginDate) || date2.after(beginDate)) && date.before(endDate) && isCheck(event, text)) {
                     JSONObject calendarObject = new JSONObject();
@@ -177,7 +177,7 @@ public class AcademicCalendarInfoManager {
         return this.result;
     }
 
-    public JSONArray getJSON(String event)
+    public JSONArray getJSONResult(String event)
     {
         getStringResult(event);
         return calendarArray;
