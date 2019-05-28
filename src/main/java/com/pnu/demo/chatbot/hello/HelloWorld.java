@@ -1,7 +1,7 @@
 package com.pnu.demo.chatbot.hello;
 
 import com.pnu.demo.chatbot.libInfo.*;
-import com.pnu.demo.chatbot.similarCmd.SimilarCmd;
+//import com.pnu.demo.chatbot.similarCmd.SimilarCmd;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
