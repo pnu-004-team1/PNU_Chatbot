@@ -42,7 +42,7 @@ public class LibraryContactInfoManager {
 
         setJsoupInfos();
 
-
+        resultStr = "";
         switch(libName) {
             case "부산": {
                 resultStr += "부산캠퍼스\n" + telsAllByCol.get(0) + "\n";

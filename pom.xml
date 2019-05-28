@@ -111,6 +111,11 @@
             <version>${nd4j.version}</version>
             <classifier>windows-x86_64-openblas</classifier>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
     </dependencies>
 
     <build>

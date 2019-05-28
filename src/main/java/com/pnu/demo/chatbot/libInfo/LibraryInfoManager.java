@@ -132,8 +132,6 @@ public class LibraryInfoManager {
                 // 개관시간
                 for (Element element : libDoc.select(getTextByCols)) {
                     openHourAllByCol.add(element.text());
-                    System.out.println("미리내 파싱중");
-                    System.out.println(element.text());
                 }
                 switch (classify) {
                     case "평소":
