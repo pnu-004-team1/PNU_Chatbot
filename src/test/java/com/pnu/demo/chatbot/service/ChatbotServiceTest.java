@@ -2,7 +2,7 @@ package com.pnu.demo.chatbot.service;
 
 import com.pnu.demo.chatbot.academicCalendar.AcademicCalendarInfoManager;
 import com.pnu.demo.chatbot.counselingConnection.CounselingConnection;
-import com.pnu.demo.chatbot.eArtical.EAriticalInoManager;
+import com.pnu.demo.chatbot.eArtical.EArticalInfoManager;
 import com.pnu.demo.chatbot.libInfo.LibraryContactInfoManager;
 import com.pnu.demo.chatbot.libInfo.LibraryInfoManager;
 import org.junit.Before;
@@ -191,7 +191,7 @@ public class ChatbotServiceTest {
         String result;
         String sut;
 
-        EAriticalInoManager infoManager = new EAriticalInoManager();
+        EArticalInfoManager infoManager = new EArticalInfoManager();
 
 
         // "도서:인문"
@@ -236,21 +236,21 @@ public class ChatbotServiceTest {
         assertEquals(sut, result);
     }
 
-    @Test
-    public void testGetCounselingInfo() {
-        String result;
-        String sut;
-
-        CounselingConnection infoManager = new CounselingConnection();
-
-        // "법학도서관 연락처"
-        // given
-        result = infoManager.getStringResult();
-        // when
-        sut = service.getAnswer("상담원 연락처 알려줘");
-        // then
-        assertEquals(sut, result);
-    }
+//    @Test
+//    public void testGetCounselingInfo() {
+//        String result;
+//        String sut;
+//
+//        CounselingConnection infoManager = new CounselingConnection();
+//
+//        // "법학도서관 연락처"
+//        // given
+//        result = infoManager.getStringResult();
+//        // when
+//        sut = service.getAnswer("상담원 연락처 알려줘");
+//        // then
+//        assertEquals(sut, result);
+//    }
 
     @Test
     public void testGetExceptionMessage() {
