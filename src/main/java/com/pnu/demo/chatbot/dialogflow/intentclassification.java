@@ -12,6 +12,22 @@ import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
 
 public class intentclassification {
+    // String APIKey;
+//    AIConfiguration configuration = new AIConfiguration(APIKey);
+//    AIDataService dataService = new AIDataService(configuration);
+//
+//    public void textclassification(String line){
+//        try{
+//            AIRequest request = new AIRequest(line);
+//            AIResponse response = dataService.request(request);
+//
+//            if (response.getStatus().getCode() == 200) {
+//                System.out.println(response.getResult().getFulfillment().getSpeech());
+//            }
+//        } catch (Exception ex){
+//            ex.printStackTrace();
+//        }
+//    }
 
 
     private static void showHelp(String errorMessage, int exitCode) {
