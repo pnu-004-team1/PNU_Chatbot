@@ -20,8 +20,12 @@
         <nd4j.version>0.4-rc3.9</nd4j.version>
         <dl4j.version>0.4-rc3.9</dl4j.version>
         <start-class>com.pnu.demo.chatbot.DemoApplication</start-class>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven-assembly-plugin-version>2.4</maven-assembly-plugin-version>
+        <slf4j-version>1.7.25</slf4j-version>
     </properties>
-
     <dependencies>
         <!-- to deploy as a war in tomcat -->
         <dependency>
@@ -116,7 +120,18 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>ai.api</groupId>
+            <artifactId>libai</artifactId>
+            <version>1.6.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
