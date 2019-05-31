@@ -1,18 +1,13 @@
 package com.pnu.demo.chatbot.nlp;
 
 import com.pnu.demo.chatbot.service.ChatbotServiceDelegate;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import ai.api.AIConfiguration;
-import ai.api.AIDataService;
-import ai.api.model.AIRequest;
-import ai.api.model.AIResponse;
+import com.pnu.demo.chatbot.dialogflow.IntentClassification;
 
 public class TextClassifier {
+    private IntentClassification intentClassification = new IntentClassification();
+
     public String classify(ChatbotServiceDelegate delegate, String inputText) {
+        intentClassification.intentClassification(inputText);
         if (inputText.startsWith("논문:")) {
             String query = inputText.replace("논문:", "");
             return delegate.getEArtical(query);
