@@ -16,17 +16,20 @@ public class IntentClassification {
     private AIConfiguration configuration = new AIConfiguration(APIKey);
     private AIDataService dataService = new AIDataService(configuration);
 
-    public void intentClassification(String line){
+    public String intentClassification(String line){
+        String intent = "";
         try{
             AIRequest request = new AIRequest(line);
             AIResponse response = dataService.request(request);
 
             if (response.getStatus().getCode() == 200) {
-                System.out.println(response.getResult().getFulfillment().getSpeech());
+                intent = response.getResult().getFulfillment().getSpeech();
+                //System.out.println(intent);
             }
         } catch (Exception ex){
             ex.printStackTrace();
         }
+        return intent;
     }
 
 

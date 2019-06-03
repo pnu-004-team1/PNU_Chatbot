@@ -7,20 +7,23 @@ public class TextClassifier {
     private IntentClassification intentClassification = new IntentClassification();
 
     public String classify(ChatbotServiceDelegate delegate, String inputText) {
-        intentClassification.intentClassification(inputText);
+        String intent = intentClassification.intentClassification(inputText);
+
         if (inputText.startsWith("논문:")) {
             String query = inputText.replace("논문:", "");
             return delegate.getEArtical(query);
-        } else if (inputText.contains("열람실") || inputText.contains("좌석")) {
-            if (inputText.contains("새벽벌")) {
-                return delegate.getLibrarySeatingInfo("새벽벌");
-            } else if (inputText.contains("건설관")) {
-                return delegate.getLibrarySeatingInfo("건설관");
-            } else if (inputText.contains("나노생명")) {
-                return delegate.getLibrarySeatingInfo("나노생명");
-            } else {
-                return delegate.getLibrarySeatingInfo("all");
-            }
+        } else if (inputText.contains("열람실") && inputText.contains("좌석")) {
+                return delegate.getLibrarySeatingInfo(intent);
+//        } else if (inputText.contains("열람실") || inputText.contains("좌석")) {
+//            if (inputText.contains("새벽벌")) {
+//                return delegate.getLibrarySeatingInfo("새벽벌");
+//            } else if (inputText.contains("건설관")) {
+//                return delegate.getLibrarySeatingInfo("건설관");
+//            } else if (inputText.contains("나노생명")) {
+//                return delegate.getLibrarySeatingInfo("나노생명");
+//            } else {
+//                return delegate.getLibrarySeatingInfo("all");
+//            }
         } else if (inputText.contains("학사") && inputText.contains("일정")) {
             return delegate.getUniversityCalendar();
         } else if (inputText.contains("도서관")) {
