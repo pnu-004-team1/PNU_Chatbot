@@ -9,6 +9,6 @@ public interface ChatbotServiceDelegate {
     public String getLibrarySeatingInfo(String query);
     public String getLibraryContactInfo(String libName);
     public String getUniversityCalendar();
-    public String getCounselingInfo();
+//    public String getCounselingInfo();
     public String getExceptionMessage();
 }
