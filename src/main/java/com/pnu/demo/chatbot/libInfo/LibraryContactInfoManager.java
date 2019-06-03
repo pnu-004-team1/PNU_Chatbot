@@ -79,7 +79,7 @@ public class LibraryContactInfoManager {
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
                 break;
             }
-            default: System.out.println("도서관 이름이 존재하지 않습니다.");
+            default: resultStr = "도서관 이름이 존재하지 않습니다.";
         }
 
         telsAllByCol.clear();
@@ -88,7 +88,7 @@ public class LibraryContactInfoManager {
         return resultStr;
     }
 
-    public JSONObject getLibTelNumsJson(String libName) throws IOException, JSONException {
+    public JSONObject getStringResultJson(String libName) throws IOException, JSONException {
 
         setJsoupInfos();
 
@@ -145,7 +145,7 @@ public class LibraryContactInfoManager {
                 libLibTelNums.put("telNums", resultStr);
                 break;
             }
-            default: System.out.println("도서관 이름이 존재하지 않습니다.");
+            default:  libLibTelNums.put("library", "도서관 이름이 존재하지 않습니다.");
         }
 
         telsAllByCol.clear();

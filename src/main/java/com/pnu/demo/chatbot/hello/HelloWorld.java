@@ -19,7 +19,7 @@ public class HelloWorld implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         // TODO Auto-generated method stub
 
-        /*
+
         System.out.println(libraryInfoManager.getStringResultJson("중앙","학기중"));
 
         System.out.println(libraryInfoManager.getStringResultJson("중앙","방학중"));
@@ -46,19 +46,20 @@ public class HelloWorld implements ApplicationRunner {
 
         System.out.println();         System.out.println();         System.out.println();
 
-        System.out.println(libraryContactInfoManager.getLibTelNumsJson("부산"));
 
-        System.out.println(libraryContactInfoManager.getLibTelNumsJson("법학"));
+        System.out.println(libraryContactInfoManager.getStringResultJson("부산"));
 
-
-        System.out.println(libraryContactInfoManager.getLibTelNumsJson("양산"));
-
-        System.out.println(libraryContactInfoManager.getLibTelNumsJson("아미"));
-
-        System.out.println(libraryContactInfoManager.getLibTelNumsJson("밀양"));
+        System.out.println(libraryContactInfoManager.getStringResultJson("법학"));
 
 
+        System.out.println(libraryContactInfoManager.getStringResultJson("양산"));
 
+        System.out.println(libraryContactInfoManager.getStringResultJson("아미"));
+
+        System.out.println(libraryContactInfoManager.getStringResultJson("밀양"));
+
+
+        /*
         System.out.println(libraryInfoManager.getStringResult("중앙","학기중"));
         System.out.println();         System.out.println();         System.out.println();
 
@@ -96,6 +97,7 @@ public class HelloWorld implements ApplicationRunner {
         System.out.println();         System.out.println();         System.out.println();
         */
 
+        /*
         System.out.println(libraryContactInfoManager.getStringResult("부산"));
         System.out.println();         System.out.println();         System.out.println();
 
@@ -110,7 +112,7 @@ public class HelloWorld implements ApplicationRunner {
 
         System.out.println(libraryContactInfoManager.getStringResult("밀양"));
         System.out.println();         System.out.println();         System.out.println();
-
+        */
 
     }
 }

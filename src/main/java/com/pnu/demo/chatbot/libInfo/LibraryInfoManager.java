@@ -183,7 +183,7 @@ public class LibraryInfoManager {
                 }
                 break;
             }
-            default: System.out.println("도서관 이름이 존재하지 않습니다.");
+            default: resultStr = "도서관 이름이 존재하지 않습니다.";
         }
 
         openHourAllByCol.clear();
@@ -193,7 +193,7 @@ public class LibraryInfoManager {
 
 
 
-    public JSONObject getLibraryOfficeHoursJson(String libName, String classify) throws JSONException {
+    public JSONObject getStringResultJson(String libName, String classify) throws JSONException {
         ArrayList<String> temp =  new ArrayList<String>();
 
         JSONObject libOfficeHour = new JSONObject();
@@ -329,7 +329,7 @@ public class LibraryInfoManager {
                 }
                 break;
             }
-            default: System.out.println("도서관 이름이 존재하지 않습니다.");
+            default: libOfficeHours.put("library","도서관 이름이 존재하지 않습니다.");
         }
 
         openHourAllByCol.clear();
