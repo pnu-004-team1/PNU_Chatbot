@@ -92,8 +92,8 @@ public class TextClassifier {
                 }
             }
             return delegate.getLibraryInfo(null, null);
-        } else if (inputText.contains("상담") || inputText.contains("안내")) {
-            return delegate.getCounselingInfo();
+//        } else if (inputText.contains("상담") || inputText.contains("안내")) {
+//            return delegate.getCounselingInfo();
         } else {
             return delegate.getExceptionMessage();
         }
