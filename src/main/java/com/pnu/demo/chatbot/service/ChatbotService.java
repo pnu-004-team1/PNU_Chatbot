@@ -57,16 +57,16 @@ public class ChatbotService implements ChatbotServiceDelegate {
     @Override // 담당자: 안재우
     public String getUniversityCalendar() {
         AcademicCalendarInfoManager infoManager = new AcademicCalendarInfoManager();
-        String result = infoManager.getStringResult("올해 휴일");
+        String result = infoManager.getStringResult("학사 일정");
         return result;
     }
 
-    @Override // 담당자: 안재우
-    public String getCounselingInfo() {
-        CounselingConnection infoManager = new CounselingConnection();
-        String result = infoManager.getStringResult(1,"상담 내용");
-        return result;
-    }
+//    @Override // 담당자: 안재우
+//    public String getCounselingInfo() {
+//        CounselingConnection infoManager = new CounselingConnection();
+//        String result = infoManager.getStringResult(1,"상담 내용");
+//        return result;
+//    }
 
     @Override
     public String getExceptionMessage() {
