@@ -1,22 +1,29 @@
 package com.pnu.demo.chatbot.nlp;
 
 import com.pnu.demo.chatbot.service.ChatbotServiceDelegate;
+import com.pnu.demo.chatbot.dialogflow.IntentClassification;
 
 public class TextClassifier {
+    private IntentClassification intentClassification = new IntentClassification();
+
     public String classify(ChatbotServiceDelegate delegate, String inputText) {
+        String intent = intentClassification.intentClassification(inputText);
+
         if (inputText.startsWith("논문:")) {
             String query = inputText.replace("논문:", "");
             return delegate.getEArtical(query);
-        } else if (inputText.contains("열람실") || inputText.contains("좌석")) {
-            if (inputText.contains("새벽벌")) {
-                return delegate.getLibrarySeatingInfo("새벽벌");
-            } else if (inputText.contains("건설관")) {
-                return delegate.getLibrarySeatingInfo("건설관");
-            } else if (inputText.contains("나노생명")) {
-                return delegate.getLibrarySeatingInfo("나노생명");
-            } else {
-                return delegate.getLibrarySeatingInfo("all");
-            }
+        } else if (inputText.contains("열람실") && inputText.contains("좌석")) {
+                return delegate.getLibrarySeatingInfo(intent);
+//        } else if (inputText.contains("열람실") || inputText.contains("좌석")) {
+//            if (inputText.contains("새벽벌")) {
+//                return delegate.getLibrarySeatingInfo("새벽벌");
+//            } else if (inputText.contains("건설관")) {
+//                return delegate.getLibrarySeatingInfo("건설관");
+//            } else if (inputText.contains("나노생명")) {
+//                return delegate.getLibrarySeatingInfo("나노생명");
+//            } else {
+//                return delegate.getLibrarySeatingInfo("all");
+//            }
         } else if (inputText.contains("학사") && inputText.contains("일정")) {
             return delegate.getUniversityCalendar();
         } else if (inputText.contains("도서관")) {
@@ -85,8 +92,8 @@ public class TextClassifier {
                 }
             }
             return delegate.getLibraryInfo(null, null);
-        } else if (inputText.contains("상담") || inputText.contains("안내")) {
-            return delegate.getCounselingInfo();
+//        } else if (inputText.contains("상담") || inputText.contains("안내")) {
+//            return delegate.getCounselingInfo();
         } else {
             return delegate.getExceptionMessage();
         }
