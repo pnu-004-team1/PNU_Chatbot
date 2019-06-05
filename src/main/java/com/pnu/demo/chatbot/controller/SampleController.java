@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -52,20 +56,33 @@ public class SampleController {
 
     @PostMapping("/join")
     public Member joinMember(@RequestBody Member member) {
-        Member _member = repository.save(new Member(member.getUsername(), member.getPassword(), member.getName()));
-        System.out.println(_member.toString());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        String username = member.getUsername();
+        String password = passwordEncoder.encode(member.getPassword());
+        String name= member.getName();
+
+        Member _member = new Member(username, password, name);
+        repository.save(_member);
+
         return _member;
     }
 
     @PostMapping("/login")
     public Member loginMember(@RequestBody Member member) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        Query query = new Query(new Criteria("username").is(member.getUsername())
-                        .and("password").is(member.getPassword()));
+        String rawPassword = member.getPassword();
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+        System.out.println(encodedPassword);
 
-        Member _member = mongoTemplate.find(query,Member.class, "member").get(0);
-        System.out.println("login successed");
-        return _member;
+//        Query query = new Query(new Criteria("username").is(member.getUsername())
+//                        .and("password").is(encodedPassword));
+//
+//        Member _member = mongoTemplate.find(query,Member.class, "member").get(0);
+//        System.out.println("login successed");
+//        return _member;
+        return null;
     }
 
 
