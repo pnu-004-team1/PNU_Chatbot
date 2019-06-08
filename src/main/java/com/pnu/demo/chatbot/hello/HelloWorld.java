@@ -1,6 +1,7 @@
 package com.pnu.demo.chatbot.hello;
 
 import com.pnu.demo.chatbot.libInfo.*;
+import com.pnu.demo.chatbot.restaurant.RestaurantCrawler;
 import com.pnu.demo.chatbot.similarCmd.SimilarCmd;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,12 +15,24 @@ public class HelloWorld implements ApplicationRunner {
 
     LibraryInfoManager libraryInfoManager = new LibraryInfoManager();
     LibraryContactInfoManager libraryContactInfoManager = new LibraryContactInfoManager();
+    RestaurantCrawler restaurantCrawler = new RestaurantCrawler();
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // TODO Auto-generated method stub
 
+        System.out.println(restaurantCrawler.getStringResult("금정"));
+        System.out.println(restaurantCrawler.getStringResult("문창"));
+        System.out.println(restaurantCrawler.getStringResult("샛벌"));
+        System.out.println(restaurantCrawler.getStringResult("학생"));
 
+        System.out.println(restaurantCrawler.getStringResultJson("금정"));
+        System.out.println(restaurantCrawler.getStringResultJson("문창"));
+        System.out.println(restaurantCrawler.getStringResultJson("샛벌"));
+        System.out.println(restaurantCrawler.getStringResultJson("학생"));
+
+
+        /*
         System.out.println(libraryInfoManager.getStringResultJson("중앙","학기중"));
 
         System.out.println(libraryInfoManager.getStringResultJson("중앙","방학중"));
@@ -59,7 +72,7 @@ public class HelloWorld implements ApplicationRunner {
         System.out.println(libraryContactInfoManager.getStringResultJson("밀양"));
 
 
-        /*
+
         System.out.println(libraryInfoManager.getStringResult("중앙","학기중"));
         System.out.println();         System.out.println();         System.out.println();
 

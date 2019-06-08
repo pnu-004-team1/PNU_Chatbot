@@ -45,7 +45,7 @@ public class LibraryContactInfoManager {
         resultStr = "";
         switch(libName) {
             case "부산": {
-                resultStr += "부산캠퍼스\n" + telsAllByCol.get(0) + "\n";
+                resultStr += "부산도서관\n" + telsAllByCol.get(0) + "\n";
                 for(int i = 1; i < 10; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-1) + "\n";
 
@@ -56,25 +56,25 @@ public class LibraryContactInfoManager {
                 break;
             }
             case "법학": {
-                resultStr += "법학캠퍼스\n" + telsAllByCol.get(27) + "\n";;
+                resultStr += "법학도서관\n" + telsAllByCol.get(27) + "\n";;
                 for(int i = 28; i < 30; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-3) + "\n";
                 break;
             }
             case "양산": {
-                resultStr += "양산캠퍼스\n" + telsAllByCol.get(30) + "\n";;
+                resultStr += "양산도서관\n" + telsAllByCol.get(30) + "\n";;
                 for(int i = 31; i < 32; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-4) + "\n";
                 break;
             }
             case "아미": {
-                resultStr += "아미캠퍼스\n" + telsAllByCol.get(32) + "\n";;
+                resultStr += "아미도서관\n" + telsAllByCol.get(32) + "\n";;
                 for(int i = 33; i < 34; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-5) + "\n";
                 break;
             }
             case "밀양": {
-                resultStr += "밀양캠퍼스\n" + telsAllByCol.get(34) + "\n";;
+                resultStr += "밀양도서관\n" + telsAllByCol.get(34) + "\n";;
                 for(int i = 35; i < 36; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
                 break;
@@ -96,7 +96,7 @@ public class LibraryContactInfoManager {
         JSONObject libLibTelNums = new JSONObject();
         switch(libName) {
             case "부산": {
-                libLibTelNums.put("library", "부산캠퍼스");
+                libLibTelNums.put("library", "부산도서관");
                 resultStr += telsAllByCol.get(0) + "\n";
                 for(int i = 1; i < 10; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-1) + "\n";
@@ -110,7 +110,7 @@ public class LibraryContactInfoManager {
                 break;
             }
             case "법학": {
-                libLibTelNums.put("library", "법학캠퍼스");
+                libLibTelNums.put("library", "법학도서관");
                 resultStr += telsAllByCol.get(27) + "\n";
                 for(int i = 28; i < 30; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-3) + "\n";
@@ -119,7 +119,7 @@ public class LibraryContactInfoManager {
                 break;
             }
             case "양산": {
-                libLibTelNums.put("library", "양산캠퍼스");
+                libLibTelNums.put("library", "양산도서관");
                 resultStr += telsAllByCol.get(30) + "\n";
                 for(int i = 31; i < 32; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-4) + "\n";
@@ -128,7 +128,7 @@ public class LibraryContactInfoManager {
                 break;
             }
             case "아미": {
-                libLibTelNums.put("library", "아미캠퍼스");
+                libLibTelNums.put("library", "아미도서관");
                 resultStr += telsAllByCol.get(32) + "\n";
                 for(int i = 33; i < 34; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-5) + "\n";
@@ -137,7 +137,7 @@ public class LibraryContactInfoManager {
                 break;
             }
             case "밀양": {
-                libLibTelNums.put("library", "밀양캠퍼스");
+                libLibTelNums.put("library", "밀양도서관");
                 resultStr += telsAllByCol.get(34) + "\n";
                 for(int i = 35; i < 36; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
