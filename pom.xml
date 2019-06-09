@@ -60,15 +60,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>1.4.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>1.4.0</version>
+            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.minidev/json-smart -->
         <dependency>
