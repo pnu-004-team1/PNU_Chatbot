@@ -40,22 +40,6 @@ public class TextClassifier {
             else {
                 result.answer = delegate.getLibraryContactInfo(responseResult);
             }
-//            if (inputText.contains("연락") || inputText.contains("전화") || inputText.contains("번호") || inputText.contains("주소") || inputText.contains("담당자")) {
-//                result.type = "LibraryContact";
-//                if (inputText.contains("부산")) {
-//                    result.answer = delegate.getLibraryContactInfo("부산");
-//                } else if (inputText.contains("법학")) {
-//                    result.answer = delegate.getLibraryContactInfo("법학");
-//                } else if (inputText.contains("양산")) {
-//                    result.answer = delegate.getLibraryContactInfo("양산");
-//                } else if (inputText.contains("아미")) {
-//                    result.answer = delegate.getLibraryContactInfo("아미");
-//                } else if (inputText.contains("밀양")) {
-//                    result.answer = delegate.getLibraryContactInfo("밀양");
-//                } else {
-//                    result.answer = delegate.getLibraryContactInfo(null);
-//                }
-//            }
         } else if (inputText.contains("도서관")) {
             result.type = "Library";
             if (inputText.contains("중앙")) {
@@ -109,18 +93,13 @@ public class TextClassifier {
             } else {
                 result.answer =  delegate.getLibraryInfo(null, null);
             }
-        } else if (inputText.contains("식당") || inputText.contains("학식") || inputText.contains("석식") || inputText.contains("점심") || inputText.contains("저녁") || inputText.contains("구내") || inputText.contains("밥") || inputText.contains("금정") || inputText.contains("문창") || inputText.contains("샛벌")) {
+        } else if (intent.equals("학식 질문")) {
             result.type = "FoodCafe";
-            if (inputText.contains("금정")) {
-                result.answer = delegate.getFoodCafeInfo("금정");
-            } else if (inputText.contains("문창")) {
-                result.answer = delegate.getFoodCafeInfo("문창");
-            } else if (inputText.contains("샛벌")) {
-                result.answer = delegate.getFoodCafeInfo("샛벌");
-            } else if (inputText.contains("학생")) {
-                result.answer = delegate.getFoodCafeInfo("학생");
-            } else {
+            if(parameters.get("Restaurant") == null) {
                 result.answer = delegate.getFoodCafeInfo("");
+            }
+            else {
+                result.answer = delegate.getFoodCafeInfo(responseResult);
             }
         } else {
             result.type = null;
