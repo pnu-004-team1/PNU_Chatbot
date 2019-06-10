@@ -43,15 +43,15 @@ public class SampleController {
         return vo;
     }
 
-    @GetMapping("/bookInfo")
-    public JSONBookInfoVO bookinfomessage(@RequestParam String query) {
-        System.out.println(query);
-        JSONBookInfoVO vo = new JSONBookInfoVO();
-        BookInfoManager bookInfoManager = new BookInfoManager();
-        vo.type = "bookinfo";
-        vo.data = bookInfoManager.getStringResult(query);
-        return vo;
-    }
+//    @GetMapping("/bookInfo")
+//    public JSONBookInfoVO bookinfomessage(@RequestParam String query) {
+//        System.out.println(query);
+//        JSONBookInfoVO vo = new JSONBookInfoVO();
+//        BookInfoManager bookInfoManager = new BookInfoManager();
+//        vo.type = "bookinfo";
+//        vo.data = bookInfoManager.getStringResult(query);
+//        return vo;
+//    }
 
 
 }

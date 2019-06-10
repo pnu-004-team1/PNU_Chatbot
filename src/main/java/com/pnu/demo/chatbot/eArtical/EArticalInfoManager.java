@@ -20,7 +20,7 @@ public class EArticalInfoManager {
         EArticalInfoManager http = new EArticalInfoManager();
         searchInput = searchInput.trim();
         String query = URLEncoder.encode(searchInput);
-        String result = null;
+        String result = "";
         try {
             result = http.sendGet("https://lib.pusan.ac.kr/wp-json/eds/v1/articles/?post_per_page=3&query=&q_ti=" + query +"&q_au=&q_pu=&field_code=ALL&_=1554280931831");
         } catch (Exception e) {
@@ -61,14 +61,13 @@ public class EArticalInfoManager {
         JSONObject jsonObj = (JSONObject)parser.parse(response.toString());
         JSONArray jsonArray = new JSONArray();
         jsonArray = (JSONArray) jsonObj.get("records");
-        String result = null;
+        String result = "";
         for (int idx = 0; idx < jsonArray.size(); idx++) {
             JSONObject item = (JSONObject)jsonArray.get(idx);
-            result += ("[" + String.valueOf(idx + 1) + "]" +
-                    "저자: " + item.get("record_authors") +
-                    "제목: " + item.get("record_authors") +
-                    "출판사: " + item.get("publisher") +
-                    "\n");
+            result += ("[" + String.valueOf(idx + 1) + "]" + "\n" +
+                    "저자: " + item.get("record_authors") + "\n" +
+                    "제목: " + item.get("record_title") + "\n"
+                    );
 //            System.out.println("저자: " + item.get("record_authors"));
 //            System.out.println("제목: " + item.get("record_title"));
 //            System.out.println("출판사: " + item.get("publisher"));

@@ -22,7 +22,11 @@ public class TextClassifier {
             String query = inputText.replace("논문:", "");
             result.type = "EArtical";
             result.answer = delegate.getEArtical(query);
-        } else if (intent.equals("열람실 질문")) {
+        } else if(intent.equals("책 질문")) {
+            String query = inputText.replace("도서:", "").replace("책:","");
+            result.type = "BookInfo";
+            result.answer = delegate.getBookInfo(query);
+        }else if (intent.equals("열람실 질문")) {
             result.type = "LibrarySeating";
             result.answer = delegate.getLibrarySeatingInfo(responseResult);
         } else if (intent.equals("학사 일정 질문")) {

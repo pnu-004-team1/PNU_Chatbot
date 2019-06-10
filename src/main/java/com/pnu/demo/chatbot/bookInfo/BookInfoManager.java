@@ -15,11 +15,11 @@ import java.io.IOException;
 public class BookInfoManager {
     private final String USER_AGENT = "Mozilla/5.0";
 
-    public JSONArray getStringResult(String title){
-        JSONArray result = null;
+    public String getStringResult(String title){
+        String result = null;
         BookInfoManager http = new BookInfoManager();
         try {
-            result = http.sendGet("https://lib.pusan.ac.kr/resource/?query="+title);
+            result = http.sendGet("https://lib.pusan.ac.kr/resource/?query="+title).toString();
         } catch (Exception e) {
             e.printStackTrace();
         }

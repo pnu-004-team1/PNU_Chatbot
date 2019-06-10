@@ -19,12 +19,12 @@ public class ChatbotService implements ChatbotServiceDelegate {
         return classifer.classify(this, questionText);
     }
 
-//    @Override // 담당자: 구민규
-//    public JSONArray getBookInfo(String query) {
-//        BookInfoManager bookInfoManager = new BookInfoManager();
-//        JSONArray result = bookInfoManager.getStringResult(query);
-//        return result;
-//    }
+    @Override // 담당자: 구민규
+    public String getBookInfo(String query) {
+        BookInfoManager bookInfoManager = new BookInfoManager();
+        String result = bookInfoManager.getStringResult(query);
+        return result;
+    }
 
     @Override // 담당자: 구민규
     public String getEArtical(String query) {
