@@ -28,9 +28,18 @@ public class SampleController {
         System.out.println(query);
         JSONChatbotVO vo = new JSONChatbotVO();
         JSONChatbotDataVO data = new JSONChatbotDataVO();
-        ClassificationResult result = service.getAnswer(query);
-        data.answer = result.answer;
-        data.type = result.type;
+        ClassificationResult result;
+        try {
+            result = service.getAnswer(query);
+            data.answer = result.answer;
+            data.type = result.type;
+        } catch (Exception e) {
+            data.answer = null;
+            data.type = null;
+            vo.message = e.getLocalizedMessage();
+            vo.error = "Exception on SampleController.java";
+            vo.status = 500;
+        }
         vo.data= data;
         return vo;
     }
