@@ -34,8 +34,7 @@ public class SampleController {
             data.answer = result.answer;
             data.type = result.type;
         } catch (Exception e) {
-            data.answer = null;
-            data.type = null;
+            data = null;
             vo.message = e.getLocalizedMessage();
             vo.error = "Exception on SampleController.java";
             vo.status = 500;
