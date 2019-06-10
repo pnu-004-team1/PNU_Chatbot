@@ -109,6 +109,19 @@ public class TextClassifier {
             } else {
                 result.answer =  delegate.getLibraryInfo(null, null);
             }
+        } else if (inputText.contains("식당") || inputText.contains("학식") || inputText.contains("석식") || inputText.contains("점심") || inputText.contains("저녁") || inputText.contains("구내") || inputText.contains("밥") || inputText.contains("금정") || inputText.contains("문창") || inputText.contains("샛벌")) {
+            result.type = "FoodCafe";
+            if (inputText.contains("금정")) {
+                result.answer = delegate.getFoodCafeInfo("금정");
+            } else if (inputText.contains("문창")) {
+                result.answer = delegate.getFoodCafeInfo("문창");
+            } else if (inputText.contains("샛벌")) {
+                result.answer = delegate.getFoodCafeInfo("샛벌");
+            } else if (inputText.contains("학생")) {
+                result.answer = delegate.getFoodCafeInfo("학생");
+            } else {
+                result.answer = delegate.getFoodCafeInfo("");
+            }
         } else {
             result.type = null;
             result.answer = delegate.getExceptionMessage();
