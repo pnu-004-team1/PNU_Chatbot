@@ -1,43 +1,60 @@
 package com.pnu.demo.chatbot.nlp;
 
+import ai.api.model.AIResponse;
+import com.google.gson.JsonElement;
 import com.pnu.demo.chatbot.service.ChatbotServiceDelegate;
 import com.pnu.demo.chatbot.dialogflow.IntentClassification;
+
+import java.util.HashMap;
 
 public class TextClassifier {
     private IntentClassification intentClassification = new IntentClassification();
 
     public ClassificationResult classify(ChatbotServiceDelegate delegate, String inputText) {
-        String intent = intentClassification.intentClassification(inputText);
         ClassificationResult result = new ClassificationResult();
+        AIResponse response = intentClassification.getResponse(inputText);
 
-        if (inputText.startsWith("논문:")) {
+        String intent = intentClassification.getIntent(response);
+        String responseResult = intentClassification.getResult(response);
+        HashMap<String, JsonElement> parameters = intentClassification.getParameters(response);
+
+        if (intent.equals("논문 질문")) {
             String query = inputText.replace("논문:", "");
             result.type = "EArtical";
             result.answer = delegate.getEArtical(query);
-        } else if (inputText.contains("열람실") && inputText.contains("좌석")) {
+        } else if (intent.equals("열람실 질문")) {
             result.type = "LibrarySeating";
-            result.answer = delegate.getLibrarySeatingInfo(intent);
-        } else if (inputText.contains("학사") && inputText.contains("일정")) {
+            result.answer = delegate.getLibrarySeatingInfo(responseResult);
+        } else if (intent.equals("학사 일정 질문")) {
             result.type = "UniversityCalendar";
             result.answer = delegate.getUniversityCalendar();
+        } else if(intent.equals("도서관 관리자 질문")) {
+            result.type = "LibraryContact";
+            if(parameters.get("LibraryInfoSet") == null) {
+                 result.answer = delegate.getLibraryContactInfo(null);
+            }
+            else {
+                result.answer = delegate.getLibraryContactInfo(responseResult);
+            }
+//            if (inputText.contains("연락") || inputText.contains("전화") || inputText.contains("번호") || inputText.contains("주소") || inputText.contains("담당자")) {
+//                result.type = "LibraryContact";
+//                if (inputText.contains("부산")) {
+//                    result.answer = delegate.getLibraryContactInfo("부산");
+//                } else if (inputText.contains("법학")) {
+//                    result.answer = delegate.getLibraryContactInfo("법학");
+//                } else if (inputText.contains("양산")) {
+//                    result.answer = delegate.getLibraryContactInfo("양산");
+//                } else if (inputText.contains("아미")) {
+//                    result.answer = delegate.getLibraryContactInfo("아미");
+//                } else if (inputText.contains("밀양")) {
+//                    result.answer = delegate.getLibraryContactInfo("밀양");
+//                } else {
+//                    result.answer = delegate.getLibraryContactInfo(null);
+//                }
+//            }
         } else if (inputText.contains("도서관")) {
             result.type = "Library";
-            if (inputText.contains("연락") || inputText.contains("전화") || inputText.contains("번호") || inputText.contains("주소") || inputText.contains("담당자")) {
-                result.type = "LibraryContact";
-                if (inputText.contains("부산")) {
-                    result.answer = delegate.getLibraryContactInfo("부산");
-                } else if (inputText.contains("법학")) {
-                    result.answer = delegate.getLibraryContactInfo("법학");
-                } else if (inputText.contains("양산")) {
-                    result.answer = delegate.getLibraryContactInfo("양산");
-                } else if (inputText.contains("아미")) {
-                    result.answer = delegate.getLibraryContactInfo("아미");
-                } else if (inputText.contains("밀양")) {
-                    result.answer = delegate.getLibraryContactInfo("밀양");
-                } else {
-                    result.answer = delegate.getLibraryContactInfo(null);
-                }
-            } else if (inputText.contains("중앙")) {
+            if (inputText.contains("중앙")) {
                 if (inputText.contains("학기중")) {
                     result.answer = delegate.getLibraryInfo("중앙", "학기중");
                 } else if (inputText.contains("방학중")) {
