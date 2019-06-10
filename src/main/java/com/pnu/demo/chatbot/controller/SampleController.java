@@ -2,6 +2,8 @@ package com.pnu.demo.chatbot.controller;
 
 import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
 import com.pnu.demo.chatbot.service.ChatbotService;
+import com.pnu.demo.chatbot.vo.JSONBookInfoVO;
+import com.pnu.demo.chatbot.vo.JSONChatbotDataVO;
 import com.pnu.demo.chatbot.vo.JSONChatbotVO;
 import net.minidev.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,20 +26,19 @@ public class SampleController {
     public JSONChatbotVO chatbotmessage(@RequestParam String query) {
         System.out.println(query);
         JSONChatbotVO vo = new JSONChatbotVO();
-        JSONObject data = new JSONObject();
-        data.put("answer", service.getAnswer(query));
+        JSONChatbotDataVO data = new JSONChatbotDataVO();
+        data.answer = service.getAnswer(query);
+        vo.data= data;
         return vo;
     }
 
     @GetMapping("/bookInfo")
-    public JSONChatbotVO bookinfomessage(@RequestParam String query) {
+    public JSONBookInfoVO bookinfomessage(@RequestParam String query) {
         System.out.println(query);
-        JSONObject data = new JSONObject();
-        JSONChatbotVO vo = new JSONChatbotVO();
+        JSONBookInfoVO vo = new JSONBookInfoVO();
         BookInfoManager bookInfoManager = new BookInfoManager();
-        data.put("type", "bookinfo");
-        data.put("data", bookInfoManager.getStringResult(query));
-        vo.data = data;
+        vo.type = "bookinfo";
+        vo.data = bookInfoManager.getStringResult(query);
         return vo;
     }
 
