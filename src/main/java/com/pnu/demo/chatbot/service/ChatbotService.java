@@ -7,6 +7,7 @@ import com.pnu.demo.chatbot.academicCalendar.*;
 import com.pnu.demo.chatbot.eArtical.*;
 import com.pnu.demo.chatbot.counselingConnection.*;
 import com.pnu.demo.chatbot.bookInfo.*;
+import com.pnu.demo.chatbot.restaurant.RestaurantCrawler;
 import net.minidev.json.JSONArray;
 
 //import org.json.simple.JSONObject;
@@ -58,6 +59,13 @@ public class ChatbotService implements ChatbotServiceDelegate {
     public String getUniversityCalendar() {
         AcademicCalendarInfoManager infoManager = new AcademicCalendarInfoManager();
         String result = infoManager.getStringResult("학사 일정");
+        return result;
+    }
+
+    @Override // 담당자: 류강현
+    public String getFoodCafeInfo(String query) {
+        RestaurantCrawler infoManager = new RestaurantCrawler ();
+        String result = infoManager.getStringResult(query);
         return result;
     }
 
