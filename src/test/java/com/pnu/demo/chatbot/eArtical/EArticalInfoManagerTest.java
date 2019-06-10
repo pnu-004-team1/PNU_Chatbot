@@ -31,7 +31,7 @@ public class EArticalInfoManagerTest {
         // given
         result = eArticalInfoManager.getStringResult("컴퓨터비전");
         // when
-        sut = service.getAnswer("논문:컴퓨터비전");
+        sut = service.getAnswer("논문:컴퓨터비전").answer;
         // then
         assertEquals(sut, result);
 
@@ -39,7 +39,7 @@ public class EArticalInfoManagerTest {
         // given
         result = eArticalInfoManager.getStringResult("컴퓨터비전");
         // when
-        sut = service.getAnswer("논문:  컴퓨터비전");
+        sut = service.getAnswer("논문:  컴퓨터비전").answer;
         // then
         assertEquals(sut, result);
 
@@ -47,7 +47,7 @@ public class EArticalInfoManagerTest {
         // given
         result = eArticalInfoManager.getStringResult("컴퓨터비전");
         // when
-        sut = service.getAnswer("논문:컴퓨터 비전");
+        sut = service.getAnswer("논문:컴퓨터 비전").answer;
         // then
         assertEquals(sut, result);
     }
@@ -62,7 +62,7 @@ public class EArticalInfoManagerTest {
         // given
         result = eArticalInfoManager.getStringResult("");
         // when
-        sut = service.getAnswer("논문:");
+        sut = service.getAnswer("논문:").answer;
         // then
         assertEquals(sut, result);
     }

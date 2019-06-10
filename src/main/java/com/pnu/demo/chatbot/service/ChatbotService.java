@@ -15,7 +15,7 @@ public class ChatbotService implements ChatbotServiceDelegate {
 
     private TextClassifier classifer = new TextClassifier();
 
-    public String getAnswer(String questionText) {
+    public ClassificationResult getAnswer(String questionText) {
         return classifer.classify(this, questionText);
     }
 

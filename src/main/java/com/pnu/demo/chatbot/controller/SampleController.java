@@ -1,6 +1,7 @@
 package com.pnu.demo.chatbot.controller;
 
 import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
+import com.pnu.demo.chatbot.nlp.ClassificationResult;
 import com.pnu.demo.chatbot.service.ChatbotService;
 import com.pnu.demo.chatbot.vo.JSONBookInfoVO;
 import com.pnu.demo.chatbot.vo.JSONChatbotDataVO;
@@ -27,7 +28,9 @@ public class SampleController {
         System.out.println(query);
         JSONChatbotVO vo = new JSONChatbotVO();
         JSONChatbotDataVO data = new JSONChatbotDataVO();
-        data.answer = service.getAnswer(query);
+        ClassificationResult result = service.getAnswer(query);
+        data.answer = result.answer;
+        data.type = result.type;
         vo.data= data;
         return vo;
     }

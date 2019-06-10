@@ -4,4 +4,5 @@ import net.minidev.json.JSONObject;
 
 public class JSONChatbotDataVO {
     public String answer;
+    public String type = null;
 }
