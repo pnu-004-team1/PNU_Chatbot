@@ -3,7 +3,6 @@ package com.pnu.demo.chatbot.controller;
 import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
 import com.pnu.demo.chatbot.nlp.ClassificationResult;
 import com.pnu.demo.chatbot.service.ChatbotService;
-import com.pnu.demo.chatbot.vo.JSONBookInfoVO;
 import com.pnu.demo.chatbot.vo.JSONChatbotDataVO;
 import com.pnu.demo.chatbot.vo.JSONChatbotVO;
 import net.minidev.json.JSONObject;
@@ -42,16 +41,4 @@ public class SampleController {
         vo.data= data;
         return vo;
     }
-
-//    @GetMapping("/bookInfo")
-//    public JSONBookInfoVO bookinfomessage(@RequestParam String query) {
-//        System.out.println(query);
-//        JSONBookInfoVO vo = new JSONBookInfoVO();
-//        BookInfoManager bookInfoManager = new BookInfoManager();
-//        vo.type = "bookinfo";
-//        vo.data = bookInfoManager.getStringResult(query);
-//        return vo;
-//    }
-
-
 }
