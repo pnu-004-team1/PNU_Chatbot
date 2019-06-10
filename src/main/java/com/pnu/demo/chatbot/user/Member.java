@@ -1,5 +1,6 @@
 package com.pnu.demo.chatbot.user;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -9,7 +10,10 @@ import java.util.Collection;
 import java.util.List;
 
 @Document(collection = "member")
-public class Member implements UserDetails {
+public class Member implements UserDetails{
+
+    @Id
+    private String id;
 
     private String username;
     private String password;
@@ -22,26 +26,51 @@ public class Member implements UserDetails {
 
     private List<GrantedAuthority> authorities;
 
-//    private  boolean active;
+    private  boolean active;
 
     public Member() {
 
     }
 
     public Member(String username, String password, String name) {
-        String authorities[] = {"USER"};
+        String authorities[] = {"ROLE_USER"};
 
         this.username = username;
         this.password = password;
         this.name = name;
         this.authorities = AuthorityUtils.createAuthorityList(authorities);
+
+        this.isEnabled = true;
+        this.isCredentialsNonExpired = true;
+        this.isAccountNonLocked = true;
+        this.isAccountNonExpired = true;
     }
 
-    public Member(String username, String password, String name, String[] authorities) {
+//    public Member(String username, String password, String name, String[] authorities) {
+//        this.username = username;
+//        this.password = password;
+//        this.name = name;
+//        this.authorities = AuthorityUtils.createAuthorityList(authorities);
+//
+//        this.isEnabled = true;
+//        this.isCredentialsNonExpired = true;
+//        this.isAccountNonLocked = true;
+//        this.isAccountNonExpired = true;
+//    }
+
+    public Member(String username, String password, String name, List<GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
         this.name = name;
-        this.authorities = AuthorityUtils.createAuthorityList(authorities);
+        this.authorities = authorities;
+
+        this.isEnabled = true;
+        this.isCredentialsNonExpired = true;
+        this.isAccountNonLocked = true;
+        this.isAccountNonExpired = true;
+    }
+    public String getId() {
+        return id;
     }
 
     public void setUsername(String username) {
@@ -100,22 +129,18 @@ public class Member implements UserDetails {
         return isEnabled;
     }
 
-    public void setAuthorities(String[] authorities) {
-        List<GrantedAuthority> auth = AuthorityUtils.createAuthorityList(authorities);
-        this.authorities = auth;
+//    public void setAuthorities(String[] authorities) {
+//        List<GrantedAuthority> auth = AuthorityUtils.createAuthorityList(authorities);
+//        this.authorities = auth;
+//    }
+
+    public void setAuthorities(List<GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override
     public List<GrantedAuthority> getAuthorities() {
         return authorities;
     }
-
-    //    public boolean isActive() {
-//        return active;
-//    }
-//
-//    public void setActive(boolean active) {
-//        this.active = active;
-//    }
 
 }

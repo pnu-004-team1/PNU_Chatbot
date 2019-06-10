@@ -1,20 +1,25 @@
 package com.pnu.demo.chatbot.controller;
 
+import com.mongodb.MongoClient;
 import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
 import com.pnu.demo.chatbot.service.ChatbotService;
+import com.pnu.demo.chatbot.user.Authentication.AuthenticationRequest;
+import com.pnu.demo.chatbot.user.Authentication.AuthenticationToken;
 import com.pnu.demo.chatbot.user.Member;
 import com.pnu.demo.chatbot.user.MemberRepository;
+import com.pnu.demo.chatbot.user.UserService;
 import com.pnu.demo.chatbot.vo.JSONChatbotVO;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import javax.servlet.http.HttpSession;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -24,18 +29,24 @@ public class SampleController {
     MemberRepository repository;
 
     @Autowired
-    MongoTemplate mongoTemplate;
+    private MongoClient mongoClient;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    UserService userService;
 
     private ChatbotService service = new ChatbotService();
 
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "hello";
     }
 
     @GetMapping("/chatbot")
     public JSONChatbotVO chatbotmessage(@RequestParam String query) {
-        System.out.println(query);
+        //System.out.println(query);
         JSONChatbotVO vo = new JSONChatbotVO();
         JSONObject data = new JSONObject();
         data.put("answer", service.getAnswer(query));
@@ -44,7 +55,7 @@ public class SampleController {
 
     @GetMapping("/bookInfo")
     public JSONChatbotVO bookinfomessage(@RequestParam String query) {
-        System.out.println(query);
+        //System.out.println(query);
         JSONObject data = new JSONObject();
         JSONChatbotVO vo = new JSONChatbotVO();
         BookInfoManager bookInfoManager = new BookInfoManager();
@@ -60,7 +71,7 @@ public class SampleController {
 
         String username = member.getUsername();
         String password = passwordEncoder.encode(member.getPassword());
-        String name= member.getName();
+        String name = member.getName();
 
         Member _member = new Member(username, password, name);
         repository.save(_member);
@@ -68,22 +79,45 @@ public class SampleController {
         return _member;
     }
 
-    @PostMapping("/login")
-    public Member loginMember(@RequestBody Member member) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        String rawPassword = member.getPassword();
-        String encodedPassword = passwordEncoder.encode(rawPassword);
-        System.out.println(encodedPassword);
-
-//        Query query = new Query(new Criteria("username").is(member.getUsername())
-//                        .and("password").is(encodedPassword));
+//    @PostMapping("/login")
+//    public String loginMember(@RequestBody AuthenticationRequest authenticationRequest
+//            , HttpSession session) {
 //
-//        Member _member = mongoTemplate.find(query,Member.class, "member").get(0);
-//        System.out.println("login successed");
-//        return _member;
-        return null;
+//        String username = authenticationRequest.getUsername();
+//        String password = authenticationRequest.getPassword();
+//
+//        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+//        Authentication authentication = authenticationManager.authenticate(token);
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+//                SecurityContextHolder.getContext());
+//
+//        Member member = userService.readMember(username);
+//        return session.getId();
+//    }
+
+    @PostMapping("/login")
+    public AuthenticationToken loginMember(@RequestBody AuthenticationRequest authenticationRequest
+                                            , HttpSession session) {
+
+        String username = authenticationRequest.getUsername();
+        String password = authenticationRequest.getPassword();
+
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+        Authentication authentication = authenticationManager.authenticate(token);
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                SecurityContextHolder.getContext());
+
+        Member member = userService.readMember(username);
+        return new AuthenticationToken(member.getUsername(), member.getAuthorities(), session.getId());
     }
 
-
+    @GetMapping("/logout")
+    public String logout() {
+        return null;
+    }
 }
+
