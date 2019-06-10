@@ -20,6 +20,10 @@ public class LibraryStudyRoomInfoManager {
         List<ReadingRoomInfo> structure = new LinkedList<>();
         String result = new String();
 
+        if(library == null) {
+            library = "all";
+        }
+
         try {
             connecting(structure);
 

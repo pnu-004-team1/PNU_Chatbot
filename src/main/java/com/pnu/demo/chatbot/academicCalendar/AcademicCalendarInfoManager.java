@@ -30,10 +30,23 @@ public class AcademicCalendarInfoManager {
 
     private void getInfo(String event, int begin, int end) {
         MongoClient  mongoClient = new MongoClient(new ServerAddress(mongoDBIP, mongoDBPort));
-        DB db = mongoClient.getDB("AcademicalCalendar");
-        DBCollection collection = db.getCollection("Collection");
+        DBCollection collection = null;
+        if(mongoClient != null) {
+            DB db = mongoClient.getDB("AcademicalCalendar");
+            collection = db.getCollection("Collection");
+        }
         int i = 0;
 
+        if(mongoClient != null) {
+            getEvent(event, begin, end);
+
+            for (Element term : this.termE) {
+                BasicDBObject document = new BasicDBObject();
+                document.put("termE", term.text());
+                document.put("textE", this.textE.get(i).text());
+            }
+            return;
+        }
         if(!checkTimeStamp(collection)) {
             getEvent(event, begin, end);
 
@@ -142,6 +155,9 @@ public class AcademicCalendarInfoManager {
         Calendar compDate = Calendar.getInstance();
         today.setTime(new Date());
         compDate.setTime(new Date());
+
+        if(event == null)
+            event = "";
 
         if(event.contains("올해")) {
             event = event.replaceFirst("올해", "");

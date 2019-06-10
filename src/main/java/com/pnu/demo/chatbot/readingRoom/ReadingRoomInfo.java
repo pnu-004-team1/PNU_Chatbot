@@ -22,16 +22,16 @@ public class ReadingRoomInfo {
         return "위치:    " + place + "\n좌석:    " + seat + "\n잔여좌석: "
                 + residual + "\n운영상태: " + condition + "\n";
     }
-    public boolean checking(String libaray) {
+    public boolean checking(String library) {
         String substr = this.place.split("]")[0];
         boolean check = false;
 
-        switch(libaray){
+        switch(library){
             case "새벽벌":
                 if(substr.equals("[새벽벌"))
                     check = true;
                 break;
-            case "건설관":
+            case "미리내":
                 if(substr.equals("[건설관"))
                     check = true;
                 break;
