@@ -21,6 +21,11 @@ public class HelloWorld implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         // TODO Auto-generated method stub
 
+        //System.out.println(restaurantCrawler.getStringResult(""));
+
+        System.out.println(restaurantCrawler.getStringResultJson(""));
+
+        /*
         System.out.println(restaurantCrawler.getStringResult("금정"));
         System.out.println(restaurantCrawler.getStringResult("문창"));
         System.out.println(restaurantCrawler.getStringResult("샛벌"));

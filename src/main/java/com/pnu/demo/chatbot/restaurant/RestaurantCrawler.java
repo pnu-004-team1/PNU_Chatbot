@@ -82,7 +82,8 @@ public class RestaurantCrawler {
                 resultStr = restaurantsAllByCol.get(5) + "\n" + restaurantsAllByCol.get(6);
                 break;
             default:
-                resultStr = "해당 식당이 존재하지 않습니다";
+                resultStr = restaurantsAllByCol.get(0) + "\n" + restaurantsAllByCol.get(1) + restaurantsAllByCol.get(2) + "\n" + restaurantsAllByCol.get(3)
+                        + restaurantsAllByCol.get(4) + "\n" + restaurantsAllByCol.get(5) + "\n" + restaurantsAllByCol.get(6);
         }
 
         restaurantsAllByCol.clear();
@@ -102,29 +103,42 @@ public class RestaurantCrawler {
         JSONObject restaurantMenus = new JSONObject();
         switch (restaurantName) {
             case "금정":
-                restaurantMenus.put("restaurantStaff", "금정회관 교직원 식당");
-                restaurantMenus.put("menusStaff", restaurantsAllByCol.get(0)  + restaurantsAllByCol.get(1) + restaurantsAllByCol.get(2));
-                restaurantMenus.put("restaurantStudent", "금정회관 학생 식당");
-                restaurantMenus.put("menusStudent", restaurantsAllByCol.get(3) + restaurantsAllByCol.get(4) + restaurantsAllByCol.get(5));
+                restaurantMenus.put("GumJeongRestaurantStaff", "금정회관 교직원 식당");
+                restaurantMenus.put("GumJeongMenusStaff", restaurantsAllByCol.get(0)  + restaurantsAllByCol.get(1) + restaurantsAllByCol.get(2));
+                restaurantMenus.put("GumJeongRestaurantStudent", "금정회관 학생 식당");
+                restaurantMenus.put("GumJeongMenusStudent", restaurantsAllByCol.get(3) + restaurantsAllByCol.get(4) + restaurantsAllByCol.get(5));
                 break;
             case "문창":
-                restaurantMenus.put("restaurantStaff", "문창회관 교직원 식당");
-                restaurantMenus.put("menusStaff", restaurantsAllByCol.get(6) + restaurantsAllByCol.get(7)  + restaurantsAllByCol.get(8));
-                restaurantMenus.put("restaurantStudent", "문창회관 학생 식당");
-                restaurantMenus.put("menusStudent", restaurantsAllByCol.get(9)  + restaurantsAllByCol.get(10)  + restaurantsAllByCol.get(11));
+                restaurantMenus.put("MonChangRestaurantStaff", "문창회관 교직원 식당");
+                restaurantMenus.put("MonChangMenusStaff", restaurantsAllByCol.get(6) + restaurantsAllByCol.get(7)  + restaurantsAllByCol.get(8));
+                restaurantMenus.put("MonChangRestaurantStudent", "문창회관 학생 식당");
+                restaurantMenus.put("MonChangMenusStudent", restaurantsAllByCol.get(9)  + restaurantsAllByCol.get(10)  + restaurantsAllByCol.get(11));
                 break;
             case "샛벌":
-                restaurantMenus.put("restaurantStaff", "샛벌회관 교직원 식당");
-                restaurantMenus.put("menusStaff", restaurantsAllByCol.get(12)  + restaurantsAllByCol.get(13)  + restaurantsAllByCol.get(14));
+                restaurantMenus.put("SetBelRestaurantStaff", "샛벌회관 교직원 식당");
+                restaurantMenus.put("SetBelMenusStaff", restaurantsAllByCol.get(12)  + restaurantsAllByCol.get(13)  + restaurantsAllByCol.get(14));
                 break;
             case "학생":
-                restaurantMenus.put("restaurantStaff", "학생회관 교직원 식당");
-                restaurantMenus.put("menusStaff", restaurantsAllByCol.get(15)  + restaurantsAllByCol.get(16)  + restaurantsAllByCol.get(17));
-                restaurantMenus.put("restaurantStudent", "학생회관 학생 식당");
-                restaurantMenus.put("menusStudent", restaurantsAllByCol.get(18)  + restaurantsAllByCol.get(19)  + restaurantsAllByCol.get(20));
+                restaurantMenus.put("HakSengRestaurantStaff", "학생회관 교직원 식당");
+                restaurantMenus.put("HakSengMenusStaff", restaurantsAllByCol.get(15)  + restaurantsAllByCol.get(16)  + restaurantsAllByCol.get(17));
+                restaurantMenus.put("HakSengRestaurantStudent", "학생회관 학생 식당");
+                restaurantMenus.put("HakSengMenusStudent", restaurantsAllByCol.get(18)  + restaurantsAllByCol.get(19)  + restaurantsAllByCol.get(20));
                 break;
             default:
-                restaurantMenus.put("restaurant", "해당 식당이 존재하지 않습니다");
+                restaurantMenus.put("GumJeongRestaurantStaff", "금정회관 교직원 식당");
+                restaurantMenus.put("GumJeongMenusStaff", restaurantsAllByCol.get(0)  + restaurantsAllByCol.get(1) + restaurantsAllByCol.get(2));
+                restaurantMenus.put("GumJeongRestaurantStudent", "금정회관 학생 식당");
+                restaurantMenus.put("GumJeongMenusStudent", restaurantsAllByCol.get(3) + restaurantsAllByCol.get(4) + restaurantsAllByCol.get(5));
+                restaurantMenus.put("MonChangRestaurantStaff", "문창회관 교직원 식당");
+                restaurantMenus.put("MonChangMenusStaff", restaurantsAllByCol.get(6) + restaurantsAllByCol.get(7)  + restaurantsAllByCol.get(8));
+                restaurantMenus.put("MonChangRestaurantStudent", "문창회관 학생 식당");
+                restaurantMenus.put("MonChangMenusStudent", restaurantsAllByCol.get(9)  + restaurantsAllByCol.get(10)  + restaurantsAllByCol.get(11));
+                restaurantMenus.put("SetBelRestaurantStaff", "샛벌회관 교직원 식당");
+                restaurantMenus.put("SetBelMenusStaff", restaurantsAllByCol.get(12)  + restaurantsAllByCol.get(13)  + restaurantsAllByCol.get(14));
+                restaurantMenus.put("HakSengRestaurantStaff", "학생회관 교직원 식당");
+                restaurantMenus.put("HakSengMenusStaff", restaurantsAllByCol.get(15)  + restaurantsAllByCol.get(16)  + restaurantsAllByCol.get(17));
+                restaurantMenus.put("HakSengRestaurantStudent", "학생회관 학생 식당");
+                restaurantMenus.put("HakSengMenusStudent", restaurantsAllByCol.get(18)  + restaurantsAllByCol.get(19)  + restaurantsAllByCol.get(20));
         }
 
         restaurantsAllByCol.clear();
