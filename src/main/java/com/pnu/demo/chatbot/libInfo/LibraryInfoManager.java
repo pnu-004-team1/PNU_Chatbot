@@ -64,7 +64,8 @@ public class LibraryInfoManager {
     public String getStringResult(String libName, String classify) throws NullPointerException {
         ArrayList<String> temp =  new ArrayList<String>();
 
-
+        if (libName == null) libName = "all";
+        else if(classify == null) classify = "all";
         String resultStr = "";
         switch(libName) {
             case "중앙":
@@ -233,6 +234,8 @@ public class LibraryInfoManager {
 
         JSONObject libOfficeHour = new JSONObject();
         JSONObject libOfficeHours = new JSONObject();
+        if (libName == null) libName = "all";
+        else if(classify == null) classify = "all";
         switch(libName) {
             case "중앙":
             {

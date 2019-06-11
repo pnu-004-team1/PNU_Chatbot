@@ -29,7 +29,7 @@ public class RestaurantCrawler {
         }
     }
 
-    public String getStringResult(String restaurantName, String time) throws NullPointerException {
+    public String getStringResult(String restaurantName, String menu) throws NullPointerException {
 
         conntectURL();
 
@@ -41,7 +41,7 @@ public class RestaurantCrawler {
         String resultStr = "";
         switch (restaurantName) {
             case "금정": {
-                switch (time) {
+                switch (menu) {
                     case "조식":
                         resultStr = "금정회관 교직원 식당\n" + restaurantsAllByCol.get(0) + "금정회관 학생 식당\n"
                                 + restaurantsAllByCol.get(3);
@@ -62,9 +62,10 @@ public class RestaurantCrawler {
                     default:
                         resultStr = "해당 식당명이 존재하지 않습니다.";
                 }
+                break;
             }
             case "문창": {
-                switch (time) {
+                switch (menu) {
                     case "조식":
                         resultStr = "문창회관 교직원 식당\n" + restaurantsAllByCol.get(6) + "문창회관 학생 식당\n"
                                 + restaurantsAllByCol.get(9);
@@ -85,9 +86,10 @@ public class RestaurantCrawler {
                     default:
                         resultStr = "해당 식당명이 존재하지 않습니다.";
                 }
+                break;
             }
             case "샛벌": {
-                switch (time) {
+                switch (menu) {
                     case "조식":
                         resultStr = "샛벌회관 식당\n" + restaurantsAllByCol.get(12);
                         break;
@@ -104,9 +106,10 @@ public class RestaurantCrawler {
                     default:
                         resultStr = "해당 식당명이 존재하지 않습니다.";
                 }
+                break;
             }
             case "학생": {
-                switch (time) {
+                switch (menu) {
                     case "조식":
                         resultStr = "학생회관 교직원 식당\n" + restaurantsAllByCol.get(15) + "학생회관 학생 식당\n"
                                 + restaurantsAllByCol.get(18);
@@ -127,6 +130,7 @@ public class RestaurantCrawler {
                     default:
                         resultStr = "해당 식당명이 존재하지 않습니다.";
                 }
+                break;
             }
             case "all":
                 resultStr = "금정회관 교직원 식당\n" + restaurantsAllByCol.get(0) + "\n"
@@ -148,7 +152,7 @@ public class RestaurantCrawler {
         return resultStr;
     }
 
-    public JSONObject getStringResultJson(String restaurantName, String time) throws JSONException {
+    public JSONObject getStringResultJson(String restaurantName, String menu) throws JSONException {
 
         conntectURL();
 
@@ -161,7 +165,7 @@ public class RestaurantCrawler {
         JSONObject restaurantMenus = new JSONObject();
         switch (restaurantName) {
             case "금정": {
-                switch(time) {
+                switch(menu) {
                     case "조식":
                         restaurantMenus.put("GumJeongRestaurantStaff", "금정회관 교직원 식당");
                         restaurantMenus.put("GumJeongMenusStaff", restaurantsAllByCol.get(0));
@@ -191,7 +195,7 @@ public class RestaurantCrawler {
                 }
             }
             case "문창": {
-                switch(time) {
+                switch(menu) {
                     case "조식":
                         restaurantMenus.put("MonChangRestaurantStaff", "문창회관 교직원 식당");
                         restaurantMenus.put("MonChangMenusStaff", restaurantsAllByCol.get(6));
@@ -221,7 +225,7 @@ public class RestaurantCrawler {
                 }
             }
             case "샛벌": {
-                switch(time) {
+                switch(menu) {
                     case "조식":
                         restaurantMenus.put("SetBelRestaurantStaff", "샛벌회관 식당");
                         restaurantMenus.put("SetBelMenusStaff", restaurantsAllByCol.get(12));
@@ -243,7 +247,7 @@ public class RestaurantCrawler {
                 }
             }
             case "학생": {
-                switch(time) {
+                switch(menu) {
                     case "조식":
                         restaurantMenus.put("HakSengRestaurantStaff", "학생회관 교직원 식당");
                         restaurantMenus.put("HakSengMenusStaff", restaurantsAllByCol.get(15));
