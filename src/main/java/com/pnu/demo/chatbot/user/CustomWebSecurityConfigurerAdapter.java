@@ -25,11 +25,8 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
                 .and()
             .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                .antMatchers("/join").hasAuthority("ROLE_USER")
                 .antMatchers(HttpMethod.GET,"/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/**").permitAll()
-//                .antMatchers("/**").authenticated()     // 로그인 시에만 접속 가능
-//                .antMatchers("/**").hasRole("ADMIN")     // ADMIN 만 접속 가능
                 .and()
             .logout();
     }

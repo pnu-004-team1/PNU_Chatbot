@@ -26,8 +26,6 @@ public class Member implements UserDetails{
 
     private List<GrantedAuthority> authorities;
 
-    private  boolean active;
-
     public Member() {
 
     }
@@ -45,18 +43,6 @@ public class Member implements UserDetails{
         this.isAccountNonLocked = true;
         this.isAccountNonExpired = true;
     }
-
-//    public Member(String username, String password, String name, String[] authorities) {
-//        this.username = username;
-//        this.password = password;
-//        this.name = name;
-//        this.authorities = AuthorityUtils.createAuthorityList(authorities);
-//
-//        this.isEnabled = true;
-//        this.isCredentialsNonExpired = true;
-//        this.isAccountNonLocked = true;
-//        this.isAccountNonExpired = true;
-//    }
 
     public Member(String username, String password, String name, List<GrantedAuthority> authorities) {
         this.username = username;
@@ -129,10 +115,6 @@ public class Member implements UserDetails{
         return isEnabled;
     }
 
-//    public void setAuthorities(String[] authorities) {
-//        List<GrantedAuthority> auth = AuthorityUtils.createAuthorityList(authorities);
-//        this.authorities = auth;
-//    }
 
     public void setAuthorities(List<GrantedAuthority> authorities) {
         this.authorities = authorities;
