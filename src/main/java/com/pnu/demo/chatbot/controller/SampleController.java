@@ -1,6 +1,9 @@
 package com.pnu.demo.chatbot.controller;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
 import com.pnu.demo.chatbot.service.ChatbotService;
 import com.pnu.demo.chatbot.user.Authentication.AuthenticationRequest;
@@ -10,6 +13,7 @@ import com.pnu.demo.chatbot.user.MemberRepository;
 import com.pnu.demo.chatbot.user.UserService;
 import com.pnu.demo.chatbot.vo.JSONChatbotVO;
 import net.minidev.json.JSONObject;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -66,36 +70,29 @@ public class SampleController {
     }
 
     @PostMapping("/join")
-    public Member joinMember(@RequestBody Member member) {
+    public String joinMember(@RequestBody Member member) {
+
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         String username = member.getUsername();
         String password = passwordEncoder.encode(member.getPassword());
         String name = member.getName();
 
-        Member _member = new Member(username, password, name);
-        repository.save(_member);
+        MongoDatabase database = mongoClient.getDatabase("chatbot");
+        MongoCollection<Document> collection = database.getCollection("member");
 
-        return _member;
+        Document document = collection.find(Filters.eq("username", username)).first();
+
+        if (document != null) {
+            return "error";
+        }
+        else {
+            Member _member = new Member(username, password, name);
+            repository.save(_member);
+
+            return "success";
+        }
     }
-
-//    @PostMapping("/login")
-//    public String loginMember(@RequestBody AuthenticationRequest authenticationRequest
-//            , HttpSession session) {
-//
-//        String username = authenticationRequest.getUsername();
-//        String password = authenticationRequest.getPassword();
-//
-//        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-//        Authentication authentication = authenticationManager.authenticate(token);
-//
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
-//                SecurityContextHolder.getContext());
-//
-//        Member member = userService.readMember(username);
-//        return session.getId();
-//    }
 
     @PostMapping("/login")
     public AuthenticationToken loginMember(@RequestBody AuthenticationRequest authenticationRequest
@@ -113,11 +110,6 @@ public class SampleController {
 
         Member member = userService.readMember(username);
         return new AuthenticationToken(member.getUsername(), member.getAuthorities(), session.getId());
-    }
-
-    @GetMapping("/logout")
-    public String logout() {
-        return null;
     }
 }
 
