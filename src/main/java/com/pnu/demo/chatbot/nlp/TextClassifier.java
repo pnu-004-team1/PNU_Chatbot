@@ -35,9 +35,8 @@ public class TextClassifier {
         } else if(intent.equals("도서관 관리자 질문")) {
             result.type = "LibraryContact";
             if(parameters.get("LibraryInfoSet") == null) {
-                 result.answer = delegate.getLibraryContactInfo(null);
-            }
-            else {
+                result.answer = delegate.getLibraryContactInfo(null);
+            } else {
                 result.answer = delegate.getLibraryContactInfo(responseResult);
             }
         } else if (inputText.contains("도서관")) {
@@ -97,8 +96,7 @@ public class TextClassifier {
             result.type = "FoodCafe";
             if(parameters.get("Restaurant") == null) {
                 result.answer = delegate.getFoodCafeInfo("");
-            }
-            else {
+            } else {
                 result.answer = delegate.getFoodCafeInfo(responseResult);
             }
         } else {

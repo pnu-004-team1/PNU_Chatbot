@@ -52,14 +52,6 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
         sut = classifier.classify(this, query);
         // then
         assertEquals(expectedValue, sut.answer);
-
-        // given
-        expectedValue = "getLibraryContactInfo";
-        query = "도서관 관리자";
-        // when
-        sut = classifier.classify(this, query);
-        // then
-        assertEquals(expectedValue, sut.answer);
     }
 
     @Test
@@ -99,6 +91,90 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
         sut = classifier.classify(this, query);
         // then
         assertEquals(expectedValue, sut.answer);
+
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "자료실 새벽 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "열람실 새벽 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "그냥 새벽 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+
+
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "자료실 미리내 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "열람실 미리내 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "그냥 미리내 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "평소 법학 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "시험기간 법학 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "그냥 법학 도서관";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+
+
+    }
+
+    @Override
+    public String getBookInfo(String query) {
+        return "getBookInfo";
     }
 
     @Override
