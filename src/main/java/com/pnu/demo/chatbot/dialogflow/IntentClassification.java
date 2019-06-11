@@ -45,19 +45,4 @@ public class IntentClassification {
         HashMap<String, JsonElement> parameters = response.getResult().getParameters();
         return parameters;
     }
-
-
-    private static void showHelp(String errorMessage, int exitCode) {
-        if (errorMessage != null && errorMessage.length() > 0) {
-            System.err.println(errorMessage);
-            System.err.println();
-        }
-
-        System.out.println("Usage: APIKEY");
-        System.out.println();
-        System.out.println("APIKEY  Your unique application key");
-        System.out.println("        See https://docs.api.ai/docs/key-concepts for details");
-        System.out.println();
-        System.exit(exitCode);
-    }
 }

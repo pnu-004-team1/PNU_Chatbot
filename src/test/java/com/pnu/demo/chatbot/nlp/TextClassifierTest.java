@@ -70,7 +70,7 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
 
         // given
         expectedValue = "getLibraryInfo";
-        query = "학기중 중앙도서관";
+        query = "방학중 중앙도서관";
         // when
         sut = classifier.classify(this, query);
         // then
@@ -78,7 +78,7 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
 
         // given
         expectedValue = "getLibraryInfo";
-        query = "방학중 중앙도서관";
+        query = "중앙도서관 시간";
         // when
         sut = classifier.classify(this, query);
         // then
@@ -103,7 +103,7 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
 
         // given
         expectedValue = "getLibraryInfo";
-        query = "열람실 새벽 도서관";
+        query = "새벽 도서관 시간";
         // when
         sut = classifier.classify(this, query);
         // then
@@ -130,7 +130,7 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
 
         // given
         expectedValue = "getLibraryInfo";
-        query = "열람실 미리내 도서관";
+        query = "미리내 도서관 시간";
         // when
         sut = classifier.classify(this, query);
         // then
@@ -198,14 +198,10 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
     }
 
     @Override
-    public String getUniversityCalendar(String query) {
-        return "getUniversityCalendar";
-    }
+    public String getUniversityCalendar(String query) { return "getUniversityCalendar"; }
 
     @Override
-    public String getFoodCafeInfo(String restaurant, String time) {
-        return "getFoodCafeInfo";
-    }
+    public String getFoodCafeInfo(String restaurant, String time) { return "getFoodCafeInfo"; }
 
     @Override
     public String getExceptionMessage() {
