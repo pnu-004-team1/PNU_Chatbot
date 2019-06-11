@@ -75,7 +75,7 @@ public class RestaurantCrawlerTest {
         expectedValue = restaurantsAllByCol.get(0) + "\n" + restaurantsAllByCol.get(1) + restaurantsAllByCol.get(2) + "\n" + restaurantsAllByCol.get(3)
                 + restaurantsAllByCol.get(4) + "\n" + restaurantsAllByCol.get(5) + "\n" + restaurantsAllByCol.get(6);
         // when
-        query = "나머지";
+        query = "all";
         sut = infoManager.getStringResult(query);
         // then
         assertEquals(expectedValue, sut);

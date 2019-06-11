@@ -61,7 +61,7 @@ public class LibraryInfoManager {
 
 
 
-    public String getStringResult(String libName, String classify) {
+    public String getStringResult(String libName, String classify) throws NullPointerException {
         ArrayList<String> temp =  new ArrayList<String>();
 
 
@@ -78,6 +78,9 @@ public class LibraryInfoManager {
                         break;
                     case "방학중" :
                         resultStr = "중앙도서관\n" + " 모든 요일 " +  libDoc.select("div.mps tr.row-4").text();
+                        break;
+                    case "all" :
+                        resultStr = "중앙도서관\n" + libDoc.select("div.mps tr.row-3").text() + "\n모든 요일 " +  libDoc.select("div.mps tr.row-4").text();
                         break;
                     default:
                         resultStr = officeHourNotExist;
@@ -101,6 +104,11 @@ public class LibraryInfoManager {
                         resultStr = "새벽벌도서관\n" + openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
                         + openHourAllByCol.get(6) + openHourAllByCol.get(7);
                         break;
+                    case "all" :
+                        resultStr = "새벽벌도서관\n" + openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2) + "\n"
+                                + openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                                + openHourAllByCol.get(6) + openHourAllByCol.get(7);
+                        break;
                     default:
                         resultStr = officeHourNotExist;
                 }
@@ -122,6 +130,11 @@ public class LibraryInfoManager {
                         resultStr = "법학도서관\n" + openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
                                 + openHourAllByCol.get(6) + openHourAllByCol.get(7);
                         break;
+                    case "all" :
+                        resultStr = "법학도서관\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3) + "\n" +
+                                openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                                + openHourAllByCol.get(6) + openHourAllByCol.get(7);
+                        break;
                     default:
                         resultStr = officeHourNotExist;
                 }
@@ -139,6 +152,9 @@ public class LibraryInfoManager {
                         break;
                     case "시험기간":
                         resultStr = "미리내 도서관\n" + openHourAllByCol.get(2);
+                        break;
+                    case "all" :
+                        resultStr = "미리내 도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2);
                         break;
                     default:
                         resultStr = officeHourNotExist;
@@ -160,6 +176,11 @@ public class LibraryInfoManager {
                         resultStr = "의생명도서관\n" + openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
                                 + "," + openHourAllByCol.get(5);
                         break;
+                    case "all" :
+                        resultStr = "의생명도서관\n" + openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
+                                + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3) + "\n" + openHourAllByCol.get(4).substring(10) + "\n"
+                                + openHourAllByCol.get(4).substring(0,8)  + "," + openHourAllByCol.get(5);
+                        break;
                     default:
                         resultStr = officeHourNotExist;
                 }
@@ -178,11 +199,25 @@ public class LibraryInfoManager {
                     case "열람실":
                         resultStr = "나노생명도서관\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3);
                         break;
+                    case "all" :
+                        resultStr = "나노생명도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3);
+                        break;
                     default:
                         resultStr = officeHourNotExist;
                 }
                 break;
             }
+            case "all" :
+                resultStr = "중앙도서관\n" + libDoc.select("div.mps tr.row-3").text() + "\n모든 요일 " +  libDoc.select("div.mps tr.row-4").text()
+                        + "\n새벽벌도서관\n" + openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                        + openHourAllByCol.get(6) + openHourAllByCol.get(7) + "\n법학도서관\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3) + "\n" +
+                        openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                        + openHourAllByCol.get(6) + openHourAllByCol.get(7) + "\n미리내 도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2)
+                        + "\n의생명도서관\n" + openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
+                        + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3) + "\n" + openHourAllByCol.get(4).substring(10) + "\n"
+                        + openHourAllByCol.get(4).substring(0,8)  + "," + openHourAllByCol.get(5)
+                        + "\n나노생명도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3);
+                break;
             default: resultStr = "도서관 이름이 존재하지 않습니다.";
         }
 
@@ -204,13 +239,17 @@ public class LibraryInfoManager {
                 setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/lib1-open-plot/",temp);
                 switch(classify) {
                     case "학기중" :
-                        libOfficeHours.put("library", "중앙도서관");
-                        libOfficeHours.put("openHour", libDoc.select("div.mps tr.row-3").text());
+                        libOfficeHours.put("centLibrary", "중앙도서관");
+                        libOfficeHours.put("centSemesterOpenHour", libDoc.select("div.mps tr.row-3").text());
                         break;
                     case "방학중" :
-                        libOfficeHours.put("library", "중앙도서관");
-                        libOfficeHours.put("openHour", "모든 요일 " +  libDoc.select("div.mps tr.row-4").text());
+                        libOfficeHours.put("centLibrary", "중앙도서관");
+                        libOfficeHours.put("centVacationOpenHour", "모든 요일 " +  libDoc.select("div.mps tr.row-4").text());
                         break;
+                    case "all":
+                        libOfficeHours.put("centLibrary", "중앙도서관");
+                        libOfficeHours.put("centSemesterOpenHour", libDoc.select("div.mps tr.row-3").text());
+                        libOfficeHours.put("centVacationOpenHour", "모든 요일 " +  libDoc.select("div.mps tr.row-4").text());
                     default:
                         libOfficeHours.put("library","Not Found");
                         libOfficeHours.put("openHour","Not Found");
@@ -226,14 +265,19 @@ public class LibraryInfoManager {
                 }
                 switch(classify) {
                     case "자료실" :
-                        libOfficeHours.put("library", "새벽벌도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2));
+                        libOfficeHours.put("saebyukLibrary", "새벽벌도서관");
+                        libOfficeHours.put("saebyukDataOpenHour", openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2));
                         break;
                     case "열람실" :
-                        libOfficeHours.put("library", "새벽벌도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                        libOfficeHours.put("saebyukLibrary", "새벽벌도서관");
+                        libOfficeHours.put("saebyukReadingOpenHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
                                 + openHourAllByCol.get(6) + openHourAllByCol.get(7));
                         break;
+                    case "all":
+                        libOfficeHours.put("saebyukLibrary", "새벽벌도서관");
+                        libOfficeHours.put("saebyukDataOpenHour", openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2));
+                        libOfficeHours.put("saebyukReadingOpenHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                                + openHourAllByCol.get(6) + openHourAllByCol.get(7));
                     default:
                         libOfficeHours.put("library","Not Found");
                         libOfficeHours.put("openHour","Not Found");
@@ -250,14 +294,19 @@ public class LibraryInfoManager {
                 }
                 switch(classify) {
                     case "자료실" :
-                        libOfficeHours.put("library", "법학도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(2) + "\n" +  openHourAllByCol.get(3));
+                        libOfficeHours.put("lawLibrary", "법학도서관");
+                        libOfficeHours.put("lawDataOpenHour", openHourAllByCol.get(2) + "\n" +  openHourAllByCol.get(3));
                         break;
                     case "열람실" :
-                        libOfficeHours.put("library", "법학도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                        libOfficeHours.put("lawLibrary", "법학도서관");
+                        libOfficeHours.put("lawReadingOpenHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
                                 + openHourAllByCol.get(6) + openHourAllByCol.get(7));
                         break;
+                    case "all":
+                        libOfficeHours.put("lawLibrary", "법학도서관");
+                        libOfficeHours.put("lawDataOpenHour", openHourAllByCol.get(2) + "\n" +  openHourAllByCol.get(3));
+                        libOfficeHours.put("lawReadingOpenHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                                + openHourAllByCol.get(6) + openHourAllByCol.get(7));
                     default:
                         libOfficeHours.put("library","Not Found");
                         libOfficeHours.put("openHour","Not Found");
@@ -272,13 +321,17 @@ public class LibraryInfoManager {
                 }
                 switch (classify) {
                     case "평소":
-                        libOfficeHours.put("library", "미리내 도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(1));
+                        libOfficeHours.put("mirinaeLibrary", "미리내 도서관");
+                        libOfficeHours.put("mirinaeUsualOpenHour", openHourAllByCol.get(1));
                         break;
                     case "시험기간":
-                        libOfficeHours.put("library", "미리내 도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(2));
+                        libOfficeHours.put("mirinaeLibrary", "미리내 도서관");
+                        libOfficeHours.put("mirinaeExamOpenHour", openHourAllByCol.get(2));
                         break;
+                    case "all":
+                        libOfficeHours.put("mirinaeLibrary", "미리내 도서관");
+                        libOfficeHours.put("mirinaeUsualOpenHour", openHourAllByCol.get(1));
+                        libOfficeHours.put("mirinaeExamOpenHour", openHourAllByCol.get(2));
                     default:
                         libOfficeHours.put("library","Not Found");
                         libOfficeHours.put("openHour","Not Found");
@@ -293,15 +346,21 @@ public class LibraryInfoManager {
                 }
                 switch (classify) {
                     case "학기중":
-                        libOfficeHours.put("library", "의생명도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
+                        libOfficeHours.put("bioLibrary", "의생명도서관");
+                        libOfficeHours.put("bioSemesterOpenHour", openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
                                 + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3));
                         break;
                     case "방학중":
-                        libOfficeHours.put("library", "의생명도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
+                        libOfficeHours.put("bioLibrary", "의생명도서관");
+                        libOfficeHours.put("bioVacationOpenHour", openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
                                 + "," + openHourAllByCol.get(5));
                         break;
+                    case "all":
+                        libOfficeHours.put("bioLibrary", "의생명도서관");
+                        libOfficeHours.put("bioSemesterOpenHour", openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
+                                + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3));
+                        libOfficeHours.put("bioVacationOpenHour", openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
+                                + "," + openHourAllByCol.get(5));
                     default:
                         libOfficeHours.put("library","Not Found");
                         libOfficeHours.put("openHour","Not Found");
@@ -316,19 +375,47 @@ public class LibraryInfoManager {
                 }
                 switch (classify) {
                     case "자료실":
-                        libOfficeHours.put("library", "나노생명도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(1));
+                        libOfficeHours.put("nanoLibrary", "나노생명도서관");
+                        libOfficeHours.put("nanoDataOpenHour", openHourAllByCol.get(1));
                         break;
                     case "열람실":
-                        libOfficeHours.put("library", "나노생명도서관");
-                        libOfficeHours.put("openHour", openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3));
+                        libOfficeHours.put("nanoLibrary", "나노생명도서관");
+                        libOfficeHours.put("nanoReadingOpenHour", openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3));
                         break;
+                    case "all":
+                        libOfficeHours.put("nanoLibrary", "나노생명도서관");
+                        libOfficeHours.put("nanoDataOpenHour", openHourAllByCol.get(1));
+                        libOfficeHours.put("nanoReadingOpenHour", openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3));
                     default:
                         libOfficeHours.put("library","Not Found");
                         libOfficeHours.put("openHour","Not Found");
                 }
                 break;
             }
+            case "all":
+                libOfficeHours.put("centLibrary", "중앙도서관");
+                libOfficeHours.put("centSemesterOpenHour", libDoc.select("div.mps tr.row-3").text());
+                libOfficeHours.put("centVacationOpenHour", "모든 요일 " +  libDoc.select("div.mps tr.row-4").text());
+                libOfficeHours.put("saebyukLibrary", "새벽벌도서관");
+                libOfficeHours.put("saebyukDataOpenHour", openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2));
+                libOfficeHours.put("saebyukReadingOpenHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                        + openHourAllByCol.get(6) + openHourAllByCol.get(7));
+                libOfficeHours.put("lawLibrary", "법학도서관");
+                libOfficeHours.put("lawDataOpenHour", openHourAllByCol.get(2) + "\n" +  openHourAllByCol.get(3));
+                libOfficeHours.put("lawReadingOpenHour", openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                        + openHourAllByCol.get(6) + openHourAllByCol.get(7));
+                libOfficeHours.put("mirinaeLibrary", "미리내 도서관");
+                libOfficeHours.put("mirinaeUsualOpenHour", openHourAllByCol.get(1));
+                libOfficeHours.put("mirinaeExamOpenHour", openHourAllByCol.get(2));
+                libOfficeHours.put("bioLibrary", "의생명도서관");
+                libOfficeHours.put("bioSemesterOpenHour", openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
+                        + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3));
+                libOfficeHours.put("bioVacationOpenHour", openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
+                        + "," + openHourAllByCol.get(5));
+                libOfficeHours.put("nanoLibrary", "나노생명도서관");
+                libOfficeHours.put("nanoDataOpenHour", openHourAllByCol.get(1));
+                libOfficeHours.put("nanoReadingOpenHour", openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3));
+                break;
             default: libOfficeHours.put("library","도서관 이름이 존재하지 않습니다.");
         }
 
