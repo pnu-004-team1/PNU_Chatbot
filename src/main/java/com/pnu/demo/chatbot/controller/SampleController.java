@@ -4,20 +4,15 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
 import com.pnu.demo.chatbot.nlp.ClassificationResult;
 import com.pnu.demo.chatbot.service.ChatbotService;
-<<<<<<< HEAD
 import com.pnu.demo.chatbot.vo.JSONChatbotDataVO;
-=======
 import com.pnu.demo.chatbot.user.Authentication.AuthenticationRequest;
 import com.pnu.demo.chatbot.user.Authentication.AuthenticationToken;
 import com.pnu.demo.chatbot.user.Member;
 import com.pnu.demo.chatbot.user.MemberRepository;
 import com.pnu.demo.chatbot.user.UserService;
->>>>>>> Login
 import com.pnu.demo.chatbot.vo.JSONChatbotVO;
-import net.minidev.json.JSONObject;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -72,20 +67,6 @@ public class SampleController {
         vo.data= data;
         return vo;
     }
-<<<<<<< HEAD
-=======
-
-    @GetMapping("/bookInfo")
-    public JSONChatbotVO bookinfomessage(@RequestParam String query) {
-        //System.out.println(query);
-        JSONObject data = new JSONObject();
-        JSONChatbotVO vo = new JSONChatbotVO();
-        BookInfoManager bookInfoManager = new BookInfoManager();
-        data.put("type", "bookinfo");
-        data.put("data", bookInfoManager.getStringResult(query));
-        vo.data = data;
-        return vo;
-    }
 
     @PostMapping("/join")
     public String joinMember(@RequestBody Member member) {
@@ -129,6 +110,5 @@ public class SampleController {
         Member member = userService.readMember(username);
         return new AuthenticationToken(member.getUsername(), member.getAuthorities(), session.getId());
     }
->>>>>>> Login
 }
 
