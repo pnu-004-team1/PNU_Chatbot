@@ -29,9 +29,9 @@ public class TextClassifier {
         }else if (intent.equals("열람실 질문")) {
             result.type = "LibrarySeating";
             result.answer = delegate.getLibrarySeatingInfo(responseResult);
-        } else if (intent.equals("학사 일정 질문")) {
+        } else if (intent.equals("학사일정 질문")) {
             result.type = "UniversityCalendar";
-            result.answer = delegate.getUniversityCalendar();
+            result.answer = delegate.getUniversityCalendar(responseResult);
         } else if(intent.equals("도서관 관리자 질문")) {
             result.type = "LibraryContact";
             if(parameters.get("LibraryInfoSet") == null) {

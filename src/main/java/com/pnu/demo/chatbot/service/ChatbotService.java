@@ -56,7 +56,7 @@ public class ChatbotService implements ChatbotServiceDelegate {
     }
 
     @Override // 담당자: 안재우
-    public String getUniversityCalendar() {
+    public String getUniversityCalendar(String query) {
         AcademicCalendarInfoManager infoManager = new AcademicCalendarInfoManager();
         String result = infoManager.getStringResult("학사 일정");
         return result;

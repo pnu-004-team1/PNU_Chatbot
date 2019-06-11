@@ -198,9 +198,7 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
     }
 
     @Override
-    public String getUniversityCalendar() {
-        return "getUniversityCalendar";
-    }
+    public String getUniversityCalendar(String query) { return "getUniversityCalendar"; }
 
     @Override
     public String getFoodCafeInfo(String restaurant, String time) { return "getFoodCafeInfo"; }
