@@ -95,7 +95,7 @@ public class TextClassifier {
         } else if (intent.equals("학식 질문")) {
             result.type = "FoodCafe";
             if(parameters.get("Restaurant") == null) {
-                result.answer = delegate.getFoodCafeInfo("");
+                result.answer = delegate.getFoodCafeInfo("all","all");
             } else {
                 result.answer = delegate.getFoodCafeInfo(responseResult);
             }

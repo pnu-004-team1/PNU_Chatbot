@@ -32,51 +32,110 @@ public class RestaurantCrawlerTest {
     @Test
     public void getStringResult() {
         String expectedValue;
+        String expectedValue2;
+        String expectedValue3;
         String sut;
+        String sut2;
+        String sut3;
         String query;
+        String query2;
 
-        for (Element element : pnu.select("table tbody tr")) {
+        for (Element element : pnu.select("td")) {
             restaurantsAllByCol.add(element.text());
         }
 
         // given
-        expectedValue = restaurantsAllByCol.get(0) + "\n" + restaurantsAllByCol.get(1);
+        expectedValue = "금정회관 교직원 식당\n" + restaurantsAllByCol.get(0) + "금정회관 학생 식당\n"
+                + restaurantsAllByCol.get(3);
+        expectedValue2 = "금정회관 교직원 식당\n" + restaurantsAllByCol.get(1) + "금정회관 학생 식당\n"
+                + restaurantsAllByCol.get(4);
+        expectedValue3 = "금정회관 교직원 식당\n" + restaurantsAllByCol.get(2) + "금정회관 학생 식당\n"
+                + restaurantsAllByCol.get(5);
         // when
         query = "금정";
-        sut = infoManager.getStringResult(query);
+        query2 = "조식";
+        sut = infoManager.getStringResult(query, query2);
+        query2 = "중식";
+        sut2 = infoManager.getStringResult(query, query2);
+        query2 = "석식";
+        sut3 = infoManager.getStringResult(query, query2);
         // then
         assertEquals(expectedValue, sut);
+        assertEquals(expectedValue2, sut2);
+        assertEquals(expectedValue3, sut3);
 
         // given
-        expectedValue = restaurantsAllByCol.get(2) + "\n" + restaurantsAllByCol.get(3);
+        expectedValue = "문창회관 교직원 식당\n" + restaurantsAllByCol.get(6) + "문창회관 학생 식당\n"
+                + restaurantsAllByCol.get(9);
+        expectedValue2 = "문창회관 교직원 식당\n" + restaurantsAllByCol.get(7) + "문창회관 학생 식당\n"
+                + restaurantsAllByCol.get(10);
+        expectedValue3 = "문창회관 교직원 식당\n" + restaurantsAllByCol.get(8) + "문창회관 학생 식당\n"
+                + restaurantsAllByCol.get(11);
         // when
         query = "문창";
-        sut = infoManager.getStringResult(query);
+        query2 = "조식";
+        sut = infoManager.getStringResult(query, query2);
+        query2 = "중식";
+        sut2 = infoManager.getStringResult(query, query2);
+        query2 = "석식";
+        sut3 = infoManager.getStringResult(query, query2);
         // then
         assertEquals(expectedValue, sut);
+        assertEquals(expectedValue2, sut2);
+        assertEquals(expectedValue3, sut3);
 
         // given
-        expectedValue = restaurantsAllByCol.get(4);
+        expectedValue = "샛벌회관 식당\n" + restaurantsAllByCol.get(12);
+        expectedValue2 = "샛벌회관 식당\n" + restaurantsAllByCol.get(13);
+        expectedValue3 = "샛벌회관 식당\n" + restaurantsAllByCol.get(14);
         // when
         query = "샛벌";
-        sut = infoManager.getStringResult(query);
+        query2 = "조식";
+        sut = infoManager.getStringResult(query, query2);
+        query2 = "중식";
+        sut2 = infoManager.getStringResult(query, query2);
+        query2 = "석식";
+        sut3 = infoManager.getStringResult(query, query2);
         // then
         assertEquals(expectedValue, sut);
+        assertEquals(expectedValue2, sut2);
+        assertEquals(expectedValue3, sut3);
 
         // given
-        expectedValue = restaurantsAllByCol.get(5) + "\n" + restaurantsAllByCol.get(6);
+        expectedValue = "학생회관 교직원 식당\n" + restaurantsAllByCol.get(15) + "학생회관 학생 식당\n"
+                + restaurantsAllByCol.get(18);
+        expectedValue2 = "학생회관 교직원 식당\n" + restaurantsAllByCol.get(16) + "학생회관 학생 식당\n"
+                + restaurantsAllByCol.get(19);
+        expectedValue3 = "학생회관 교직원 식당\n" + restaurantsAllByCol.get(17) + "학생회관 학생 식당\n"
+                + restaurantsAllByCol.get(20);
         // when
         query = "학생";
-        sut = infoManager.getStringResult(query);
+        query2 = "조식";
+        sut = infoManager.getStringResult(query, query2);
+        query2 = "중식";
+        sut2 = infoManager.getStringResult(query, query2);
+        query2 = "석식";
+        sut3 = infoManager.getStringResult(query, query2);
         // then
         assertEquals(expectedValue, sut);
+        assertEquals(expectedValue2, sut2);
+        assertEquals(expectedValue3, sut3);
 
         // given
-        expectedValue = restaurantsAllByCol.get(0) + "\n" + restaurantsAllByCol.get(1) + restaurantsAllByCol.get(2) + "\n" + restaurantsAllByCol.get(3)
-                + restaurantsAllByCol.get(4) + "\n" + restaurantsAllByCol.get(5) + "\n" + restaurantsAllByCol.get(6);
+        expectedValue = "금정회관 교직원 식당\n" + restaurantsAllByCol.get(0) + "\n"
+                + restaurantsAllByCol.get(1) + "\n" + restaurantsAllByCol.get(2) + "금정회관 학생 식당\n"
+                + restaurantsAllByCol.get(3) + "\n" + restaurantsAllByCol.get(4) + "\n" + restaurantsAllByCol.get(5)
+                + "\n문창회관 교직원 식당\n" + restaurantsAllByCol.get(6) + "\n"
+                + restaurantsAllByCol.get(7) + "\n" + restaurantsAllByCol.get(8) + "문창회관 학생 식당\n"
+                + restaurantsAllByCol.get(9) + "\n" + restaurantsAllByCol.get(10) + "\n" + restaurantsAllByCol.get(11)
+                + "\n샛벌회관 식당\n" + restaurantsAllByCol.get(12) + "\n" + restaurantsAllByCol.get(13) + "\n" + restaurantsAllByCol.get(14)
+                + "\n학생회관 교직원 식당\n" + restaurantsAllByCol.get(15) + "\n"
+                + restaurantsAllByCol.get(16) + "\n" + restaurantsAllByCol.get(17) + "학생회관 학생 식당\n"
+                + restaurantsAllByCol.get(18) + "\n" + restaurantsAllByCol.get(19) + "\n" + restaurantsAllByCol.get(20);
         // when
         query = "all";
-        sut = infoManager.getStringResult(query);
+        query2 = "all";
+        sut = infoManager.getStringResult(query, query2);
         // then
         assertEquals(expectedValue, sut);
     }

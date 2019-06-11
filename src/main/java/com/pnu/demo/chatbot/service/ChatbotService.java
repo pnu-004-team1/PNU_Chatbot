@@ -63,9 +63,9 @@ public class ChatbotService implements ChatbotServiceDelegate {
     }
 
     @Override // 담당자: 류강현
-    public String getFoodCafeInfo(String query) {
+    public String getFoodCafeInfo(String restaurant, String time) {
         RestaurantCrawler infoManager = new RestaurantCrawler ();
-        String result = infoManager.getStringResult(query);
+        String result = infoManager.getStringResult(restaurant, time);
         return result;
     }
 
