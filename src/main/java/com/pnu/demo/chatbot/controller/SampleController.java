@@ -4,7 +4,10 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+<<<<<<< HEAD
 import com.pnu.demo.chatbot.bookInfo.BookInfoManager;
+=======
+>>>>>>> origin/Login
 import com.pnu.demo.chatbot.nlp.ClassificationResult;
 import com.pnu.demo.chatbot.service.ChatbotService;
 import com.pnu.demo.chatbot.user.Authentication.AuthenticationRequest;
@@ -13,8 +16,16 @@ import com.pnu.demo.chatbot.user.Member;
 import com.pnu.demo.chatbot.user.MemberRepository;
 import com.pnu.demo.chatbot.user.UserService;
 import com.pnu.demo.chatbot.vo.JSONChatbotDataVO;
+import com.pnu.demo.chatbot.user.Authentication.AuthenticationRequest;
+import com.pnu.demo.chatbot.user.Authentication.AuthenticationToken;
+import com.pnu.demo.chatbot.user.Member;
+import com.pnu.demo.chatbot.user.MemberRepository;
+import com.pnu.demo.chatbot.user.UserService;
 import com.pnu.demo.chatbot.vo.JSONChatbotVO;
+<<<<<<< HEAD
 import net.minidev.json.JSONObject;
+=======
+>>>>>>> origin/Login
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,13 +57,13 @@ public class SampleController {
     private ChatbotService service = new ChatbotService();
 
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "hello";
     }
 
     @GetMapping("/chatbot")
     public JSONChatbotVO chatbotmessage(@RequestParam String query) {
-        System.out.println(query);
+        //System.out.println(query);
         JSONChatbotVO vo = new JSONChatbotVO();
         JSONChatbotDataVO data = new JSONChatbotDataVO();
         ClassificationResult result;
@@ -97,7 +108,11 @@ public class SampleController {
 
     @PostMapping("/login")
     public AuthenticationToken loginMember(@RequestBody AuthenticationRequest authenticationRequest
+<<<<<<< HEAD
             , HttpSession session) {
+=======
+                                            , HttpSession session) {
+>>>>>>> origin/Login
 
         String username = authenticationRequest.getUsername();
         String password = authenticationRequest.getPassword();
@@ -113,3 +128,4 @@ public class SampleController {
         return new AuthenticationToken(member.getUsername(), member.getAuthorities(), session.getId());
     }
 }
+
