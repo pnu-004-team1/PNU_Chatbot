@@ -8,8 +8,8 @@ public interface ChatbotServiceDelegate {
     public String getLibraryInfo(String libName, String category);
     public String getLibrarySeatingInfo(String query);
     public String getLibraryContactInfo(String libName);
-    public String getUniversityCalendar();
-    public String getFoodCafeInfo(String query);
+    public String getUniversityCalendar(String query);
+    public String getFoodCafeInfo(String restaurant, String time);
 //    public String getCounselingInfo();
     public String getExceptionMessage();
 }

@@ -38,7 +38,7 @@ public class LibraryContactInfoManager {
     }
 
 
-    public String getStringResult(String libName) {
+    public String getStringResult(String libName) throws NullPointerException {
 
         setJsoupInfos();
 
@@ -79,6 +79,26 @@ public class LibraryContactInfoManager {
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
                 break;
             }
+            case "all":
+                resultStr += "부산도서관\n" + telsAllByCol.get(0) + "\n";
+                for(int i = 1; i < 10; ++i)
+                    resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-1) + "\n";
+                resultStr += telsAllByCol.get(11) + "\n";
+                for(int i = 12; i < 27; ++i)
+                    resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-2) + "\n";
+                resultStr += "법학도서관\n" + telsAllByCol.get(27) + "\n";;
+                for(int i = 28; i < 30; ++i)
+                    resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-3) + "\n";
+                resultStr += "양산도서관\n" + telsAllByCol.get(30) + "\n";;
+                for(int i = 31; i < 32; ++i)
+                    resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-4) + "\n";
+                resultStr += "아미도서관\n" + telsAllByCol.get(32) + "\n";;
+                for(int i = 33; i < 34; ++i)
+                    resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-5) + "\n";
+                resultStr += "밀양도서관\n" + telsAllByCol.get(34) + "\n";;
+                for(int i = 35; i < 36; ++i)
+                    resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
+                break;
             default: resultStr = "도서관 이름이 존재하지 않습니다.";
         }
 
@@ -88,7 +108,7 @@ public class LibraryContactInfoManager {
         return resultStr;
     }
 
-    public JSONObject getStringResultJson(String libName) throws IOException, JSONException {
+    public JSONObject getStringResultJson(String libName) throws JSONException {
 
         setJsoupInfos();
 
@@ -96,7 +116,7 @@ public class LibraryContactInfoManager {
         JSONObject libLibTelNums = new JSONObject();
         switch(libName) {
             case "부산": {
-                libLibTelNums.put("library", "부산도서관");
+                libLibTelNums.put("pusanLibrary", "부산도서관");
                 resultStr += telsAllByCol.get(0) + "\n";
                 for(int i = 1; i < 10; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-1) + "\n";
@@ -106,43 +126,43 @@ public class LibraryContactInfoManager {
                 for(int i = 12; i < 27; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-2) + "\n";
 
-                libLibTelNums.put("telNums", resultStr);
+                libLibTelNums.put("pusanTelNums", resultStr);
                 break;
             }
             case "법학": {
-                libLibTelNums.put("library", "법학도서관");
+                libLibTelNums.put("lawLibrary", "법학도서관");
                 resultStr += telsAllByCol.get(27) + "\n";
                 for(int i = 28; i < 30; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-3) + "\n";
 
-                libLibTelNums.put("telNums", resultStr);
+                libLibTelNums.put("lawTelNums", resultStr);
                 break;
             }
             case "양산": {
-                libLibTelNums.put("library", "양산도서관");
+                libLibTelNums.put("yangsanLibrary", "양산도서관");
                 resultStr += telsAllByCol.get(30) + "\n";
                 for(int i = 31; i < 32; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-4) + "\n";
 
-                libLibTelNums.put("telNums", resultStr);
+                libLibTelNums.put("yangsanTelNums", resultStr);
                 break;
             }
             case "아미": {
-                libLibTelNums.put("library", "아미도서관");
+                libLibTelNums.put("amiLibrary", "아미도서관");
                 resultStr += telsAllByCol.get(32) + "\n";
                 for(int i = 33; i < 34; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-5) + "\n";
 
-                libLibTelNums.put("telNums", resultStr);
+                libLibTelNums.put("amiTelNums", resultStr);
                 break;
             }
             case "밀양": {
-                libLibTelNums.put("library", "밀양도서관");
+                libLibTelNums.put("milyangLibrary", "밀양도서관");
                 resultStr += telsAllByCol.get(34) + "\n";
                 for(int i = 35; i < 36; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
 
-                libLibTelNums.put("telNums", resultStr);
+                libLibTelNums.put("milyangTelNums", resultStr);
                 break;
             }
             default:  libLibTelNums.put("library", "도서관 이름이 존재하지 않습니다.");

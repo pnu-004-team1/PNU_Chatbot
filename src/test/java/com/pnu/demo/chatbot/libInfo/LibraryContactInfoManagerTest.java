@@ -11,7 +11,7 @@ public class LibraryContactInfoManagerTest {
 
 
     @Test
-    public void testLibraryContactInfoManager_pusan() throws Exception {
+    public void testLibraryContactInfoManager_pusan() throws NullPointerException {
 
 
         String libContactInfo = libraryContactInfoManager.getStringResult("부산");
