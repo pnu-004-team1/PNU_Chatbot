@@ -42,6 +42,7 @@ public class LibraryContactInfoManager {
 
         setJsoupInfos();
 
+        if (libName == null) libName = "all";
         resultStr = "";
         switch(libName) {
             case "부산": {
