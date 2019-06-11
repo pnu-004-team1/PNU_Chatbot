@@ -140,12 +140,6 @@ public class RestaurantCrawlerTest {
         assertEquals(expectedValue, sut);
     }
 
-    @Test
-    public void getStringResultJson() {
-        // TODO
-        
-    }
-
 
     private Document conntectURL() {
         try {

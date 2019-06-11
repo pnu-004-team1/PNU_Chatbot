@@ -65,7 +65,7 @@ public class LibraryInfoManager {
         ArrayList<String> temp =  new ArrayList<String>();
 
         if (libName == null) libName = "all";
-        else if(classify == null) classify = "all";
+        if (classify == null) classify = "all";
         String resultStr = "";
         switch(libName) {
             case "중앙":
@@ -208,16 +208,44 @@ public class LibraryInfoManager {
                 }
                 break;
             }
-            case "all" :
-                resultStr = "중앙도서관\n" + libDoc.select("div.mps tr.row-3").text() + "\n모든 요일 " +  libDoc.select("div.mps tr.row-4").text()
-                        + "\n새벽벌도서관\n" + openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
-                        + openHourAllByCol.get(6) + openHourAllByCol.get(7) + "\n법학도서관\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3) + "\n" +
-                        openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
-                        + openHourAllByCol.get(6) + openHourAllByCol.get(7) + "\n미리내 도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2)
-                        + "\n의생명도서관\n" + openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
+            case "all" : {
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/lib1-open-plot/",temp);
+                resultStr = "중앙도서관\n" + libDoc.select("div.mps tr.row-3").text() + "\n모든 요일 " +  libDoc.select("div.mps tr.row-4").text();
+                openHourAllByCol.clear();
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/lib2-open-plot/",temp);
+                for (Element element : libDoc.select(getTextByCols)){
+                    openHourAllByCol.add(element.text());
+                }
+                resultStr += "\n새벽벌도서관\n" + openHourAllByCol.get(1) + "\n" +  openHourAllByCol.get(2) + "\n"
+                        + openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5)
+                        + openHourAllByCol.get(6) + openHourAllByCol.get(7);
+                openHourAllByCol.clear();
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/law-open-plot/",temp);
+                for (Element element : libDoc.select(getTextByCols)){
+                    openHourAllByCol.add(element.text());
+                }
+                resultStr += "\n법학도서관\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3) + "\n" + openHourAllByCol.get(3) + openHourAllByCol.get(4) + openHourAllByCol.get(5) + openHourAllByCol.get(6) + openHourAllByCol.get(7);
+                openHourAllByCol.clear();
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/archi-open-plot/", temp);
+                for (Element element : libDoc.select(getTextByCols)) {
+                    openHourAllByCol.add(element.text());
+                }
+                resultStr += "\n미리내 도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2);
+                openHourAllByCol.clear();
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/bio-open-plot/", temp);
+                for (Element element : libDoc.select(getTextByCols)) {
+                    openHourAllByCol.add(element.text());
+                }
+                resultStr += "\n의생명도서관\n" + openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
                         + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3) + "\n" + openHourAllByCol.get(4).substring(10) + "\n"
-                        + openHourAllByCol.get(4).substring(0,8)  + "," + openHourAllByCol.get(5)
-                        + "\n나노생명도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3);
+                        + openHourAllByCol.get(4).substring(0,8)  + "," + openHourAllByCol.get(5);
+                openHourAllByCol.clear();
+                setJsoupInfos("https://lib.pusan.ac.kr/intro/plot-plan/nano-open-plot/", temp);
+                for (Element element : libDoc.select(getTextByCols)) {
+                    openHourAllByCol.add(element.text());
+                }
+                resultStr += "\n나노생명도서관\n" + openHourAllByCol.get(1) + "\n" + openHourAllByCol.get(2) + "\n" + openHourAllByCol.get(3);
+            }
                 break;
             default: resultStr = "도서관 이름이 존재하지 않습니다.";
         }
@@ -235,7 +263,7 @@ public class LibraryInfoManager {
         JSONObject libOfficeHour = new JSONObject();
         JSONObject libOfficeHours = new JSONObject();
         if (libName == null) libName = "all";
-        else if(classify == null) classify = "all";
+        if(classify == null) classify = "all";
         switch(libName) {
             case "중앙":
             {

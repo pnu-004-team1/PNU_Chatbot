@@ -80,7 +80,7 @@ public class LibraryContactInfoManager {
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
                 break;
             }
-            case "all":
+            case "all": {
                 resultStr += "부산도서관\n" + telsAllByCol.get(0) + "\n";
                 for(int i = 1; i < 10; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-1) + "\n";
@@ -100,6 +100,7 @@ public class LibraryContactInfoManager {
                 for(int i = 35; i < 36; ++i)
                     resultStr += telsAllByCol.get(i) + " " + emailsAllByCol.get(i-6) + "\n";
                 break;
+            }
             default: resultStr = "도서관 이름이 존재하지 않습니다.";
         }
 
