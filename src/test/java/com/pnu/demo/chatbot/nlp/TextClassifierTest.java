@@ -58,7 +58,29 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
     }
 
     @Test
-    public void testLibraryManager() {
+    public void testUniveristyCalendarPeriod() {
+        // given
+        expectedValue = "getUniversityCalendar";
+        query = "이번 달에 학사일정 뭐 있어?";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testUniveristyCalendarEvent() {
+        // given
+        expectedValue = "getUniversityCalendar";
+        query = "수강신청 언제임?";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testLibraryManagerAll() {
         // given
         expectedValue = "getLibraryContactInfo";
         query = "도서관 관리자";
@@ -69,10 +91,21 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
     }
 
     @Test
+    public void testLibraryManagerOne() {
+        // given
+        expectedValue = "getLibraryContactInfo";
+        query = "밀양캠 도서관 관리자 연락처 좀";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
     public void testLibraryAll() {
         // given
         expectedValue = "getLibraryInfo";
-        query = "도서관";
+        query = "도서관 언제 여노";
         // when
         sut = classifier.classify(this, query);
         // then
@@ -161,7 +194,7 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
     public void testLibrarMirineReadingRoom() {
         // given
         expectedValue = "getLibraryInfo";
-        query = "미리내 도서관 시간";
+        query = "미리내 도서관 열람실 언제 염?";
         // when
         sut = classifier.classify(this, query);
         // then
@@ -172,7 +205,7 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
     public void testLibraryMirineAllRoom() {
         // given
         expectedValue = "getLibraryInfo";
-        query = "그냥 미리내 도서관";
+        query = "미리내 도서관 개관 시간 언제임?";
         // when
         sut = classifier.classify(this, query);
         // then
@@ -211,6 +244,129 @@ public class TextClassifierTest implements ChatbotServiceDelegate {
         // then
         assertEquals(expectedValue, sut.answer);
     }
+
+    @Test
+    public void testLibraryMedicalSemester() {
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "의생명과학도서관 학기 중";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testLibraryMedicalVacation() {
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "의생명도서관 방학에 언제 여냐";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testLibraryMedicalAllTime() {
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "의생명 도서관 학기 중";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testLibraryNanoInformationRoom() {
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "나노생명과학도서관 자료실 언제 여는 지 알려줘";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testLibraryNanoReadingRoom() {
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "나노생명 도서관 열람실 언제까지 불 켜져있어?";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testLibraryNanoAllTime() {
+        // given
+        expectedValue = "getLibraryInfo";
+        query = "나노생명과학 언제 염?";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testRestaurantAllRestaurantAllMenu() {
+        // given
+        expectedValue = "getFoodCafeInfo";
+        query = "학식 뭐냐";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testRestaurantGumjungAllMenu() {
+        // given
+        expectedValue = "getFoodCafeInfo";
+        query = "오늘 금정 학식 보여줘";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testRestaurantAllRestaurantLunch() {
+        // given
+        expectedValue = "getFoodCafeInfo";
+        query = "점심 학식 뭐임?";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testRestaurantSetbulDinner() {
+        // given
+        expectedValue = "getFoodCafeInfo";
+        query = "샛벌 저녁 알려줘";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+    @Test
+    public void testUnknownQuery() {
+        // given
+        expectedValue = "getExceptionMessage";
+        query = "디자인 패턴 공부하세요";
+        // when
+        sut = classifier.classify(this, query);
+        // then
+        assertEquals(expectedValue, sut.answer);
+    }
+
+
 
     @Override
     public String getBookInfo(String query) {
