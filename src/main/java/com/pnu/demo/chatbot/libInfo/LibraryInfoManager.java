@@ -169,14 +169,6 @@ public class LibraryInfoManager {
                     openHourAllByCol.add(element.text());
                 }
                 switch (classify) {
-                    case "학기중":
-                        resultStr = "의생명도서관\n" + openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
-                                + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3);
-                        break;
-                    case "방학중":
-                        resultStr = "의생명도서관\n" + openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
-                                + "," + openHourAllByCol.get(5);
-                        break;
                     case "all" :
                         resultStr = "의생명도서관\n" + openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
                                 + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3) + "\n" + openHourAllByCol.get(4).substring(10) + "\n"
@@ -376,16 +368,6 @@ public class LibraryInfoManager {
                     openHourAllByCol.add(element.text());
                 }
                 switch (classify) {
-                    case "학기중":
-                        libOfficeHours.put("bioLibrary", "의생명도서관");
-                        libOfficeHours.put("bioSemesterOpenHour", openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)
-                                + "," + openHourAllByCol.get(2) + "," + openHourAllByCol.get(3));
-                        break;
-                    case "방학중":
-                        libOfficeHours.put("bioLibrary", "의생명도서관");
-                        libOfficeHours.put("bioVacationOpenHour", openHourAllByCol.get(4).substring(10) + "\n" + openHourAllByCol.get(4).substring(0,8)
-                                + "," + openHourAllByCol.get(5));
-                        break;
                     case "all":
                         libOfficeHours.put("bioLibrary", "의생명도서관");
                         libOfficeHours.put("bioSemesterOpenHour", openHourAllByCol.get(1).substring(10) + "\n" + openHourAllByCol.get(1).substring(0,8)

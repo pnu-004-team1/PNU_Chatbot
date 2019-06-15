@@ -110,13 +110,9 @@ public class LibraryInfoManagerTest {
 
         String libOfficeHour11 = libraryInfoManager.getStringResult("의생명","all");
 
-        Assert.assertThat(libOfficeHour9, CoreMatchers.is("의생명도서관\n" +
-                "09:00 ~ 21:00 토, 일요일, 공휴일, 설/추석 연휴, 개교기념일(5월15일) 휴관\n" +
-                "4층 단행본자료,3층 연속간행물자료실,1층 대출반납데스크"));
+        Assert.assertThat(libOfficeHour9, CoreMatchers.is("해당 개관시간이 존재하지 않습니다."));
 
-        Assert.assertThat(libOfficeHour10, CoreMatchers.is("의생명도서관\n" +
-                "08:00 ~ 24:00 설/추석 연휴, 개교기념일(5월15일) 휴관\n" +
-                "2층 그룹스터디,1층 iCOMMONS"));
+        Assert.assertThat(libOfficeHour10, CoreMatchers.is("해당 개관시간이 존재하지 않습니다."));
 
         Assert.assertThat(libOfficeHour, CoreMatchers.is("해당 개관시간이 존재하지 않습니다."));
 
